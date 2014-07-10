@@ -1,0 +1,32 @@
+allprojects {
+    apply plugin: 'java'
+    group = 'ua.vn.os'
+    version = '1.0'
+    sourceCompatibility = 1.7
+}
+
+ext {
+    springVersion = '4.0.5.RELEASE'
+    testngVersion = '6.8.8'
+}
+
+subprojects {
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        /* spring dependency */
+        compile group: 'org.springframework', name: 'spring-core', version: springVersion
+        compile group: 'org.springframework', name: 'spring-context', version: springVersion
+        compile group: 'org.springframework', name: 'spring-beans', version: springVersion
+
+        /* testNG dependency*/
+        testCompile group: 'org.testng', name: 'testng', version: testngVersion
+    }
+}
+
+dependencies {
+    compile(project("ulteam-model"))
+}
