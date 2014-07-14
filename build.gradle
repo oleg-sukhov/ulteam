@@ -1,8 +1,5 @@
 allprojects {
-    apply plugin: 'java'
-    group = 'ua.vn.os'
-    version = '1.0'
-    sourceCompatibility = 1.7
+
 }
 
 ext {
@@ -11,6 +8,11 @@ ext {
 }
 
 subprojects {
+
+    apply plugin: 'java'
+    group = 'ua.vn.os'
+    version = '1.0'
+    sourceCompatibility = 1.7
 
     repositories {
         mavenCentral()
@@ -21,6 +23,7 @@ subprojects {
         compile group: 'org.springframework', name: 'spring-core', version: springVersion
         compile group: 'org.springframework', name: 'spring-context', version: springVersion
         compile group: 'org.springframework', name: 'spring-beans', version: springVersion
+        compile group: 'org.springframework', name: 'spring-jdbc', version: springVersion
 
         /* testNG dependency*/
         testCompile group: 'org.testng', name: 'testng', version: testngVersion
