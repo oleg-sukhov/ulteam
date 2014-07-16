@@ -5,6 +5,6 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by os
  */
-@Configuration
+@Configuration()
 public class ApplicationModelConfig {
 }

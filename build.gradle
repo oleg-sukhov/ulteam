@@ -25,6 +25,7 @@ subprojects {
         compile group: 'org.springframework', name: 'spring-context', version: springVersion
         compile group: 'org.springframework', name: 'spring-beans', version: springVersion
         compile group: 'org.springframework', name: 'spring-jdbc', version: springVersion
+        compile group: 'org.springframework', name: 'spring-test', version: springVersion
 
         /* testNG dependency*/
         testCompile group: 'org.testng', name: 'testng', version: testngVersion

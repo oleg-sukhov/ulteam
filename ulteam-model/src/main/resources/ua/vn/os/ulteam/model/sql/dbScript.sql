@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS news (
     title                TEXT NOT NULL,
     modification_time    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     views                INTEGER,
-    new_content          TEXT,
+    news_content         TEXT,
     picture              BYTEA,
     PRIMARY KEY (id)           
 );
