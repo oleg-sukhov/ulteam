@@ -1,4 +1,8 @@
 
-dependencies {
+ext {
+    postgreSQLVersion = '9.3-1101-jdbc4'
+}
 
+dependencies {
+    compile group: 'org.postgresql', name: 'postgresql', version: postgreSQLVersion
 }

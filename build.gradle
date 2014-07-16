@@ -5,12 +5,13 @@ allprojects {
 ext {
     springVersion = '4.0.5.RELEASE'
     testngVersion = '6.8.8'
+    postgreSQLVersion = '9.3'
 }
 
 subprojects {
 
     apply plugin: 'java'
-    group = 'ua.vn.os'
+    group = 'ua.vn.os.ulteam'
     version = '1.0'
     sourceCompatibility = 1.7
 
@@ -28,8 +29,4 @@ subprojects {
         /* testNG dependency*/
         testCompile group: 'org.testng', name: 'testng', version: testngVersion
     }
-}
-
-dependencies {
-    compile(project("ulteam-model"))
 }
