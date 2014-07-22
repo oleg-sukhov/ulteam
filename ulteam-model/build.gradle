@@ -1,7 +1,7 @@
 
 ext {
     postgreSQLVersion = '9.3-1101-jdbc4'
-    hsqldbVersion = '2.3.1'
+    hsqldbVersion = '1.4.179'
 }
 
 dependencies {
@@ -9,5 +9,5 @@ dependencies {
     compile group: 'org.postgresql', name: 'postgresql', version: postgreSQLVersion
 
     /* HSQLDB dependency*/
-    testCompile group: 'org.hsqldb', name: 'hsqldb', version: hsqldbVersion
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.179'
 }

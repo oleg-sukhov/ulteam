@@ -18,7 +18,6 @@ import java.util.Properties;
 @PropertySource("classpath:ua/vn/os/ulteam/model/config/datasource.properties")
 public class RepositoryConfig {
 
-
     @Value("${jdbc.connection.driverClassName}")
     private String driverClassName;
 

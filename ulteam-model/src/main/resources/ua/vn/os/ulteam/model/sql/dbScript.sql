@@ -11,7 +11,7 @@ END IF;
 
 /*create news table*/
 CREATE TABLE IF NOT EXISTS news (
-    id                   INTEGER NOT NULL,
+    id                   SERIAL NOT NULL,
     title                TEXT NOT NULL,
     modification_time    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     views                INTEGER,

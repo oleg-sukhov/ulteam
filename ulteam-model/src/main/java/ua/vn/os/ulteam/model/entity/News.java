@@ -14,6 +14,9 @@ public class News extends Entity {
     private String newsContent;
     private byte[] picture = new byte[0];
 
+    public News() {
+    }
+
     public News(String title) {
         this.title = title;
     }
