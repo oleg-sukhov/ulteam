@@ -1,9 +1,11 @@
 package ua.vn.os.ulteam.model.entity;
 
+import java.io.Serializable;
+
 /**
- * Created by os on 16.07.14.
+ * @author os
  */
-public abstract class Entity {
+public abstract class Entity implements Serializable {
     private long id;
 
     public long getId() {

@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /** This class represent news with relevant information
  *
- * Created by os on 16.07.14.
+ * @author os
  */
 public class News extends Entity {
 
