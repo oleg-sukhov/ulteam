@@ -73,7 +73,7 @@ public class NewsDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void updateNewsTest() {
+    public void testUpdateNews() {
         News news = getDefaultNews();
         long newsId = newsDao.createNews(news);
 
@@ -91,7 +91,7 @@ public class NewsDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void getNewsCountTest() {
+    public void testGetNewsCount() {
         assertEquals(0, newsDao.getNewsCount());
 
         for(News news : getRandomListOfNews(5)) {
@@ -108,7 +108,7 @@ public class NewsDaoTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void deleteNewsByIdTest() {
+    public void testDeleteNewsById() {
         long id = newsDao.createNews(getDefaultNews());
         assertEquals(1, newsDao.getNewsCount());
         newsDao.deleteNewsById(id);

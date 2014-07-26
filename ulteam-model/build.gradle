@@ -13,3 +13,7 @@ dependencies {
     testCompile group: 'com.google.guava', name: 'guava', version: '17.0'
 
 }
+
+test {
+    useTestNG()
+}
