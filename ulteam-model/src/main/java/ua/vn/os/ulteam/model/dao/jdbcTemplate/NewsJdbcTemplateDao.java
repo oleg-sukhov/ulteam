@@ -21,7 +21,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Created by os on 22.07.14.
+ * @author os
  */
 @Import(DaoConfig.class)
 public class NewsJdbcTemplateDao implements NewsDao {
