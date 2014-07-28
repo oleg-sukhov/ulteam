@@ -1,0 +1,7 @@
+apply plugin: 'war'
+
+webAppDirName = /src/main/webapp
+
+dependencies {
+    compile project(":ulteam-view:ulteam-web-controller")
+}

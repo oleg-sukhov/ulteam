@@ -1,0 +1,13 @@
+allprojects {
+
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+
+    }
+}
