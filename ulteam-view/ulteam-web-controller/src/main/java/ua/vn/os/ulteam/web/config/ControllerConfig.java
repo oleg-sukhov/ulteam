@@ -5,7 +5,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import ua.vn.os.ulteam.service.config.ServiceConfig;
 
 /**
@@ -18,10 +20,27 @@ import ua.vn.os.ulteam.service.config.ServiceConfig;
 public class ControllerConfig {
 
     @Bean
-    public InternalResourceViewResolver getInternalResourceViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+    public ServletContextTemplateResolver templateResolver() {
+        ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
         resolver.setPrefix("/WEB-INF/pages/");
         resolver.setSuffix(".html");
+        resolver.setTemplateMode("HTML5");
+        resolver.setCacheable(false);
         return resolver;
+    }
+
+    @Bean
+    public SpringTemplateEngine templateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver());
+        return templateEngine;
+    }
+
+    @Bean
+    public ThymeleafViewResolver viewResolver() {
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(templateEngine());
+        viewResolver.setCharacterEncoding("UTF-8");
+        return viewResolver;
     }
 }

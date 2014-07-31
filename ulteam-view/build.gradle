@@ -9,5 +9,7 @@ subprojects {
 
     dependencies {
         compile group: 'org.springframework', name: 'spring-webmvc', version: springVersion
+        compile group: 'org.thymeleaf', name: 'thymeleaf', version: '2.1.0.RELEASE'
+        compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '2.1.2.RELEASE'
     }
 }

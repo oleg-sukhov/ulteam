@@ -1,6 +1,6 @@
 apply plugin: 'war'
 
-//webAppDirName = /src/main/webapp
+war.archiveName = "ulteam.war"
 
 dependencies {
     compile project(":ulteam-view:ulteam-web-controller")
