@@ -1,0 +1,20 @@
+@import url('../lib/bootstrap.css');
+
+/* header start */
+body {
+    background-image: url(../../images/background.png);
+}
+.container .jumbotron {
+    padding: 1%;
+    margin-top: 20px;
+    background-color: #245269;
+    height: 220px;
+}
+
+.container {
+    margin-top: 20px;
+    border-radius: 6px;
+    background-color: darkgrey;
+
+}
+/* header end */
