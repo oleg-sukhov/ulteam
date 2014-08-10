@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.jdbc.core.JdbcTemplate;
 import ua.vn.os.ulteam.model.dao.NewsDao;
-import ua.vn.os.ulteam.model.dao.jdbcTemplate.NewsJdbcTemplateDao;
+import ua.vn.os.ulteam.model.dao.hibernate.NewsDaoHibernateImpl;
 
 /**
  * Created by os on 16.07.14.
@@ -15,13 +14,13 @@ import ua.vn.os.ulteam.model.dao.jdbcTemplate.NewsJdbcTemplateDao;
 @Import({RepositoryConfig.class})
 public class DaoConfig {
 
+    @Autowired
+    RepositoryConfig repositoryConfig;
+
     @Bean
     public NewsDao newsDao() {
-        return new NewsJdbcTemplateDao();
+        NewsDaoHibernateImpl newsDao = new NewsDaoHibernateImpl();
+        newsDao.setHibernateTemplate(repositoryConfig.hibernateTemplate());
+        return newsDao;
     }
-
-
-
-
-
 }

@@ -1,5 +1,6 @@
 package ua.vn.os.ulteam.model.entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
@@ -7,12 +8,26 @@ import java.util.Arrays;
  *
  * @author os
  */
-public class News extends Entity {
+@Entity
+public class News {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
     private String title;
+
+    @Column(name = "modification_date", nullable = false)
     private Timestamp modificationDate;
+
+    @Column
     private long views;
+
+    @Column(name = "news_content")
     private String newsContent;
+
+    @Column
     private byte[] picture = new byte[0];
 
     public News() {
@@ -28,6 +43,14 @@ public class News extends Entity {
         this.views = views;
         this.newsContent = newsContent;
         this.picture = picture;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

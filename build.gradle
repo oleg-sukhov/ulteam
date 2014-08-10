@@ -4,6 +4,7 @@ allprojects {
 
 ext {
     springVersion = '4.0.5.RELEASE'
+    hibernateVersion = '4.3.5.Final'
     testngVersion = '6.8.8'
     postgreSQLVersion = '9.3'
     slf4jVersion = '1.6.4'
@@ -26,7 +27,6 @@ subprojects {
         compile group: 'org.springframework', name: 'spring-core', version: springVersion
         compile group: 'org.springframework', name: 'spring-context', version: springVersion
         compile group: 'org.springframework', name: 'spring-beans', version: springVersion
-        compile group: 'org.springframework', name: 'spring-jdbc', version: springVersion
         compile group: 'org.springframework', name: 'spring-test', version: springVersion
 
         /*log dependency*/

@@ -8,6 +8,10 @@ dependencies {
     /* PostgreSQL dependency */
     compile group: 'org.postgresql', name: 'postgresql', version: postgreSQLVersion
 
+    /* Hibernate dependency */
+    compile group: 'org.hibernate', name: 'hibernate-core', version: hibernateVersion
+    compile group: 'org.springframework', name: 'spring-orm', version: springVersion
+
     /* HSQLDB dependency*/
     testCompile group: 'com.h2database', name: 'h2', version: hsqldbVersion
     testCompile group: 'com.google.guava', name: 'guava', version: '17.0'

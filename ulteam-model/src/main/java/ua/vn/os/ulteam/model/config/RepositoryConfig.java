@@ -1,10 +1,17 @@
 package ua.vn.os.ulteam.model.config;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
+import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import ua.vn.os.ulteam.model.dao.NewsDao;
+import ua.vn.os.ulteam.model.entity.News;
 
 import javax.sql.DataSource;
 import java.sql.DriverAction;
@@ -18,17 +25,21 @@ import java.util.Properties;
 @PropertySource("classpath:ua/vn/os/ulteam/model/config/datasource.properties")
 public class RepositoryConfig {
 
-    @Value("${jdbc.connection.driverClassName}")
+    @Value("${connection.driverClassName}")
     private String driverClassName;
 
-    @Value("${jdbc.connection.url}")
+    @Value("${connection.url}")
     private String url;
 
-    @Value("${jdbc.connection.username}")
+    @Value("${connection.username}")
     private String username;
 
-    @Value("${jdbc.connection.password}")
+    @Value("${connection.password}")
     private String password;
+
+    @Value("${hibernate.dialect}")
+    private String hibernateDialect;
+
 
     @Bean
     public DataSource dataSource() {
@@ -41,12 +52,26 @@ public class RepositoryConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource());
+    public HibernateTemplate hibernateTemplate() {
+        HibernateTemplate hibernateTemplate = new HibernateTemplate(sessionFactory());
+        hibernateTemplate.setCheckWriteOperations(false);
+        return hibernateTemplate;
     }
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    private SessionFactory sessionFactory() {
+        return new LocalSessionFactoryBuilder(dataSource())
+                .addAnnotatedClasses(News.class)
+                .buildSessionFactory();
+    }
+
+    private Properties hibernateProperties() {
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.dialect", hibernateDialect);
+        return properties;
     }
 }

@@ -2,11 +2,13 @@ package ua.vn.os.ulteam.model.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ua.vn.os.ulteam.model.config.DaoConfig;
 import ua.vn.os.ulteam.model.entity.News;
@@ -32,11 +34,16 @@ public class NewsDaoTest extends AbstractTestNGSpringContextTests {
     private NewsDao newsDao;
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private HibernateTemplate hibernateTemplate;
 
     @BeforeClass
     public void init() {
 
+    }
+
+    @BeforeMethod
+    public void cleanTable() {
+        hibernateTemplate.bulkUpdate("delete from News");
     }
 
     @Test
@@ -114,13 +121,6 @@ public class NewsDaoTest extends AbstractTestNGSpringContextTests {
         newsDao.deleteNewsById(id);
         newsDao.deleteNewsById(id);
         assertEquals(0, newsDao.getNewsCount());
-    }
-
-
-
-    @AfterMethod
-    public void clearAll() {
-        jdbcTemplate.execute("DELETE FROM news");
     }
 
     private void assertNews(News first, News second) {
