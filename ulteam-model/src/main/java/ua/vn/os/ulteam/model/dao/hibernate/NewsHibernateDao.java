@@ -3,8 +3,11 @@ package ua.vn.os.ulteam.model.dao.hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import ua.vn.os.ulteam.model.dao.NewsDao;
 import ua.vn.os.ulteam.model.entity.News;
 
@@ -13,7 +16,7 @@ import java.util.List;
 /**
  * @author os
  */
-public class NewsDaoHibernateImpl extends HibernateDaoSupport implements NewsDao {
+public class NewsHibernateDao extends HibernateDaoSupport implements NewsDao {
 
     @Override
     public long createNews(News news) {
@@ -32,7 +35,11 @@ public class NewsDaoHibernateImpl extends HibernateDaoSupport implements NewsDao
 
     @Override
     public void updateNews(News news) {
-
+        if(news.getId() == null) {
+            getHibernateTemplate().saveOrUpdate(news);
+        } else {
+            getHibernateTemplate().refresh(news);
+        }
     }
 
     @Override

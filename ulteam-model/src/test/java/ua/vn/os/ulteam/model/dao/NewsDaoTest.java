@@ -89,7 +89,6 @@ public class NewsDaoTest extends AbstractTestNGSpringContextTests {
         loadedNews.setViews(777);
         loadedNews.setTitle("Updated news");
         loadedNews.setModificationDate(new Timestamp(DateUtils.getRandomTime()));
-
         newsDao.updateNews(loadedNews);
         News updatedNews = newsDao.getNewsById(loadedNews.getId());
 

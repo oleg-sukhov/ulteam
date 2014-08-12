@@ -8,8 +8,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ua.vn.os.ulteam.model.dao.NewsDao;
 import ua.vn.os.ulteam.model.entity.News;
 
@@ -22,6 +25,7 @@ import java.util.Properties;
  */
 
 @Configuration
+@EnableTransactionManagement
 @PropertySource("classpath:ua/vn/os/ulteam/model/config/datasource.properties")
 public class RepositoryConfig {
 
@@ -61,6 +65,11 @@ public class RepositoryConfig {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    @Bean
+    public HibernateTransactionManager transactionManager() {
+        return new HibernateTransactionManager(sessionFactory());
     }
 
     private SessionFactory sessionFactory() {

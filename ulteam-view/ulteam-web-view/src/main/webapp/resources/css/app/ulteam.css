@@ -18,3 +18,38 @@ body {
 
 }
 /* header end */
+
+/* navigation start */
+
+.span10 > .col-md-3 {
+    padding: 0;
+}
+.nav > li {
+    background-color: #c4e3f3;
+    border-radius: 5px;
+    font-family: "Lucida Grande";
+    font-size: 16px;
+
+}
+.nav > li > a {
+    color: darkblue;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #4cae4c;
+    color: paleturquoise;
+}
+
+.nav-item-text {
+    padding-left: 5px;
+}
+/* navigation end */
+
+/* main content start */
+
+.span10 > .col-md-9 {
+    padding-right: 0;
+}
+
+/* main content stop */
