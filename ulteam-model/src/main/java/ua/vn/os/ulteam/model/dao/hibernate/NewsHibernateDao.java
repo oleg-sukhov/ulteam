@@ -30,7 +30,7 @@ public class NewsHibernateDao extends HibernateDaoSupport implements NewsDao {
 
     @Override
     public List<News> getAllNews() {
-        return (List<News>) getHibernateTemplate().find("from News");
+        return null;//(List<News>) getHibernateTemplate().find("from News");
     }
 
     @Override

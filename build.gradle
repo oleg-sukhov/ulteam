@@ -9,6 +9,7 @@ ext {
     postgreSQLVersion = '9.3'
     slf4jVersion = '1.6.4'
     logbackVersion = '1.0.1'
+    aspectjVersion = '1.8.0'
 }
 
 subprojects {
@@ -28,12 +29,16 @@ subprojects {
         compile group: 'org.springframework', name: 'spring-context', version: springVersion
         compile group: 'org.springframework', name: 'spring-beans', version: springVersion
         compile group: 'org.springframework', name: 'spring-test', version: springVersion
+        compile group: 'org.springframework', name: 'spring-aop', version: springVersion
+
+        /*aspectj dependency*/
+        compile group: 'org.aspectj', name: 'aspectjrt', version: aspectjVersion
+        compile group: 'org.aspectj', name: 'aspectjweaver', version: aspectjVersion
 
         /*log dependency*/
         compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
         compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
         compile group: 'ch.qos.logback', name: 'logback-core', version: logbackVersion
-
 
         /* testNG dependency*/
         testCompile group: 'org.testng', name: 'testng', version: testngVersion
