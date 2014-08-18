@@ -1,6 +1,6 @@
 
 ext {
-    postgreSQLVersion = '9.3-1101-jdbc4'
+    postgreSQLVersion = '9.3-1101-jdbc41'
     hsqldbVersion = '1.4.179'
 }
 

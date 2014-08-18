@@ -2,6 +2,7 @@ package ua.vn.os.ulteam.model.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 /** This class represent news with relevant information
@@ -19,7 +20,7 @@ public class News {
     private String title;
 
     @Column(name = "modification_date", nullable = false)
-    private Timestamp modificationDate;
+    private LocalDateTime modificationDate;
 
     @Column
     private long views;
@@ -37,7 +38,7 @@ public class News {
         this.title = title;
     }
 
-    public News(String title, Timestamp modificationDate, long views, String newsContent, byte[] picture) {
+    public News(String title, LocalDateTime modificationDate, long views, String newsContent, byte[] picture) {
         this.title = title;
         this.modificationDate = modificationDate;
         this.views = views;
@@ -61,11 +62,11 @@ public class News {
         this.title = title;
     }
 
-    public Timestamp getModificationDate() {
+    public LocalDateTime getModificationDate() {
         return modificationDate;
     }
 
-    public void setModificationDate(Timestamp modificationDate) {
+    public void setModificationDate(LocalDateTime modificationDate) {
         this.modificationDate = modificationDate;
     }
 

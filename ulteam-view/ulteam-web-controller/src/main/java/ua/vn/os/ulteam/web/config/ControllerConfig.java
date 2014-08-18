@@ -1,10 +1,7 @@
 package ua.vn.os.ulteam.web.config;
 
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -15,6 +12,7 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.messageresolver.SpringMessageResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import ua.vn.os.ulteam.model.aspect.LogAspect;
 import ua.vn.os.ulteam.service.config.ServiceConfig;
 
 /**
@@ -22,6 +20,7 @@ import ua.vn.os.ulteam.service.config.ServiceConfig;
  */
 @Configuration
 @EnableWebMvc
+@EnableAspectJAutoProxy
 @ComponentScan(basePackages = "ua.vn.os.ulteam.web.controller")
 @Import({ServiceConfig.class})
 public class ControllerConfig extends WebMvcConfigurerAdapter {
@@ -52,9 +51,9 @@ public class ControllerConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    @Bean
+    public LogAspect logAspect() {
+        return new LogAspect();
     }
 
     @Bean
@@ -65,5 +64,10 @@ public class ControllerConfig extends WebMvcConfigurerAdapter {
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setCacheSeconds(0);
         return messageSource;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 }

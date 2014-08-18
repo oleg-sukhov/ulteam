@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ua.vn.os.ulteam.model.dao.NewsDao;
 import ua.vn.os.ulteam.model.entity.News;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
@@ -25,12 +26,24 @@ public class NewsHibernateDao extends HibernateDaoSupport implements NewsDao {
 
     @Override
     public News getNewsById(long id) {
-        return getHibernateTemplate().get(News.class, id);
+        News news = getHibernateTemplate().get(News.class, id);
+
+        if(news == null) {
+            throw new EntityNotFoundException("News with id -> " + id + " not found in database!!!");
+        }
+
+        return news;
     }
 
     @Override
     public List<News> getAllNews() {
-        return null;//(List<News>) getHibernateTemplate().find("from News");
+        List<News> newsList = (List<News>) getHibernateTemplate().find("from News");
+
+        if(newsList == null || newsList.isEmpty()) {
+            throw new EntityNotFoundException("Got empty news list from database!!!");
+        }
+
+        return newsList;
     }
 
     @Override

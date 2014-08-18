@@ -13,7 +13,7 @@ END IF;
 CREATE TABLE IF NOT EXISTS news (
     id                   SERIAL NOT NULL,
     title                TEXT NOT NULL,
-    modification_date    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modification_date    BYTEA,
     views                INTEGER,
     news_content         TEXT,
     picture              BYTEA,

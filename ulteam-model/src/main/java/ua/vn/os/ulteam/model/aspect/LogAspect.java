@@ -9,25 +9,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 /**
- * Created by root on 13.08.14.
+ * @author os
  */
 @Aspect
 public class LogAspect {
     private Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
-    //@Autowired
-    //private MessageSource messageSource;
+    @Autowired
+    private MessageSource messageSource;
 
     @Around("execution(* ua.vn.os.ulteam.model.dao.hibernate.*HibernateDao.*(..))")
-    public void logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
-        joinPoint.proceed();
+        Object returnValue = joinPoint.proceed();
         long duration = System.currentTimeMillis() - start;
-        logger.info("Calling method " + joinPoint.getSignature().getName() + " with args: " + Arrays.toString(joinPoint.getArgs()) + " takes " + duration);
+        Object[] args = new Object[]{joinPoint.toShortString(), Arrays.toString(joinPoint.getArgs()), duration};
+        String message = messageSource.getMessage("ua.vn.os.ulteam.logging.durationDao.message", args, Locale.getDefault());
+        logger.info(message);
+        return returnValue;
 
     }
 
+    public MessageSource getMessageSource() {
+        return messageSource;
+    }
 
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 }

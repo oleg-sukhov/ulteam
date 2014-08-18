@@ -14,7 +14,6 @@ import ua.vn.os.ulteam.model.dao.hibernate.NewsHibernateDao;
  * Created by os on 16.07.14.
  */
 @Configuration
-@EnableAspectJAutoProxy
 @Import({RepositoryConfig.class})
 public class DaoConfig {
 
@@ -27,13 +26,5 @@ public class DaoConfig {
         newsDao.setHibernateTemplate(repositoryConfig.hibernateTemplate());
         return newsDao;
     }
-
-    @Bean
-    public LogAspect logAspect() {
-        return new LogAspect();
-    }
-
-
-
 
 }

@@ -19,7 +19,7 @@ public class NewsFactory {
     public static News getDefaultNews() {
         News news = new News();
         news.setTitle("News1_title_test");
-        news.setModificationDate(new Timestamp(DateUtils.getRandomTime()));
+        news.setModificationDate(DateUtils.getRandomDate());
         news.setNewsContent("This_test_content_for_first_news");
         news.setViews(4);
         news.setPicture(new byte[]{21, 7, 24, 18, 91, 84, 123, 94});
@@ -34,7 +34,7 @@ public class NewsFactory {
             news.setNewsContent("News_content_test_" + System.nanoTime());
             news.setViews(rnd.nextInt(10000000));
             news.setPicture(Longs.toByteArray(System.nanoTime()));
-            news.setModificationDate(new Timestamp(DateUtils.getRandomTime()));
+            news.setModificationDate(DateUtils.getRandomDate());
             listOfNews.add(news);
         }
         return listOfNews;

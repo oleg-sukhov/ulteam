@@ -7,8 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ua.vn.os.ulteam.model.entity.News;
+import ua.vn.os.ulteam.model.util.DateUtils;
 import ua.vn.os.ulteam.service.logic.NewsService;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 /**
@@ -23,7 +26,9 @@ public class NewsController {
 
     @RequestMapping(value = "/allNews", method = RequestMethod.GET)
     public String getAllNews() {
-        List<News> news = newsService.getAllNews();
+        News news = new News("First test news", LocalDateTime.now(ZoneId.systemDefault()), 5,"Test title" ,new byte[]{32,32,32});
+        newsService.createNews(news);
+        List<News> newsList = newsService.getAllNews();
         return "allNews";
     }
 

@@ -1,6 +1,8 @@
 package ua.vn.os.ulteam.model.config;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.service.ServiceRegistry;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -18,6 +20,8 @@ import ua.vn.os.ulteam.model.entity.News;
 
 import javax.sql.DataSource;
 import java.sql.DriverAction;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -43,6 +47,9 @@ public class RepositoryConfig {
 
     @Value("${hibernate.dialect}")
     private String hibernateDialect;
+
+    @Value("${hibernate.hbm2ddl.auto}")
+    private String hibernateHbm2ddlAuto;
 
 
     @Bean
@@ -73,14 +80,15 @@ public class RepositoryConfig {
     }
 
     private SessionFactory sessionFactory() {
-        return new LocalSessionFactoryBuilder(dataSource())
-                .addAnnotatedClasses(News.class)
-                .buildSessionFactory();
+        LocalSessionFactoryBuilder sessionFactoryBuilder = new LocalSessionFactoryBuilder(dataSource());
+        updateHibernateProperties(sessionFactoryBuilder.getProperties());
+        sessionFactoryBuilder.addAnnotatedClasses(News.class);
+        return sessionFactoryBuilder.buildSessionFactory();
     }
 
-    private Properties hibernateProperties() {
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", hibernateDialect);
+    private Properties updateHibernateProperties(Properties properties) {
+        properties.setProperty("dialect", hibernateDialect);
+        properties.setProperty("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
         return properties;
     }
 }
