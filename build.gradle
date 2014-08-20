@@ -42,5 +42,8 @@ subprojects {
 
         /* testNG dependency*/
         testCompile group: 'org.testng', name: 'testng', version: testngVersion
+
+        /*apache commons dependencies*/
+        compile group: 'commons-codec', name: 'commons-codec', version: '1.6'
     }
 }

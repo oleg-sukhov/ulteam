@@ -48,6 +48,45 @@ body {
 
 /* main content start */
 
+/* news short panel start */
+
+.shortNewsHeader {
+    color: blue;
+    font-family: "Lucida Grande";
+    width: 100%;
+}
+
+.shortNewsHeader > .news-title {
+    text-align: left;
+    font-size: 16px;
+    width: 80%;
+}
+
+.shortNewsHeader > .news-date {
+    text-align: right;
+    color: #55008b;
+    width: 20%;
+}
+
+.panel-success {
+    border-color: slateblue;
+}
+
+.panel-success > .panel-heading {
+    background-color: #67b168;
+}
+
+.shortNewsBody {
+    width: 30%;
+}
+
+.shortNewsBody > .thumbnail {
+    width: 180px;
+    height: 180px;
+    border-color: lime;
+}
+/* news short panel end */
+
 .span10 > .col-md-9 {
     padding-right: 0;
 }

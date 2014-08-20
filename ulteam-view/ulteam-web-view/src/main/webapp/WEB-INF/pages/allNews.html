@@ -18,10 +18,34 @@
         </div>
 
         <div class="col-md-9">
-            <div class="panel panel-success">
-                <div class="panel-heading">Header</div>
-                <div class="panel-body">Body</div>
-            </div>
+            <span th:each="newsDto : ${newsDtoList}">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <table class="shortNewsHeader">
+                            <tr class="shortNewsHeader">
+                                <td class="news-title">
+                                    <span class="glyphicon glyphicon-certificate"/>
+                                    <span th:text="${newsDto.title}"/>
+                                </td>
+                                <td class="news-date">
+                                    <span class="glyphicon glyphicon-time"/>
+                                    <span th:text="${newsDto.modificationDate}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="shortNewsBody">
+                            <tr class="shortNewsBody">
+                                <td class="thumbnail">
+                                    <img th:src="@{data:image/jpeg;base64,} + ${newsDto.picture}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </span>
         </div>
 
 
