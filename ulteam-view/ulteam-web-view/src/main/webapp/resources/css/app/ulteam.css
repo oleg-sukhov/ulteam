@@ -4,6 +4,7 @@
 body {
     background-image: url(../../images/background.png);
 }
+
 .container .jumbotron {
     padding: 1%;
     margin-top: 20px;
@@ -51,7 +52,7 @@ body {
 /* news short panel start */
 
 .shortNewsHeader {
-    color: blue;
+    color: #ff0200;
     font-family: "Lucida Grande";
     width: 100%;
 }
@@ -77,12 +78,18 @@ body {
 }
 
 .shortNewsBody {
-    width: 30%;
+    width: 100%;
+}
+
+.shortNewsBody > .description {
+    width: 80%;
+    text-align: justify;
+    text-indent: 20px;
 }
 
 .shortNewsBody > .thumbnail {
-    width: 180px;
-    height: 180px;
+    width: 130px;
+    height: 130px;
     border-color: lime;
 }
 /* news short panel end */

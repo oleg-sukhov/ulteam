@@ -41,6 +41,9 @@
                                 <td class="thumbnail">
                                     <img th:src="@{data:image/jpeg;base64,} + ${newsDto.picture}"/>
                                 </td>
+                                <td class="description">
+                                    <span th:text="${newsDto.shortDescription}"/>
+                                </td>
                             </tr>
                         </table>
                     </div>

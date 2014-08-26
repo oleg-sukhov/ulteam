@@ -40,7 +40,7 @@ public class NewsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        News news = new News("First test news", LocalDateTime.now(ZoneId.systemDefault()), 5,"Test title" ,new byte[]{32,32,32});
+        News news = new News("Тестовий заголовок новини!!!","<p> Аргентинский специалист считает, что секрет успеха его команды в свободе действий игроков. </p>", LocalDateTime.now(ZoneId.systemDefault()), 5,"Test title" ,new byte[]{32,32,32});
         news.setPicture(baos.toByteArray());
         newsService.createNews(news);
         model.addAttribute("newsDtoList", newsService.getAllNews());

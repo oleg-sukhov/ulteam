@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 /** This class represent news with relevant information
  *
- * @author os
+ * @author oleg.sukhov
  */
 @Entity
 public class News {
@@ -18,6 +18,9 @@ public class News {
 
     @Column(nullable = false)
     private String title;
+
+    @Column(name = "short_description", nullable = false)
+    private String shortDescription;
 
     @Column(name = "modification_date", nullable = false)
     private LocalDateTime modificationDate;
@@ -38,8 +41,9 @@ public class News {
         this.title = title;
     }
 
-    public News(String title, LocalDateTime modificationDate, long views, String newsContent, byte[] picture) {
+    public News(String title, String shortDescription, LocalDateTime modificationDate, long views, String newsContent, byte[] picture) {
         this.title = title;
+        this.shortDescription = shortDescription;
         this.modificationDate = modificationDate;
         this.views = views;
         this.newsContent = newsContent;
@@ -60,6 +64,14 @@ public class News {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 
     public LocalDateTime getModificationDate() {
@@ -102,22 +114,25 @@ public class News {
         News news = (News) o;
 
         if (views != news.views) return false;
-        if (modificationDate != null ? !modificationDate.equals(news.modificationDate) : news.modificationDate != null)
-            return false;
-        if (newsContent != null ? !newsContent.equals(news.newsContent) : news.newsContent != null) return false;
+        if (!id.equals(news.id)) return false;
+        if (!modificationDate.equals(news.modificationDate)) return false;
+        if (!newsContent.equals(news.newsContent)) return false;
         if (!Arrays.equals(picture, news.picture)) return false;
-        if (title != null ? !title.equals(news.title) : news.title != null) return false;
+        if (!shortDescription.equals(news.shortDescription)) return false;
+        if (!title.equals(news.title)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = title != null ? title.hashCode() : 0;
-        result = 31 * result + (modificationDate != null ? modificationDate.hashCode() : 0);
+        int result = id.hashCode();
+        result = 31 * result + title.hashCode();
+        result = 31 * result + shortDescription.hashCode();
+        result = 31 * result + modificationDate.hashCode();
         result = 31 * result + (int) (views ^ (views >>> 32));
-        result = 31 * result + (newsContent != null ? newsContent.hashCode() : 0);
-        result = 31 * result + (picture != null ? Arrays.hashCode(picture) : 0);
+        result = 31 * result + newsContent.hashCode();
+        result = 31 * result + Arrays.hashCode(picture);
         return result;
     }
 }

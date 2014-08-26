@@ -19,6 +19,9 @@ import java.util.List;
  */
 public class NewsHibernateDao extends HibernateDaoSupport implements NewsDao {
 
+    public NewsHibernateDao() {
+    }
+
     @Override
     public long createNews(News news) {
         return (Long)getHibernateTemplate().save(news);

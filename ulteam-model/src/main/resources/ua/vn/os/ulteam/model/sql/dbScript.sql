@@ -11,12 +11,13 @@ END IF;
 
 /*create news table*/
 CREATE TABLE IF NOT EXISTS news (
-    id                   SERIAL NOT NULL,
-    title                TEXT NOT NULL,
-    modification_date    BYTEA,
-    views                INTEGER,
-    news_content         TEXT,
-    picture              BYTEA,
+    id                   BIGSERIAL NOT NULL,
+    title                VARCHAR(255) NOT NULL,
+    short_description    TEXT NOT NULL,
+    modification_date    BYTEA NOT NULL,
+    views                BIGINT NOT NULL,
+    news_content         TEXT NOT NULL,
+    picture              BYTEA NOT NULL,
     PRIMARY KEY (id)           
 );
 END

@@ -7,7 +7,7 @@ import ua.vn.os.ulteam.service.exceptions.NotFoundException;
 import java.util.List;
 
 /**
- * @author os
+ * @author oleg.sukhov
  */
 public interface NewsService {
     public NewsDto getNewsById(long id) throws NotFoundException;

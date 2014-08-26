@@ -4,6 +4,7 @@ public class NewsDto {
 
     private String id;
     private String title;
+    private String shortDescription;
     private String modificationDate;
     private String views;
     private String newsContent;
@@ -22,6 +23,14 @@ public class NewsDto {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 
     public void setTitle(String title) {

@@ -52,6 +52,7 @@ public class NewsServiceTransactionalImpl implements NewsService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public long createNews(News news) {
         //TODO: Add validation
         long newsId = newsDao.createNews(news);
@@ -72,6 +73,7 @@ public class NewsServiceTransactionalImpl implements NewsService {
         NewsDto newsDto = new NewsDto();
         newsDto.setId(String.valueOf(news.getId()));
         newsDto.setTitle(news.getTitle());
+        newsDto.setShortDescription(news.getShortDescription());
         newsDto.setModificationDate(news.getModificationDate().format(dateTimeFormatter));
         newsDto.setViews(String.valueOf(news.getViews()));
         newsDto.setNewsContent(news.getNewsContent());

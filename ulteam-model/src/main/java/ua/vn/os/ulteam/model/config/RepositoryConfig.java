@@ -3,6 +3,7 @@ package ua.vn.os.ulteam.model.config;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
+import org.hibernate.tool.hbm2ddl.SchemaUpdate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -25,7 +26,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * Created by os on 11.07.14.
+ * @author oleg.sukhov
  */
 
 @Configuration
@@ -50,6 +51,9 @@ public class RepositoryConfig {
 
     @Value("${hibernate.hbm2ddl.auto}")
     private String hibernateHbm2ddlAuto;
+
+    @Value("${hibernate.show_sql}")
+    private String hibernateShowSql;
 
 
     @Bean
@@ -83,12 +87,14 @@ public class RepositoryConfig {
         LocalSessionFactoryBuilder sessionFactoryBuilder = new LocalSessionFactoryBuilder(dataSource());
         updateHibernateProperties(sessionFactoryBuilder.getProperties());
         sessionFactoryBuilder.addAnnotatedClasses(News.class);
+        new SchemaUpdate(sessionFactoryBuilder, sessionFactoryBuilder.getProperties()).execute(true, true);
         return sessionFactoryBuilder.buildSessionFactory();
     }
 
     private Properties updateHibernateProperties(Properties properties) {
-        properties.setProperty("dialect", hibernateDialect);
+        properties.setProperty("hibernate.dialect", hibernateDialect);
         properties.setProperty("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
+        properties.setProperty("hibernate.show_sql", hibernateShowSql);
         return properties;
     }
 }
