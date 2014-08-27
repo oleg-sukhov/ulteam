@@ -82,16 +82,35 @@ body {
 }
 
 .shortNewsBody > .description {
-    width: 80%;
+    width: 82%;
     text-align: justify;
-    text-indent: 20px;
+    text-indent: 25px;
+    padding-left: 15px;
+    vertical-align: text-top;
 }
 
-.shortNewsBody > .thumbnail {
-    width: 130px;
+.shortNewsBody > .short-news-avatar {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.shortNewsBody > .short-news-avatar >.thumbnail {
+    width: 100%;
     height: 130px;
     border-color: lime;
+    margin-bottom: 12px;
 }
+
+.shortNewsBody > .short-news-avatar > .views {
+    font-size: 18px;
+    color: #55008b;
+    text-align: center;
+}
+
+.panel-footer > .footer-holder {
+    text-align: right;
+}
+
 /* news short panel end */
 
 .span10 > .col-md-9 {
