@@ -1,9 +1,8 @@
 package ua.vn.os.ulteam.model.dao.hibernate;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.*;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Propagation;
@@ -47,6 +46,18 @@ public class NewsHibernateDao extends HibernateDaoSupport implements NewsDao {
         }
 
         return newsList;
+    }
+
+    @Override
+    public List<News> getAllNews(int startPage, int numberOfNews) {
+        if(startPage < 1) {
+            startPage = NewsDao.PAGE_START_INDEX;
+        }
+
+        DetachedCriteria criteria = DetachedCriteria.forClass(News.class);
+        criteria.addOrder(Order.desc("id"));
+        return (List<News>) getHibernateTemplate().findByCriteria(criteria, startPage, numberOfNews);
+
     }
 
     @Override

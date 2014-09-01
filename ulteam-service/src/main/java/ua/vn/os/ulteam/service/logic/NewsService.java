@@ -12,6 +12,8 @@ import java.util.List;
 public interface NewsService {
     public NewsDto getNewsById(long id) throws NotFoundException;
     public List<NewsDto> getAllNews();
+    public List<NewsDto> getAllNews(int startPage, int numberOfNews);
     public long createNews(News news);
+    public long getNewsCount();
 
 }

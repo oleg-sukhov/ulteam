@@ -111,6 +111,10 @@ body {
     text-align: right;
 }
 
+.pagination {
+    float: right;
+}
+
 /* news short panel end */
 
 .span10 > .col-md-9 {

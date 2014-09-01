@@ -52,12 +52,23 @@ public class NewsServiceTransactionalImpl implements NewsService {
     }
 
     @Override
+    public List<NewsDto> getAllNews(int startPage, int numberOfNews) {
+        List<News> news = newsDao.getAllNews(startPage, numberOfNews);
+        return getNewsDtoList(news);
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public long createNews(News news) {
         //TODO: Add validation
         long newsId = newsDao.createNews(news);
         logger.info("News with id = " + newsId + " was successful created.");
         return newsId;
+    }
+
+    @Override
+    public long getNewsCount() {
+        return newsDao.getNewsCount();
     }
 
     private List<NewsDto> getNewsDtoList(List<News> newsList) {
