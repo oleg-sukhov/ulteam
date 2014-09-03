@@ -7,23 +7,21 @@
 </head>
 
 <body>
-<div class="container">
+<div id="container">
 
-    <div class="span10">
-        <div th:include="template/header :: header"/>
-    </div>
+    <div th:include="template/header :: header"/>
 
-    <div class="span10">
-        <div class="col-md-3">
-            <div th:include="template/navigation :: navigation"/>
-        </div>
+    <table class="container-content">
+        <td id="navigation">
+            <span th:include="template/navigation :: navigation"/>
+        </td>
 
-        <div class="col-md-9">
-            <span th:object="${newsDtoList}">
-                <div class="panel panel-success">
+        <td id="content">
+            <span th:object="${newsDto}">
+                <div class="panel panel-success news-panel">
                     <div class="panel-heading">
-                        <table class="shortNewsHeader">
-                            <tr class="shortNewsHeader">
+                        <table class="newsHeader">
+                            <tr class="newsHeader">
                                 <td class="news-title">
                                     <span class="glyphicon glyphicon-certificate"/>
                                     <span th:text="${newsDto.title}"/>
@@ -37,26 +35,22 @@
                     </div>
 
                     <div class="panel-body">
-                        <!--<table class="shortNewsBody">-->
-                            <!--<tr class="shortNewsBody">-->
-                                <!--<td class="short-news-avatar">-->
-                                    <!--<img class="thumbnail" th:src="@{data:image/jpeg;base64,} + ${newsDto.picture}"/>-->
-                                    <!--<div class="views">-->
-                                        <!--<span class="glyphicon glyphicon-eye-open"/>-->
-                                        <!--<span th:text="${newsDto.id}"/>-->
-                                    <!--</div>-->
-                                <!--</td>-->
-                                <!--<td class="description" th:utext="${newsDto.shortDescription}"/>-->
-                            <!--</tr>-->
-                        <!--</table>-->
                     </div>
                     <div class="panel-footer">
-
+                        <div class="footer-holder">
+                            <div class="views">
+                                <span class="glyphicon glyphicon-eye-open"/>
+                                <span th:text="${newsDto.id}"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </span>
-        </div>
-    </div>
+        </td>
+    </table>
+
+    <div th:include="template/footer :: footer"/>
+
 </div>
 
 </body>

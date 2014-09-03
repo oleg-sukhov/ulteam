@@ -1,24 +1,35 @@
 @import url('../lib/bootstrap.css');
 
 /* header start */
-body {
+html, body {
     background-image: url(../../images/background.png);
 }
 
-.container .jumbotron {
-    padding: 1%;
-    margin-top: 20px;
+#header {
     background-color: #245269;
-    height: 220px;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    height: 250px;
+    padding: 0;
 }
 
-.container {
-    margin-top: 20px;
+#container {
+    padding: 1%;
+    margin: 2% 5%;
     border-radius: 6px;
     background-color: darkgrey;
-
+    height: 100%;
 }
 /* header end */
+
+/*footer start*/
+#footer {
+    background-color: #4e6b59;
+    height: 50px;
+    border-radius: 5px;
+}
+/*footer end*/
+
 
 /* navigation start */
 
@@ -48,25 +59,37 @@ body {
 /* navigation end */
 
 /* main content start */
+.container-content {
+    width: 100%;
+}
 
+#navigation {
+    width: 25%;
+    vertical-align: text-top;
+}
+
+#content {
+    width: 75%;
+    padding-left: 2%;
+}
 /* news short panel start */
 
-.shortNewsHeader {
+.newsHeader {
     color: #ff0200;
     font-family: "Lucida Grande";
     width: 100%;
 }
 
-.shortNewsHeader > .news-title {
+.newsHeader > .news-title {
     text-align: left;
-    font-size: 16px;
-    width: 80%;
+    font-size: 14px;
+    width: 70%;
 }
 
-.shortNewsHeader > .news-date {
+.newsHeader > .news-date {
     text-align: right;
     color: #55008b;
-    width: 20%;
+    width: 30%;
 }
 
 .panel-success {
@@ -97,7 +120,6 @@ body {
 .shortNewsBody > .short-news-avatar >.thumbnail {
     width: 100%;
     height: 130px;
-    border-color: lime;
     margin-bottom: 12px;
 }
 
@@ -110,6 +132,11 @@ body {
 .panel-footer > .footer-holder {
     text-align: right;
 }
+
+.news-panel > .panel-footer > .footer-holder {
+    text-align: left;
+}
+
 
 .pagination {
     float: right;
