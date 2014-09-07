@@ -144,6 +144,23 @@ html, body {
 
 /* news short panel end */
 
+/*news page style start */
+.news-content {
+    text-indent: 25px;
+    text-align: justify;
+}
+
+.news-content > .thumbnail {
+    width: 85%;
+    height: inherit;
+    margin-bottom: 2%;
+    background: lightseagreen;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*news page style end */
+
 .span10 > .col-md-9 {
     padding-right: 0;
 }

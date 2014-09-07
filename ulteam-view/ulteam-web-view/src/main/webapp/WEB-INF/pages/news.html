@@ -35,10 +35,15 @@
                     </div>
 
                     <div class="panel-body">
+                        <div class="news-content">
+                            <img class="thumbnail" th:src="@{data:image/jpeg;base64,} + ${newsDto.picture}"/>
+                            <div th:utext="${newsDto.newsContent}"/>
+                        </div>
                     </div>
                     <div class="panel-footer">
                         <div class="footer-holder">
                             <div class="views">
+
                                 <span class="glyphicon glyphicon-eye-open"/>
                                 <span th:text="${newsDto.id}"/>
                             </div>
