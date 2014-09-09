@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/resources/css/app/ulteam.css}"/>
+</head>
+
+<body>
+<div id="container">
+
+    <div th:include="template/header :: header"/>
+
+    <table class="container-content">
+        <td id="navigation">
+            <span th:include="template/navigation :: navigation"/>
+        </td>
+
+        <td id="content">
+        </td>
+    </table>
+
+    <div th:include="template/footer :: footer"/>
+
+</div>
+
+</body>
+</html>

@@ -30,7 +30,6 @@ public class NewsController {
     public static final int DEFAULT_NUMBER_OF_NEWS_IN_PAGE = 10;
     private Logger logger = LoggerFactory.getLogger(NewsController.class);
 
-
     @Autowired
     private NewsService newsService;
 

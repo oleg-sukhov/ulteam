@@ -18,6 +18,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ua.vn.os.ulteam.model.dao.NewsDao;
 import ua.vn.os.ulteam.model.entity.News;
+import ua.vn.os.ulteam.model.entity.Photo;
+import ua.vn.os.ulteam.model.entity.PhotoAlbum;
 
 import javax.sql.DataSource;
 import java.sql.DriverAction;
@@ -86,7 +88,7 @@ public class RepositoryConfig {
     private SessionFactory sessionFactory() {
         LocalSessionFactoryBuilder sessionFactoryBuilder = new LocalSessionFactoryBuilder(dataSource());
         updateHibernateProperties(sessionFactoryBuilder.getProperties());
-        sessionFactoryBuilder.addAnnotatedClasses(News.class);
+        sessionFactoryBuilder.addAnnotatedClasses(News.class, Photo.class, PhotoAlbum.class );
         new SchemaUpdate(sessionFactoryBuilder, sessionFactoryBuilder.getProperties()).execute(true, true);
         return sessionFactoryBuilder.buildSessionFactory();
     }

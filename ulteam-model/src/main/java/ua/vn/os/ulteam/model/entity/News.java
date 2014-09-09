@@ -1,6 +1,7 @@
 package ua.vn.os.ulteam.model.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -10,7 +11,7 @@ import java.util.Arrays;
  * @author oleg.sukhov
  */
 @Entity
-public class News {
+public class News implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +26,13 @@ public class News {
     @Column(name = "modification_date", nullable = false)
     private LocalDateTime modificationDate;
 
-    @Column
+    @Column(nullable = false)
     private long views;
 
     @Column(name = "news_content")
     private String newsContent;
 
-    @Column
+    @Column(nullable = false)
     private byte[] picture = new byte[0];
 
     public News() {
