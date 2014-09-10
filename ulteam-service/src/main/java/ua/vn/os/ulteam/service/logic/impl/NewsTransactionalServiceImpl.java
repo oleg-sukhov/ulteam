@@ -23,9 +23,9 @@ import java.util.List;
  */
 @Import(ServiceConfig.class)
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-public class NewsServiceTransactionalImpl implements NewsService {
+public class NewsTransactionalServiceImpl implements NewsService {
 
-    private static Logger logger = LoggerFactory.getLogger(NewsServiceTransactionalImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(NewsTransactionalServiceImpl.class);
     private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     @Autowired
@@ -42,7 +42,7 @@ public class NewsServiceTransactionalImpl implements NewsService {
             throw new NotFoundException("News with id = " + id + "not found in database!!!");
         }
 
-        return getNewsDto(news);
+        return convertToNewsDto(news);
     }
 
     @Override
@@ -74,13 +74,13 @@ public class NewsServiceTransactionalImpl implements NewsService {
     private List<NewsDto> getNewsDtoList(List<News> newsList) {
         List<NewsDto> newsDtoList = new ArrayList<>();
         for(News news : newsList) {
-            newsDtoList.add(getNewsDto(news));
+            newsDtoList.add(convertToNewsDto(news));
         }
 
         return newsDtoList;
     }
 
-    private NewsDto getNewsDto(News news) {
+    private NewsDto convertToNewsDto(News news) {
         NewsDto newsDto = new NewsDto();
         newsDto.setId(String.valueOf(news.getId()));
         newsDto.setTitle(news.getTitle());

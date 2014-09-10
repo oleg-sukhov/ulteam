@@ -1,45 +1,24 @@
-package ua.vn.os.ulteam.model.entity;
+package ua.vn.os.ulteam.service.dto;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Set;
 
-/**
- * @Author os.
- */
-@Entity
-public class PhotoAlbum implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class PhotoAlbumDto {
 
-    @Column(nullable = false)
+    private String id;
     private String title;
-
-    @Column(nullable = false)
     private String description;
-
-    @Column(name="creation_date", nullable = false)
-    private LocalDateTime creationDateTime;
-
-    @Column(name="fs_location_path", nullable = false)
-    private String fileSystemLocationPath;
-
-    @Column(nullable = false)
+    private String creationDateTime;
     private String author;
+    private Set<PhotoDto> photos;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "photoAlbum")
-    private Set<Photo> photos;
-
-    public PhotoAlbum() {
+    public PhotoAlbumDto() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -59,20 +38,12 @@ public class PhotoAlbum implements Serializable {
         this.description = description;
     }
 
-    public LocalDateTime getCreationDateTime() {
+    public String getCreationDateTime() {
         return creationDateTime;
     }
 
-    public void setCreationDateTime(LocalDateTime creationDateTime) {
+    public void setCreationDateTime(String creationDateTime) {
         this.creationDateTime = creationDateTime;
-    }
-
-    public String getFileSystemLocationPath() {
-        return fileSystemLocationPath;
-    }
-
-    public void setFileSystemLocationPath(String fileSystemLocationPath) {
-        this.fileSystemLocationPath = fileSystemLocationPath;
     }
 
     public String getAuthor() {
@@ -83,25 +54,24 @@ public class PhotoAlbum implements Serializable {
         this.author = author;
     }
 
-    public Set<Photo> getPhotos() {
+    public Set<PhotoDto> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(Set<Photo> photos) {
+    public void setPhotos(Set<PhotoDto> photos) {
         this.photos = photos;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PhotoAlbum)) return false;
+        if (!(o instanceof PhotoAlbumDto)) return false;
 
-        PhotoAlbum that = (PhotoAlbum) o;
+        PhotoAlbumDto that = (PhotoAlbumDto) o;
 
         if (!author.equals(that.author)) return false;
         if (!creationDateTime.equals(that.creationDateTime)) return false;
         if (!description.equals(that.description)) return false;
-        if (!fileSystemLocationPath.equals(that.fileSystemLocationPath)) return false;
         if (!id.equals(that.id)) return false;
         if (!photos.equals(that.photos)) return false;
         if (!title.equals(that.title)) return false;
@@ -115,7 +85,6 @@ public class PhotoAlbum implements Serializable {
         result = 31 * result + title.hashCode();
         result = 31 * result + description.hashCode();
         result = 31 * result + creationDateTime.hashCode();
-        result = 31 * result + fileSystemLocationPath.hashCode();
         result = 31 * result + author.hashCode();
         result = 31 * result + photos.hashCode();
         return result;

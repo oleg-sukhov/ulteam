@@ -10,10 +10,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ua.vn.os.ulteam.model.aspect.LogAspect;
 import ua.vn.os.ulteam.model.dao.NewsDao;
 import ua.vn.os.ulteam.model.dao.hibernate.NewsHibernateDao;
+import ua.vn.os.ulteam.model.dao.hibernate.PhotoAlbumDao;
+import ua.vn.os.ulteam.model.dao.hibernate.PhotoAlbumHibernateDao;
 
 /**
- * Created by os on 16.07.14.
+ * @Author os
  */
+
 @Configuration
 @Import({RepositoryConfig.class})
 public class DaoConfig {
@@ -26,6 +29,13 @@ public class DaoConfig {
         NewsHibernateDao newsDao = new NewsHibernateDao();
         newsDao.setHibernateTemplate(repositoryConfig.hibernateTemplate());
         return newsDao;
+    }
+
+    @Bean
+    public PhotoAlbumDao photoAlbumDao() {
+        PhotoAlbumHibernateDao photoAlbumDao = new PhotoAlbumHibernateDao();
+        photoAlbumDao.setHibernateTemplate(repositoryConfig.hibernateTemplate());
+        return photoAlbumDao;
     }
 
 }

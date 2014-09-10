@@ -6,6 +6,7 @@ import java.io.Serializable;
 /**
  * @Author os
  */
+@Entity
 public class Photo implements Serializable {
 
     @Id
@@ -20,7 +21,7 @@ public class Photo implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "album_id", nullable = false)
-    private PhotoAlbum album;
+    private PhotoAlbum photoAlbum;
 
     public Photo() {
     }
@@ -49,12 +50,12 @@ public class Photo implements Serializable {
         this.description = description;
     }
 
-    public PhotoAlbum getAlbum() {
-        return album;
+    public PhotoAlbum getPhotoAlbum() {
+        return photoAlbum;
     }
 
-    public void setAlbum(PhotoAlbum album) {
-        this.album = album;
+    public void setPhotoAlbum(PhotoAlbum photoAlbum) {
+        this.photoAlbum = photoAlbum;
     }
 
     @Override
@@ -64,7 +65,7 @@ public class Photo implements Serializable {
 
         Photo photo = (Photo) o;
 
-        if (!album.equals(photo.album)) return false;
+        if (!photoAlbum.equals(photo.photoAlbum)) return false;
         if (description != null ? !description.equals(photo.description) : photo.description != null) return false;
         if (!id.equals(photo.id)) return false;
         if (!name.equals(photo.name)) return false;
@@ -77,7 +78,7 @@ public class Photo implements Serializable {
         int result = id.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + album.hashCode();
+        result = 31 * result + photoAlbum.hashCode();
         return result;
     }
 }
