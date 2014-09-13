@@ -5,6 +5,10 @@ html, body {
     background-image: url(../../images/background.png);
 }
 
+table {
+    width: 100%;
+}
+
 #header {
     background-color: #245269;
     margin-bottom: 2%;
@@ -168,15 +172,33 @@ html, body {
 /* main content stop */
 
 /*photo albums page start*/
-.photo-album {
 
+
+.photo-album {
+    width: 100%;
+    height: 100%;
 }
+
+.photo-album > .avatar {
+    padding: 0;
+}
+
 
 .photo-album > .avatar > .thumbnail {
-    width: 100%;
-    height: 130px;
-    margin-bottom: 12px;
+    height: 207px;
+    background: seagreen;
+    margin: 0;
 }
 
+.photo-album > .description {
+    width: 70%;
+}
+
+.photo-album > .description > .list-group {
+    padding-left: 2%;
+    margin: 0;
+    font-size: 12px;
+    text-align: justify;
+}
 
 /*photo albums page stop*/

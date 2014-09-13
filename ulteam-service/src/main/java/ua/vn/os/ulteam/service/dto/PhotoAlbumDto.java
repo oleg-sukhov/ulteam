@@ -9,7 +9,7 @@ public class PhotoAlbumDto {
     private String description;
     private String creationDateTime;
     private String author;
-    private Set<PhotoDto> photos;
+    private PhotoDto[] photos;
 
     public PhotoAlbumDto() {
     }
@@ -54,11 +54,11 @@ public class PhotoAlbumDto {
         this.author = author;
     }
 
-    public Set<PhotoDto> getPhotos() {
+    public PhotoDto[] getPhotos() {
         return photos;
     }
 
-    public void setPhotos(Set<PhotoDto> photos) {
+    public void setPhotos(PhotoDto[] photos) {
         this.photos = photos;
     }
 

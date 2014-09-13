@@ -17,9 +17,35 @@
         </td>
 
         <td id="content">
-            <div class="photo-album" th:each="photoAlbumDto : ${photoAlbumDtoList}">
-                <div class="avatar" th:each="photoDto : ${photoAlbumDto.photos}" >
-                    <img class="thumbnail" th:src="@{data:image/jpeg;base64,} + ${photoDto.base64Data}"/>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span>Test</span>
+                </div>
+
+                <div class="panel-body">
+                    <table>
+                        <div th:each="photoAlbumDto : ${photoAlbumDtoList}">
+                            <tr class="photo-album">
+                                <td class="avatar" th:with="photoDtos=${photoAlbumDto.photos}">
+                                    <img class="thumbnail" th:src="@{data:image/jpeg;base64,} + ${photoDtos[0].base64Data}"/>
+                                </td>
+
+                                <td class="description">
+                                    <ul class="list-group">
+                                        <li class="list-group-item" th:utext="#{ua.vn.os.ulteam.web.page.photoalbums.title} + ${photoAlbumDto.title}"></li>
+                                        <li class="list-group-item" th:utext="#{ua.vn.os.ulteam.web.page.photoalbums.description} + ${photoAlbumDto.description}"></li>
+                                        <li class="list-group-item" th:utext="#{ua.vn.os.ulteam.web.page.photoalbums.creationdate} + ${photoAlbumDto.creationDateTime}"></li>
+                                        <li class="list-group-item" th:utext="#{ua.vn.os.ulteam.web.page.photoalbums.numberofphotos} + ${#arrays.length(photoAlbumDto.photos)}"></li>
+                                        <li class="list-group-item" th:utext="#{ua.vn.os.ulteam.web.page.photoalbums.author} + ${photoAlbumDto.author}"></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </div>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <div class="footer-holder">
+                    </div>
                 </div>
             </div>
         </td>

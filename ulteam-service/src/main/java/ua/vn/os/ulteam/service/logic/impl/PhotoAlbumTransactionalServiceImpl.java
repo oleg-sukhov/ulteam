@@ -72,8 +72,8 @@ public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
 
     }
 
-    private Set<PhotoDto> convertToPhotosDtos(String albumPath, Set<Photo> photos) {
-        Set<PhotoDto> photoDtoSet = new HashSet<>();
+    private PhotoDto[] convertToPhotosDtos(String albumPath, Set<Photo> photos) {
+        List<PhotoDto> photoDtoList = new ArrayList<>();
 
         for (Photo photo: photos) {
             PhotoDto photoDto = new PhotoDto();
@@ -82,10 +82,10 @@ public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
             photoDto.setDescription(photo.getDescription());
             photoDto.setBase64Data(imageService.loadPhotoFromFileSystemAndConvertToBase64(albumPath, photo.getName()));
 
-            photoDtoSet.add(photoDto);
+            photoDtoList.add(photoDto);
         }
 
-        return photoDtoSet;
+        return photoDtoList.toArray(new PhotoDto[]{});
     }
 
 
