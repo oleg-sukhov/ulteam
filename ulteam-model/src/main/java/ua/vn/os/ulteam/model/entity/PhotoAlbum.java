@@ -3,6 +3,7 @@ package ua.vn.os.ulteam.model.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.Set;
 
 /**
@@ -20,7 +21,8 @@ public class PhotoAlbum implements Serializable {
     @Column(nullable = false)
     private String description;
 
-    @Column(name="creation_date", nullable = false)
+    //TODO: thing about serialization java 8 LocalDataTime
+    //@Column(name="creation_date", nullable = false)
     private LocalDateTime creationDateTime;
 
     @Column(name="fs_location_path", nullable = false)
@@ -99,7 +101,8 @@ public class PhotoAlbum implements Serializable {
         PhotoAlbum that = (PhotoAlbum) o;
 
         if (!author.equals(that.author)) return false;
-        if (!creationDateTime.equals(that.creationDateTime)) return false;
+        //TODO: thing about serialization java 8 LocalDataTime
+        //if (!creationDateTime.equals(that.creationDateTime)) return false;
         if (!description.equals(that.description)) return false;
         if (!fileSystemLocationPath.equals(that.fileSystemLocationPath)) return false;
         if (!id.equals(that.id)) return false;
@@ -114,7 +117,8 @@ public class PhotoAlbum implements Serializable {
         int result = id.hashCode();
         result = 31 * result + title.hashCode();
         result = 31 * result + description.hashCode();
-        result = 31 * result + creationDateTime.hashCode();
+        //TODO: thing about serialization java 8 LocalDataTime
+        //result = 31 * result + creationDateTime.hashCode();
         result = 31 * result + fileSystemLocationPath.hashCode();
         result = 31 * result + author.hashCode();
         result = 31 * result + photos.hashCode();

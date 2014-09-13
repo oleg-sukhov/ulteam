@@ -22,7 +22,7 @@ public class PhotoAlbumController {
     @RequestMapping(value = "/photoAlbums", method = RequestMethod.GET, params = {"activePage"})
     public ModelAndView getAllNews(final Long activePage) {
         ModelAndView modelAndView = new ModelAndView("photoAlbums");
-        List<PhotoAlbumDto> allPhotoAlbumsDto = photoAlbumService.getAllPhotoAlbumsDto();
+        modelAndView.addObject("photoAlbumDtoList", photoAlbumService.getAllPhotoAlbumsDto());
         return modelAndView;
     }
 }

@@ -78,7 +78,7 @@ public class Photo implements Serializable {
         int result = id.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + photoAlbum.hashCode();
+        //result = 31 * result + photoAlbum.hashCode();
         return result;
     }
 }

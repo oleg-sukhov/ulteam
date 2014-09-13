@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -23,6 +24,7 @@ import java.util.*;
 /**
  * @author os
  */
+@Service
 @Import(ServiceConfig.class)
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
@@ -59,7 +61,8 @@ public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
             photoAlbumDto.setTitle(photoAlbum.getTitle());
             photoAlbumDto.setDescription(photoAlbum.getDescription());
             photoAlbumDto.setAuthor(photoAlbum.getAuthor());
-            photoAlbumDto.setCreationDateTime(photoAlbum.getCreationDateTime().format(dateTimeFormatter));
+            //TODO: thing about serialization java 8 LocalDataTime
+            //photoAlbumDto.setCreationDateTime(photoAlbum.getCreationDateTime().format(dateTimeFormatter));
             photoAlbumDto.setPhotos(convertToPhotosDtos(photoAlbum.getFileSystemLocationPath(), photoAlbum.getPhotos()));
 
             photoAlbumDtoList.add(photoAlbumDto);
@@ -75,8 +78,9 @@ public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
         for (Photo photo: photos) {
             PhotoDto photoDto = new PhotoDto();
             photoDto.setId(photo.getId().toString());
+            photoDto.setName(photo.getName());
             photoDto.setDescription(photo.getDescription());
-            photoDto.setData(imageService.loadPhotoFromFileSystemAndConvertToBase64(albumPath, photo.getName()));
+            photoDto.setBase64Data(imageService.loadPhotoFromFileSystemAndConvertToBase64(albumPath, photo.getName()));
 
             photoDtoSet.add(photoDto);
         }

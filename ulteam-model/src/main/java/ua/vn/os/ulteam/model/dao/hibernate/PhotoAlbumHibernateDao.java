@@ -12,7 +12,7 @@ public class PhotoAlbumHibernateDao extends HibernateDaoSupport implements Photo
 
     @Override
     public List<PhotoAlbum> getAllPhotoAlbums() {
-        List<PhotoAlbum> photoAlbums = (List<PhotoAlbum>) getHibernateTemplate().find("from PhotoAlbum");
+        List<PhotoAlbum> photoAlbums = (List<PhotoAlbum>) getHibernateTemplate().loadAll(PhotoAlbum.class);
         return photoAlbums;
     }
 

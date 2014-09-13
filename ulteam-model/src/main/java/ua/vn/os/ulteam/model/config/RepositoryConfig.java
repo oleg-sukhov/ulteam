@@ -57,7 +57,6 @@ public class RepositoryConfig {
     @Value("${hibernate.show_sql}")
     private String hibernateShowSql;
 
-
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -85,7 +84,8 @@ public class RepositoryConfig {
         return new HibernateTransactionManager(sessionFactory());
     }
 
-    private SessionFactory sessionFactory() {
+    @Bean
+    public SessionFactory sessionFactory() {
         LocalSessionFactoryBuilder sessionFactoryBuilder = new LocalSessionFactoryBuilder(dataSource());
         updateHibernateProperties(sessionFactoryBuilder.getProperties());
         sessionFactoryBuilder.addAnnotatedClasses(News.class, Photo.class, PhotoAlbum.class );
@@ -97,6 +97,7 @@ public class RepositoryConfig {
         properties.setProperty("hibernate.dialect", hibernateDialect);
         properties.setProperty("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
         properties.setProperty("hibernate.show_sql", hibernateShowSql);
+
         return properties;
     }
 }

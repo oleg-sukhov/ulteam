@@ -70,7 +70,8 @@ public class PhotoAlbumDto {
         PhotoAlbumDto that = (PhotoAlbumDto) o;
 
         if (!author.equals(that.author)) return false;
-        if (!creationDateTime.equals(that.creationDateTime)) return false;
+        //TODO: thing about serialization java 8 LocalDataTime
+        //if (!creationDateTime.equals(that.creationDateTime)) return false;
         if (!description.equals(that.description)) return false;
         if (!id.equals(that.id)) return false;
         if (!photos.equals(that.photos)) return false;
@@ -84,7 +85,8 @@ public class PhotoAlbumDto {
         int result = id.hashCode();
         result = 31 * result + title.hashCode();
         result = 31 * result + description.hashCode();
-        result = 31 * result + creationDateTime.hashCode();
+        //TODO: thing about serialization java 8 LocalDataTime
+        //result = 31 * result + creationDateTime.hashCode();
         result = 31 * result + author.hashCode();
         result = 31 * result + photos.hashCode();
         return result;

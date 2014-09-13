@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
 import ua.vn.os.ulteam.model.entity.Photo;
 import ua.vn.os.ulteam.service.logic.ImageService;
 
@@ -17,6 +18,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+@Service
 public class ImageServiceImpl implements ImageService {
 
     private static Logger logger = LoggerFactory.getLogger(ImageServiceImpl.class);
