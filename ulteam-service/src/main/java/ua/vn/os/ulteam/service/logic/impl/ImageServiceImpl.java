@@ -14,14 +14,14 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ImageServiceImpl implements ImageService {
 
     private static Logger logger = LoggerFactory.getLogger(ImageServiceImpl.class);
+    //TODO: thing about ehcache
+    private Map<String, String> imageCache = new HashMap<>();
 
     @Autowired
     private MessageSource messageSource;
@@ -44,7 +44,14 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public String loadPhotoFromFileSystemAndConvertToBase64(String albumPath, String photoName) {
         String imagePath = new StringBuilder().append(albumPath).append(photoName).toString();
-        return Base64.encodeBase64String(loadImageFromFileSystem(imagePath));
+
+        if(imageCache.containsKey(imagePath)) {
+            return imageCache.get(imagePath);
+        } else {
+            String base64Image = Base64.encodeBase64String(loadImageFromFileSystem(imagePath));
+            imageCache.put(imagePath, base64Image);
+            return base64Image;
+        }
     }
 
     private byte[] loadImageFromFileSystem(String imagePath) {

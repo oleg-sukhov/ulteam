@@ -1,9 +1,13 @@
 package ua.vn.os.ulteam.model.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,6 +27,7 @@ public class PhotoAlbum implements Serializable {
 
     //TODO: thing about serialization java 8 LocalDataTime
     //@Column(name="creation_date", nullable = false)
+    @Transient
     private LocalDateTime creationDateTime;
 
     @Column(name="fs_location_path", nullable = false)
@@ -32,7 +37,8 @@ public class PhotoAlbum implements Serializable {
     private String author;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "photoAlbum")
-    private Set<Photo> photos;
+    @LazyCollection(LazyCollectionOption.EXTRA)
+    private List<Photo> photos;
 
     public PhotoAlbum() {
     }
@@ -85,11 +91,11 @@ public class PhotoAlbum implements Serializable {
         this.author = author;
     }
 
-    public Set<Photo> getPhotos() {
+    public List<Photo> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(Set<Photo> photos) {
+    public void setPhotos(List<Photo> photos) {
         this.photos = photos;
     }
 

@@ -174,31 +174,35 @@ table {
 /*photo albums page start*/
 
 
-.photo-album {
+#photo-album {
     width: 100%;
     height: 100%;
+    margin-bottom: 3%;
 }
 
-.photo-album > .avatar {
-    padding: 0;
+#photo-album > .avatar {
+    padding-bottom: 5%;
 }
 
 
-.photo-album > .avatar > .thumbnail {
-    height: 207px;
+#photo-album > .avatar > .thumbnail {
+    height: 195px;
     background: seagreen;
     margin: 0;
 }
 
-.photo-album > .description {
+#photo-album > .description {
     width: 70%;
+    padding-bottom: 5%;
 }
 
-.photo-album > .description > .list-group {
+#photo-album > .description > .list-group {
     padding-left: 2%;
     margin: 0;
     font-size: 12px;
     text-align: justify;
 }
-
+#photo-album > .description > .list-group > .list-group-item {
+    background-color: #E8ECFC;
+}
 /*photo albums page stop*/

@@ -15,14 +15,18 @@ import java.util.List;
  */
 @Controller
 public class PhotoAlbumController {
+    public static final int DEFAULT_NUMBER_PHOTO_ALBUMS_IN_PAGE = 7;
 
     @Autowired
     private PhotoAlbumService photoAlbumService;
 
     @RequestMapping(value = "/photoAlbums", method = RequestMethod.GET, params = {"activePage"})
     public ModelAndView getAllNews(final Long activePage) {
+        int startPage = activePage.intValue() * DEFAULT_NUMBER_PHOTO_ALBUMS_IN_PAGE;
         ModelAndView modelAndView = new ModelAndView("photoAlbums");
-        modelAndView.addObject("photoAlbumDtoList", photoAlbumService.getAllPhotoAlbumsDto());
+
+        modelAndView.addObject("photoAlbumDtoList", photoAlbumService.getAllPhotoAlbumsDto(startPage, DEFAULT_NUMBER_PHOTO_ALBUMS_IN_PAGE));
+        modelAndView.addObject("photoAlbumsCount", photoAlbumService.getPhotoAlbumsCount() / DEFAULT_NUMBER_PHOTO_ALBUMS_IN_PAGE);
         return modelAndView;
     }
 }

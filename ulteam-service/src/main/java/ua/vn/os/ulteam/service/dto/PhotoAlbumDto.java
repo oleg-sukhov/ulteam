@@ -1,24 +1,24 @@
 package ua.vn.os.ulteam.service.dto;
 
-import java.util.Set;
 
 public class PhotoAlbumDto {
 
-    private String id;
+    private long id;
     private String title;
     private String description;
     private String creationDateTime;
     private String author;
-    private PhotoDto[] photos;
+    private int numberOfPhotos;
+    private PhotoDto avatar;
 
     public PhotoAlbumDto() {
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -54,12 +54,20 @@ public class PhotoAlbumDto {
         this.author = author;
     }
 
-    public PhotoDto[] getPhotos() {
-        return photos;
+    public PhotoDto getAvatar() {
+        return avatar;
     }
 
-    public void setPhotos(PhotoDto[] photos) {
-        this.photos = photos;
+    public void setAvatar(PhotoDto avatar) {
+        this.avatar = avatar;
+    }
+
+    public int getNumberOfPhotos() {
+        return numberOfPhotos;
+    }
+
+    public void setNumberOfPhotos(int numberOfPhotos) {
+        this.numberOfPhotos = numberOfPhotos;
     }
 
     @Override
@@ -73,22 +81,23 @@ public class PhotoAlbumDto {
         //TODO: thing about serialization java 8 LocalDataTime
         //if (!creationDateTime.equals(that.creationDateTime)) return false;
         if (!description.equals(that.description)) return false;
-        if (!id.equals(that.id)) return false;
-        if (!photos.equals(that.photos)) return false;
+        if (!(id == that.id)) return false;
         if (!title.equals(that.title)) return false;
+        if (!avatar.equals(that.avatar)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
+        int result = (int)id;
         result = 31 * result + title.hashCode();
         result = 31 * result + description.hashCode();
         //TODO: thing about serialization java 8 LocalDataTime
         //result = 31 * result + creationDateTime.hashCode();
         result = 31 * result + author.hashCode();
-        result = 31 * result + photos.hashCode();
+        result = 31 * result + avatar.hashCode();
+        result = 31 * result + numberOfPhotos;
         return result;
     }
 }

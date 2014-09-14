@@ -9,5 +9,6 @@ import java.util.List;
  * @Author os
  */
 public interface PhotoAlbumService {
-    public List<PhotoAlbumDto> getAllPhotoAlbumsDto();
+    public List<PhotoAlbumDto> getAllPhotoAlbumsDto(int startPage, int numberOfPhotoAlbumsInPage);
+    public long getPhotoAlbumsCount();
 }

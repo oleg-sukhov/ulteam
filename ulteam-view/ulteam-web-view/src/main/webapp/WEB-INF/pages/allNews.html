@@ -18,47 +18,47 @@
 
         <td id="content">
             <span th:each="newsDto : ${newsDtoList}">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <table class="newsHeader">
-                        <tr class="newsHeader">
-                            <td class="news-title">
-                                <span class="glyphicon glyphicon-certificate"/>
-                                <span th:text="${newsDto.title}"/>
-                            </td>
-                            <td class="news-date">
-                                <span class="glyphicon glyphicon-time"/>
-                                <span th:text="${newsDto.modificationDate}"/>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <table class="newsHeader">
+                            <tr class="newsHeader">
+                                <td class="news-title">
+                                    <span class="glyphicon glyphicon-certificate"/>
+                                    <span th:text="${newsDto.title}"/>
+                                </td>
+                                <td class="news-date">
+                                    <span class="glyphicon glyphicon-time"/>
+                                    <span th:text="${newsDto.modificationDate}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
 
-                <div class="panel-body">
-                    <table>
-                        <tr class="shortNewsBody">
-                            <td class="short-news-avatar">
-                                <img class="thumbnail" th:src="@{data:image/jpeg;base64,} + ${newsDto.picture}"/>
+                    <div class="panel-body">
+                        <table>
+                            <tr class="shortNewsBody">
+                                <td class="short-news-avatar">
+                                    <img class="thumbnail" th:src="@{data:image/jpeg;base64,} + ${newsDto.picture}"/>
 
-                                <div class="views">
-                                    <span class="glyphicon glyphicon-eye-open"/>
-                                    <span th:text="${newsDto.id}"/>
-                                </div>
-                            </td>
-                            <td class="description" th:utext="${newsDto.shortDescription}"/>
-                        </tr>
-                    </table>
-                </div>
-                <div class="panel-footer">
-                    <div class="footer-holder">
-                        <a class="btn btn-primary btn-xs"
-                            th:text="#{ua.vn.os.ulteam.web.page.allnews.read.button}"
-                            th:href="@{/getNewsById?id=} + ${newsDto.id}">
-                        </a>
+                                    <div class="views">
+                                        <span class="glyphicon glyphicon-eye-open"/>
+                                        <span th:text="${newsDto.id}"/>
+                                    </div>
+                                </td>
+                                <td class="description" th:utext="${newsDto.shortDescription}"/>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="footer-holder">
+                            <a class="btn btn-primary btn-xs"
+                                th:text="#{ua.vn.os.ulteam.web.page.allnews.read.button}"
+                                th:href="@{/getNewsById?id=} + ${newsDto.id}">
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </span>
+            </span>
             <ul class="pagination">
                 <li class="disabled"><a href="#">&laquo;</a></li>
                 <li th:each="index : ${#numbers.sequence(1, newsCount)}"
