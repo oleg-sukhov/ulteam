@@ -9,12 +9,8 @@ import java.util.Arrays;
  *
  * @author oleg.sukhov
  */
-@Entity
-public class News implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@javax.persistence.Entity
+public class News extends Entity {
 
     @Column(nullable = false)
     private String title;
@@ -48,14 +44,6 @@ public class News implements Serializable {
         this.views = views;
         this.newsContent = newsContent;
         this.picture = picture;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -109,30 +97,32 @@ public class News implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof News)) return false;
+        if (!super.equals(o)) return false;
 
         News news = (News) o;
 
         if (views != news.views) return false;
-        if (!id.equals(news.id)) return false;
-        if (!modificationDate.equals(news.modificationDate)) return false;
-        if (!newsContent.equals(news.newsContent)) return false;
+        if (modificationDate != null ? !modificationDate.equals(news.modificationDate) : news.modificationDate != null)
+            return false;
+        if (newsContent != null ? !newsContent.equals(news.newsContent) : news.newsContent != null) return false;
         if (!Arrays.equals(picture, news.picture)) return false;
-        if (!shortDescription.equals(news.shortDescription)) return false;
-        if (!title.equals(news.title)) return false;
+        if (shortDescription != null ? !shortDescription.equals(news.shortDescription) : news.shortDescription != null)
+            return false;
+        if (title != null ? !title.equals(news.title) : news.title != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + title.hashCode();
-        result = 31 * result + shortDescription.hashCode();
-        result = 31 * result + modificationDate.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (shortDescription != null ? shortDescription.hashCode() : 0);
+        result = 31 * result + (modificationDate != null ? modificationDate.hashCode() : 0);
         result = 31 * result + (int) (views ^ (views >>> 32));
-        result = 31 * result + newsContent.hashCode();
-        result = 31 * result + Arrays.hashCode(picture);
+        result = 31 * result + (newsContent != null ? newsContent.hashCode() : 0);
+        result = 31 * result + (picture != null ? Arrays.hashCode(picture) : 0);
         return result;
     }
 }

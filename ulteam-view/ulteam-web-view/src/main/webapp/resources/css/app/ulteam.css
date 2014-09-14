@@ -78,21 +78,21 @@ table {
 }
 /* news short panel start */
 
-.newsHeader {
-    color: #ff0200;
+.panel-header {
+    color: #5E1414;
     font-family: "Lucida Grande";
     width: 100%;
 }
 
-.newsHeader > .news-title {
+.panel-header > .move-left {
     text-align: left;
     font-size: 14px;
     width: 70%;
 }
 
-.newsHeader > .news-date {
+.panel-header > .move-right {
     text-align: right;
-    color: #55008b;
+    color: #EBFF00;
     width: 30%;
 }
 

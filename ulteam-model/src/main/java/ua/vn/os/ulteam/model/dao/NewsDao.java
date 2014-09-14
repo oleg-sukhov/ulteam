@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author os
  */
-public interface NewsDao {
+public interface NewsDao extends Crud<News> {
     public static final int PAGE_START_INDEX = 0;
 
     public static String CREATE_NEWS_SQL = "INSERT INTO news (title, modification_time, views, news_content, picture) VALUES (?, ?, ?, ?, ?)";
@@ -17,11 +17,6 @@ public interface NewsDao {
     public static String GET_NEWS_COUNT_SQL = "SELECT COUNT(*) FROM news";
     public static String DELETE_NEWS_BY_ID_SQL = "DELETE FROM news WHERE id = ?";
 
-    public long createNews(News news);
-    public News getNewsById(long id);
     public List<News> getAllNews();
     public List<News> getAllNews(int startPage, int numberOfNews);
-    public void updateNews(News news);
-    public void deleteNewsById(long id);
-    public long getNewsCount();
 }

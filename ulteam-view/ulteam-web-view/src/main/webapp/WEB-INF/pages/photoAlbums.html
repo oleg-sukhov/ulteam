@@ -19,7 +19,18 @@
         <td id="content">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <span>Test</span>
+                    <table>
+                        <tr class="panel-header">
+                            <td class="move-left">
+                                <span class="glyphicon glyphicon-picture"/>
+                                <span th:utext="#{ua.vn.os.ulteam.web.page.photoalbums.caption}"/>
+
+                            </td>
+                            <td class="move-right">
+                                <span th:utext="#{ua.vn.os.ulteam.web.page.photoalbums.count} + ${photoAlbumsCount}"/>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
                 <div class="panel-body">
@@ -45,7 +56,7 @@
 
                     <ul class="pagination">
                         <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li th:each="index : ${#numbers.sequence(1, photoAlbumsCount)}"
+                        <li th:each="index : ${#numbers.sequence(1, photoAlbumsPagesCount)}"
                             th:class="${activePage == index}? 'active'">
                             <a th:href="@{/photoAlbums?activePage=} + ${index}" th:text="${index}"></a>
                         </li>

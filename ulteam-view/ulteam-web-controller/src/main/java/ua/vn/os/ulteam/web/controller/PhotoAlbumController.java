@@ -24,9 +24,10 @@ public class PhotoAlbumController {
     public ModelAndView getAllNews(final Long activePage) {
         int startPage = activePage.intValue() * DEFAULT_NUMBER_PHOTO_ALBUMS_IN_PAGE;
         ModelAndView modelAndView = new ModelAndView("photoAlbums");
-
         modelAndView.addObject("photoAlbumDtoList", photoAlbumService.getAllPhotoAlbumsDto(startPage, DEFAULT_NUMBER_PHOTO_ALBUMS_IN_PAGE));
-        modelAndView.addObject("photoAlbumsCount", photoAlbumService.getPhotoAlbumsCount() / DEFAULT_NUMBER_PHOTO_ALBUMS_IN_PAGE);
+        modelAndView.addObject("photoAlbumsPagesCount", photoAlbumService.getPhotoAlbumsCount() / DEFAULT_NUMBER_PHOTO_ALBUMS_IN_PAGE);
+        modelAndView.addObject("photoAlbumsCount", photoAlbumService.getPhotoAlbumsCount());
+        modelAndView.addObject("activePage", activePage);
         return modelAndView;
     }
 }

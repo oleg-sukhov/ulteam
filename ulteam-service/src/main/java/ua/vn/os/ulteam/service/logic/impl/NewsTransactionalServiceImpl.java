@@ -38,7 +38,7 @@ public class NewsTransactionalServiceImpl implements NewsService {
 
     @Override
     public NewsDto getNewsById(long id) throws NotFoundException {
-        News news = newsDao.getNewsById(id);
+        News news = newsDao.get(id);
 
         if(news == null) {
             throw new NotFoundException("News with id = " + id + "not found in database!!!");
@@ -63,14 +63,14 @@ public class NewsTransactionalServiceImpl implements NewsService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public long createNews(News news) {
         //TODO: Add validation
-        long newsId = newsDao.createNews(news);
+        long newsId = newsDao.saveOrUpdate(news);
         logger.info("News with id = " + newsId + " was successful created.");
         return newsId;
     }
 
     @Override
     public long getNewsCount() {
-        return newsDao.getNewsCount();
+        return newsDao.getCount();
     }
 
     private List<NewsDto> getNewsDtoList(List<News> newsList) {

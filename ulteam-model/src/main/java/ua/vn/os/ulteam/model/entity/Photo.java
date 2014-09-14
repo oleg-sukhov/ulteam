@@ -6,12 +6,8 @@ import java.io.Serializable;
 /**
  * @Author os
  */
-@Entity
-public class Photo implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@javax.persistence.Entity
+public class Photo extends Entity {
 
     @Column(name = "photo_name", nullable = false)
     private String name;
@@ -24,14 +20,6 @@ public class Photo implements Serializable {
     private PhotoAlbum photoAlbum;
 
     public Photo() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -65,20 +53,18 @@ public class Photo implements Serializable {
 
         Photo photo = (Photo) o;
 
-        if (!photoAlbum.equals(photo.photoAlbum)) return false;
         if (description != null ? !description.equals(photo.description) : photo.description != null) return false;
-        if (!id.equals(photo.id)) return false;
-        if (!name.equals(photo.name)) return false;
+        if (name != null ? !name.equals(photo.name) : photo.name != null) return false;
+        if (photoAlbum != null ? !photoAlbum.equals(photo.photoAlbum) : photo.photoAlbum != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
+        int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        //result = 31 * result + photoAlbum.hashCode();
+        result = 31 * result + (photoAlbum != null ? photoAlbum.hashCode() : 0);
         return result;
     }
 }

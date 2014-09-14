@@ -20,13 +20,13 @@
             <span th:object="${newsDto}">
                 <div class="panel panel-success news-panel">
                     <div class="panel-heading">
-                        <table class="newsHeader">
-                            <tr class="newsHeader">
-                                <td class="news-title">
+                        <table>
+                            <tr class="panel-header">
+                                <td class="move-left">
                                     <span class="glyphicon glyphicon-certificate"/>
                                     <span th:text="${newsDto.title}"/>
                                 </td>
-                                <td class="news-date">
+                                <td class="move-right">
                                     <span class="glyphicon glyphicon-time"/>
                                     <span th:text="${newsDto.modificationDate}"/>
                                 </td>

@@ -12,6 +12,8 @@ import ua.vn.os.ulteam.model.dao.NewsDao;
 import ua.vn.os.ulteam.model.dao.hibernate.NewsHibernateDao;
 import ua.vn.os.ulteam.model.dao.hibernate.PhotoAlbumDao;
 import ua.vn.os.ulteam.model.dao.hibernate.PhotoAlbumHibernateDao;
+import ua.vn.os.ulteam.model.entity.News;
+import ua.vn.os.ulteam.model.entity.PhotoAlbum;
 
 /**
  * @Author os
@@ -26,16 +28,12 @@ public class DaoConfig {
 
     @Bean
     public NewsDao newsDao() {
-        NewsHibernateDao newsDao = new NewsHibernateDao();
-        newsDao.setHibernateTemplate(repositoryConfig.hibernateTemplate());
-        return newsDao;
+        return new NewsHibernateDao(repositoryConfig.hibernateTemplate(), News.class);
     }
 
     @Bean
     public PhotoAlbumDao photoAlbumDao() {
-        PhotoAlbumHibernateDao photoAlbumDao = new PhotoAlbumHibernateDao();
-        photoAlbumDao.setHibernateTemplate(repositoryConfig.hibernateTemplate());
-        return photoAlbumDao;
+        return new PhotoAlbumHibernateDao(repositoryConfig.hibernateTemplate(), PhotoAlbum.class);
     }
 
 }

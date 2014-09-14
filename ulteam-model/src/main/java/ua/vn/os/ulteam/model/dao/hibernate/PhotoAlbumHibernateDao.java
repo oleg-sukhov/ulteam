@@ -2,6 +2,7 @@ package ua.vn.os.ulteam.model.dao.hibernate;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import ua.vn.os.ulteam.model.entity.PhotoAlbum;
 
@@ -10,7 +11,11 @@ import java.util.List;
 /**
  * @Author os
  */
-public class PhotoAlbumHibernateDao extends HibernateDaoSupport implements PhotoAlbumDao {
+public class PhotoAlbumHibernateDao extends GenericDao<PhotoAlbum> implements PhotoAlbumDao {
+
+    public PhotoAlbumHibernateDao(HibernateTemplate hibernateTemplate, Class<PhotoAlbum> type) {
+        super(hibernateTemplate, type);
+    }
 
     @Override
     public List<PhotoAlbum> getAllPhotoAlbums(int startPage, int numberOfPhotoAlbumsInPage) {
