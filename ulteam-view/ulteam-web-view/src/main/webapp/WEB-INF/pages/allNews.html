@@ -51,7 +51,7 @@
                     </div>
                     <div class="panel-footer">
                         <div class="footer-holder">
-                            <a class="btn btn-primary btn-xs"
+                            <a class="btn custom btn-xs btn-view-news"
                                 th:text="#{ua.vn.os.ulteam.web.page.allnews.read.button}"
                                 th:href="@{/getNewsById?id=} + ${newsDto.id}">
                             </a>
@@ -73,6 +73,5 @@
     <div th:include="template/footer :: footer"/>
 
 </div>
-
 </body>
 </html>

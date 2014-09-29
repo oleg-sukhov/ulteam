@@ -15,9 +15,9 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 /**
- * Created by os on 11.07.14.
+ * @author os
  */
 @Configuration
 public class TestConfig {
 
-    }
+}

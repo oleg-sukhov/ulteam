@@ -21,8 +21,8 @@ public class LogAspect {
     @Autowired
     private MessageSource messageSource;
 
-    @Around("execution(* ua.vn.os.ulteam.model.dao.hibernate.*HibernateDao.*(..))")
-    public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Around("execution(* ua.vn.os.ulteam.model.dao.hibernate.*Dao.*(..))")
+    public Object logDaoMethodsDuration(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         Object returnValue = joinPoint.proceed();
         long duration = System.currentTimeMillis() - start;

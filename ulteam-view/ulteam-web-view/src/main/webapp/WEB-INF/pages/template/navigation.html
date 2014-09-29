@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link type="text/css" rel="stylesheet" th:href="@{/resources/css/app/ulteam.css}" />
@@ -7,21 +9,14 @@
 </head>
 <body>
 <span th:fragment="navigation">
-    <ul class="nav nav-pills nav-stacked">
-
-        <li>
-            <a href="/allNews?activePage=1" >
-                <span class="glyphicon glyphicon-bell nav-item"/>
-                <span class="nav-item-text" th:text="#{ua.vn.os.ulteam.web.navigation.news}"/>
-            </a>
-        </li>
-        <li>
-            <a href="/photoAlbums?activePage=1" >
-                <span class="glyphicon glyphicon-picture nav-item"/>
-                <span class="nav-item-text" th:text="#{ua.vn.os.ulteam.web.navigation.photo}"/>
-            </a>
-        </li>
-    </ul>
+    <a class="btn custom large nav-item" href="/allNews?activePage=1">
+        <span class="glyphicon glyphicon-bell"/>
+        <span class="nav-item-text" th:text="#{ua.vn.os.ulteam.web.navigation.news}"/>
+    </a>
+    <a class="btn custom large nav-item" href="/photoAlbums?activePage=1">
+        <span class="glyphicon glyphicon-picture"/>
+        <span class="nav-item-text" th:text="#{ua.vn.os.ulteam.web.navigation.photo}"/>
+    </a>
 </span>
 </body>
 </html>

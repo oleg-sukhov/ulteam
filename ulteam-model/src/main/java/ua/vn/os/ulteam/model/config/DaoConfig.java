@@ -1,13 +1,9 @@
 package ua.vn.os.ulteam.model.config;
 
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import ua.vn.os.ulteam.model.aspect.LogAspect;
 import ua.vn.os.ulteam.model.dao.NewsDao;
 import ua.vn.os.ulteam.model.dao.hibernate.NewsHibernateDao;
 import ua.vn.os.ulteam.model.dao.hibernate.PhotoAlbumDao;
