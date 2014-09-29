@@ -4,6 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link type="text/css" rel="stylesheet" th:href="@{/resources/css/app/ulteam.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/resources/css/lib/bootstrap-image-gallery.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/resources/css/lib/blueimp-gallery.min.css}"/>
 </head>
 
 <body>
@@ -53,6 +55,7 @@
                             </tr>
                         </div>
                     </table>
+                    <div id="links" style="display: none"/>
 
                     <ul class="pagination">
                         <li class="disabled"><a href="#">&laquo;</a></li>
@@ -76,6 +79,11 @@
     <div th:include="template/footer :: footer"/>
 
 </div>
-<div th:include="photoViewer"/>
+<div th:include="template/photoViewer :: photoViewer"/>
+
+<script th:src="@{/resources/js/lib/jquery-2.1.1.js}"/>
+<script th:src="@{/resources/js/lib/jquery.blueimp-gallery.min.js}"/>
+<script th:src="@{/resources/js/lib/bootstrap-image-gallery.js}"/>
+<script th:src="@{/resources/js/app/ulteam.photo.viewer.js}"/>
 </body>
 </html>

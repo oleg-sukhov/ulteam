@@ -5,12 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link type="text/css" rel="stylesheet" th:href="@{/resources/css/app/ulteam.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/resources/css/lib/bootstrap-image-gallery.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/resources/css/lib/bootstrap-image-gallery.min.css}"/>
 </head>
 
 <body>
-<div id="container">
-    <div id="blueimp-gallery" class="blueimp-gallery">
+<div th:fragment="photoViewer">
+    <div id="blueimp-gallery" class="blueimp-gallery" th:attr="data-use-bootstrap-modal=false">
         <!-- The container for the modal slides -->
         <div class="slides"></div>
         <!-- Controls for the borderless lightbox -->
@@ -43,8 +42,6 @@
             </div>
         </div>
     </div>
-
 </div>
-
 </body>
 </html>
