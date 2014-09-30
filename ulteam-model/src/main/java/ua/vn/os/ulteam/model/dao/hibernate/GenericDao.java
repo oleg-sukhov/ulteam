@@ -65,6 +65,6 @@ public class GenericDao<T extends Entity> extends HibernateDaoSupport implements
     @Override
     public long getCount() {
         List result = getHibernateTemplate().find("select count(entity) from " + type.getCanonicalName() + " entity");
-        return (long) result.get(0);
+        return (Long) result.get(0);
     }
 }

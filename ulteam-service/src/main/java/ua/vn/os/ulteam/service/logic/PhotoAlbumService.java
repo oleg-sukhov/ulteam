@@ -1,7 +1,9 @@
 package ua.vn.os.ulteam.service.logic;
 
+import ua.vn.os.ulteam.model.entity.Photo;
 import ua.vn.os.ulteam.model.entity.PhotoAlbum;
 import ua.vn.os.ulteam.service.dto.PhotoAlbumDto;
+import ua.vn.os.ulteam.service.dto.PhotoDto;
 
 import java.util.List;
 
@@ -10,5 +12,6 @@ import java.util.List;
  */
 public interface PhotoAlbumService {
     public List<PhotoAlbumDto> getAllPhotoAlbumsDto(int startPage, int numberOfPhotoAlbumsInPage);
+    public List<PhotoDto> getAllPhotosInAlbum(long photoAlbumId);
     public long getPhotoAlbumsCount();
 }

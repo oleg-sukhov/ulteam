@@ -2,6 +2,7 @@ package ua.vn.os.ulteam.model.dao.hibernate;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import ua.vn.os.ulteam.model.entity.PhotoAlbum;
@@ -29,13 +30,8 @@ public class PhotoAlbumHibernateDao extends GenericDao<PhotoAlbum> implements Ph
     }
 
     @Override
-    public PhotoAlbum getPhotoAlbumById(long id) {
-        return null;
-    }
-
-    @Override
     public long getPhotoAlbumsCount() {
         List result = getHibernateTemplate().find("select count(photoAlbum) from PhotoAlbum photoAlbum");
-        return (long) result.get(0);
+        return (Long) result.get(0);
     }
 }

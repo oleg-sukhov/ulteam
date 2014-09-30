@@ -38,7 +38,7 @@
                 <div class="panel-body">
                     <table>
                         <div th:each="photoAlbumDto : ${photoAlbumDtoList}">
-                            <tr id="photo-album">
+                            <tr class="photo-album" th:attr="photoAlbumId=${photoAlbumDto.id}">
                                 <td class="avatar">
                                     <img class="thumbnail" th:src="@{data:image/jpeg;base64,} + ${photoAlbumDto.avatar.base64Data}"/>
                                 </td>
@@ -52,10 +52,11 @@
                                         <li class="list-group-item" th:utext="#{ua.vn.os.ulteam.web.page.photoalbums.author} + ${photoAlbumDto.author}"></li>
                                     </ul>
                                 </td>
+
+                                <div id="photos"/>
                             </tr>
                         </div>
                     </table>
-                    <div id="links" style="display: none"/>
 
                     <ul class="pagination">
                         <li class="disabled"><a href="#">&laquo;</a></li>

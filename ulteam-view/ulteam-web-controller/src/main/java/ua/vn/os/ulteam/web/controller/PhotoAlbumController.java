@@ -21,7 +21,7 @@ public class PhotoAlbumController {
     private PhotoAlbumService photoAlbumService;
 
     @RequestMapping(value = "/photoAlbums", method = RequestMethod.GET, params = {"activePage"})
-    public ModelAndView getAllNews(final Long activePage) {
+    public ModelAndView getAllPhotoAlbums(final Long activePage) {
         int startPage = activePage.intValue() * DEFAULT_NUMBER_PHOTO_ALBUMS_IN_PAGE;
         ModelAndView modelAndView = new ModelAndView("photoAlbums");
         modelAndView.addObject("photoAlbumDtoList", photoAlbumService.getAllPhotoAlbumsDto(startPage, DEFAULT_NUMBER_PHOTO_ALBUMS_IN_PAGE));

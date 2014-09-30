@@ -57,6 +57,12 @@ public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
         return photoAlbumDao.getPhotoAlbumsCount();
     }
 
+    @Override
+    public List<PhotoDto> getAllPhotosInAlbum(long photoAlbumId) {
+        PhotoAlbum photoAlbum = photoAlbumDao.get(photoAlbumId);
+        return convertToPhotoDtoList(photoAlbum.getFileSystemLocationPath(), photoAlbum.getPhotos());
+    }
+
     private List<PhotoAlbumDto> convertToPhotoAlbumsDtos(List<PhotoAlbum> photoAlbums) {
         List<PhotoAlbumDto> photoAlbumDtoList = new ArrayList<>();
 
@@ -81,6 +87,13 @@ public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
         return photoAlbumDtoList;
     }
 
+    private List<PhotoDto> convertToPhotoDtoList(String albumPath, List<Photo> photos) {
+        List<PhotoDto> photoDtoList = new ArrayList<>();
+        for (Photo photo : photos) {
+            photoDtoList.add(convertToPhotoDto(albumPath, photo));
+        }
+        return photoDtoList;
+    }
 
     private PhotoDto convertToPhotoDto(String albumPath, Photo photo) {
         PhotoDto photoDto = new PhotoDto();

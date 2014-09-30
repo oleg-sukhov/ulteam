@@ -8,9 +8,11 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.messageresolver.IMessageResolver;
+import org.thymeleaf.resourceresolver.IResourceResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.messageresolver.SpringMessageResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import ua.vn.os.ulteam.model.aspect.LogAspect;
 import ua.vn.os.ulteam.service.config.ServiceConfig;
@@ -26,11 +28,11 @@ import ua.vn.os.ulteam.service.config.ServiceConfig;
 public class ControllerConfig extends WebMvcConfigurerAdapter {
 
     @Bean
-    public ServletContextTemplateResolver templateResolver() {
+    public ITemplateResolver templateResolver() {
         ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
         resolver.setPrefix("/WEB-INF/pages/");
         resolver.setSuffix(".html");
-        resolver.setTemplateMode("HTML5");
+        resolver.setTemplateMode("XHTML");
         resolver.setCacheable(false);
         return resolver;
     }
