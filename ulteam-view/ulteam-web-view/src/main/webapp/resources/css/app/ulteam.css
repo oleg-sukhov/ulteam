@@ -2,7 +2,7 @@
 
 /* header start */
 html, body {
-    background-image: url(../../images/background.png);
+    background-image: url(../../img/background.png);
 }
 
 table {
@@ -227,5 +227,11 @@ table {
 }
 .photo-album > .description > .list-group > .list-group-item {
     background-color: #E8ECFC;
+}
+
+#loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
 }
 /*photo albums page stop*/

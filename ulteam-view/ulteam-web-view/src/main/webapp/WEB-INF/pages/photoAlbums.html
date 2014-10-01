@@ -12,7 +12,6 @@
 <div id="container">
 
     <div th:include="template/header :: header"/>
-
     <table class="container-content">
         <td id="navigation">
             <span th:include="template/navigation :: navigation"/>
@@ -81,9 +80,10 @@
 
 </div>
 <div th:include="template/photoViewer :: photoViewer"/>
-
+<div id="loading"/>
 <script th:src="@{/resources/js/lib/jquery-2.1.1.js}"/>
 <script th:src="@{/resources/js/lib/jquery.blueimp-gallery.min.js}"/>
+<script th:src="@{/resources/js/lib/spin.min.js}"/>
 <script th:src="@{/resources/js/lib/bootstrap-image-gallery.js}"/>
 <script th:src="@{/resources/js/app/ulteam.photo.viewer.js}"/>
 </body>

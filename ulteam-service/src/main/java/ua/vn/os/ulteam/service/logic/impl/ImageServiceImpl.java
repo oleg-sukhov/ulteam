@@ -1,5 +1,10 @@
 package ua.vn.os.ulteam.service.logic.impl;
 
+import com.drew.imaging.ImageMetadataReader;
+import com.drew.imaging.ImageProcessingException;
+import com.drew.metadata.Directory;
+import com.drew.metadata.Metadata;
+import com.drew.metadata.exif.ExifThumbnailDirectory;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,8 +13,10 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import ua.vn.os.ulteam.model.entity.Photo;
 import ua.vn.os.ulteam.service.logic.ImageService;
+import ua.vn.os.ulteam.service.util.ImageUtil;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;

@@ -1,3 +1,6 @@
 dependencies {
     compile project(':ulteam-model')
+    compile group: 'com.drewnoakes', name: 'metadata-extractor', version: '2.6.2'
+    compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.1'
+
 }
