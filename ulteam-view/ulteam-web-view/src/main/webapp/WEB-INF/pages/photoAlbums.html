@@ -39,7 +39,7 @@
                         <div th:each="photoAlbumDto : ${photoAlbumDtoList}">
                             <tr class="photo-album" th:attr="photoAlbumId=${photoAlbumDto.id}">
                                 <td class="avatar">
-                                    <img class="thumbnail" th:src="@{data:image/jpeg;base64,} + ${photoAlbumDto.avatar.base64Data}"/>
+                                    <img class="thumbnail" th:src="${photoAlbumDto.avatar.url}"/>
                                 </td>
 
                                 <td class="description">
@@ -80,11 +80,12 @@
 
 </div>
 <div th:include="template/photoViewer :: photoViewer"/>
-<div id="loading"/>
+<div id="modal-loading"/>
 <script th:src="@{/resources/js/lib/jquery-2.1.1.js}"/>
 <script th:src="@{/resources/js/lib/jquery.blueimp-gallery.min.js}"/>
 <script th:src="@{/resources/js/lib/spin.min.js}"/>
 <script th:src="@{/resources/js/lib/bootstrap-image-gallery.js}"/>
+<script th:src="@{/resources/js/app/ulteam.loading.indicator.js}"/>
 <script th:src="@{/resources/js/app/ulteam.photo.viewer.js}"/>
 </body>
 </html>

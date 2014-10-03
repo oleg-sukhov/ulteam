@@ -18,6 +18,7 @@ import ua.vn.os.ulteam.service.dto.PhotoDto;
 import ua.vn.os.ulteam.service.logic.ImageService;
 import ua.vn.os.ulteam.service.logic.PhotoAlbumService;
 
+import java.io.File;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -37,9 +38,6 @@ public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
 
     @Autowired
     private MessageSource messageSource;
-
-    @Autowired
-    private ImageService imageService;
 
     @Override
     public List<PhotoAlbumDto> getAllPhotoAlbumsDto(int startPage, int numberOfPhotoAlbumsInPage) {
@@ -64,7 +62,7 @@ public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
     }
 
     private List<PhotoAlbumDto> convertToPhotoAlbumsDtos(List<PhotoAlbum> photoAlbums) {
-        List<PhotoAlbumDto> photoAlbumDtoList = new ArrayList<>();
+        List<PhotoAlbumDto> photoAlbumDtoList = new ArrayList<PhotoAlbumDto>();
 
         for(PhotoAlbum photoAlbum : photoAlbums) {
             PhotoAlbumDto photoAlbumDto = new PhotoAlbumDto();
@@ -100,7 +98,7 @@ public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
         photoDto.setId(photo.getId().toString());
         photoDto.setName(photo.getName());
         photoDto.setDescription(photo.getDescription());
-        photoDto.setBase64Data(imageService.loadPhotoFromFileSystemAndConvertToBase64(albumPath, photo.getName()));
+        photoDto.setUrl(albumPath + photo.getName());
         return photoDto;
     }
 

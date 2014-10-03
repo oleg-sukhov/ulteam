@@ -1,7 +1,5 @@
 package ua.vn.os.ulteam.service.dto;
 
-import java.util.Arrays;
-
 /**
  * @Author os
  */
@@ -10,7 +8,7 @@ public class PhotoDto {
     private String id;
     private String name;
     private String description;
-    private String base64Data;
+    private String url;
 
     public PhotoDto() {
     }
@@ -39,12 +37,12 @@ public class PhotoDto {
         this.description = description;
     }
 
-    public String getBase64Data() {
-        return base64Data;
+    public String getUrl() {
+        return url;
     }
 
-    public void setBase64Data(String base64Data) {
-        this.base64Data = base64Data;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
@@ -54,7 +52,7 @@ public class PhotoDto {
 
         PhotoDto photoDto = (PhotoDto) o;
 
-        if (!base64Data.equals(photoDto.base64Data)) return false;
+        if (!url.equals(photoDto.url)) return false;
         if (description != null ? !description.equals(photoDto.description) : photoDto.description != null)
             return false;
         if (!id.equals(photoDto.id)) return false;
@@ -68,7 +66,7 @@ public class PhotoDto {
         int result = id.hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + base64Data.hashCode();
+        result = 31 * result + url.hashCode();
         return result;
     }
 }

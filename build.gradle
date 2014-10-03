@@ -10,6 +10,7 @@ ext {
     slf4jVersion = '1.6.4'
     logbackVersion = '1.0.1'
     aspectjVersion = '1.8.0'
+    lombokVersion = '1.14.2'
 }
 
 subprojects {
@@ -45,5 +46,8 @@ subprojects {
 
         /*apache commons dependencies*/
         compile group: 'commons-codec', name: 'commons-codec', version: '1.6'
+
+        /*lombok dependency*/
+        compile group: 'org.projectlombok', name: 'lombok', version: lombokVersion
     }
 }

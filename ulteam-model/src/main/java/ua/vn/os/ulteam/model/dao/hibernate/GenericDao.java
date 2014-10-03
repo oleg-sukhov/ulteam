@@ -11,6 +11,7 @@ import ua.vn.os.ulteam.model.dao.Crud;
 import ua.vn.os.ulteam.model.entity.Entity;
 import ua.vn.os.ulteam.model.entity.News;
 
+import javax.annotation.processing.SupportedSourceVersion;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class GenericDao<T extends Entity> extends HibernateDaoSupport implements
 
     @Override
     public void update(T entity) {
+
         if(entity.getId() == null) {
             getHibernateTemplate().saveOrUpdate(entity);
         } else {
