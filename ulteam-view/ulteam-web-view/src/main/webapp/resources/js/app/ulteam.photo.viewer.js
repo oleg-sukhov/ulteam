@@ -5,11 +5,8 @@
 var photos = {};
 
 $(document).ready(function () {
-    var loadingIndicator = new LoadingIndicator($('#modal-loading'));
     $('.photo-album').find(".avatar .thumbnail").on('click', function (event) {
-        loadingIndicator.show();
         photoAlbumHandler(event.target.parentNode.parentNode);
-        loadingIndicator.hide();
     });
 });
 

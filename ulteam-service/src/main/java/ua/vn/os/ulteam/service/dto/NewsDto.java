@@ -1,71 +1,18 @@
 package ua.vn.os.ulteam.service.dto;
 
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class NewsDto {
 
-    private String id;
-    private String title;
-    private String shortDescription;
-    private String modificationDate;
-    private String views;
-    private String newsContent;
-    private String picture;
-
-    public NewsDto() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
-    }
-
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getModificationDate() {
-        return modificationDate;
-    }
-
-    public void setModificationDate(String modificationDate) {
-        this.modificationDate = modificationDate;
-    }
-
-    public String getViews() {
-        return views;
-    }
-
-    public void setViews(String views) {
-        this.views = views;
-    }
-
-    public String getNewsContent() {
-        return newsContent;
-    }
-
-    public void setNewsContent(String newsContent) {
-        this.newsContent = newsContent;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
+    @Getter @Setter private String id;
+    @Getter @Setter private String title;
+    @Getter @Setter private String shortDescription;
+    @Getter @Setter private String modificationDate;
+    @Getter @Setter private String views;
+    @Getter @Setter private String newsContent;
+    @Getter @Setter private String picture;
 }
