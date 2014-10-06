@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/resources/css/app/ulteam.css}"/>
+</head>
+
+<body>
+<div id="container">
+
+    <div th:include="template/header :: header"/>
+    <table class="container-content">
+        <td id="navigation">
+            <span th:include="template/navigation :: navigation"/>
+        </td>
+
+        <td id="content">
+            <div id="panel-games" class="panel">
+                <div class="panel-heading">
+                    <table>
+                        <tr class="panel-header">
+                            <td class="move-left">
+                                <span class="glyphicon glyphicon-resize-small"/>
+                                <span th:utext="#{ua.vn.os.ulteam.web.page.games.caption}"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="panel-body">
+                    <table>
+                        <tr class="games-control-bar">
+                            <td>
+                                <select class="selectpicker" data-style="btn-info">
+                                    <option>season1</option>
+                                    <option>season2</option>
+                                </select>
+                                <select class="selectpicker" data-style="btn-warning">
+                                    <option>tournament1</option>
+                                    <option>tournament2</option>
+                                </select>
+                                <select class="selectpicker" data-style="btn-success">
+                                    <option>tour1</option>
+                                    <option>tour2</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </td>
+    </table>
+
+    <div th:include="template/footer :: footer"/>
+
+</div>
+<script th:src="@{/resources/js/lib/jquery-2.1.1.js}"/>
+<script th:src="@{/resources/js/lib/spin.min.js}"/>
+<script th:src="@{/resources/js/lib/bootstrap-select.js}"/>
+<script th:src="@{/resources/js/lib/bootstrap.js}"/>
+</body>
+</html>

@@ -1,4 +1,9 @@
 @import url('../lib/bootstrap.css');
+@import url('../lib/bootstrap-select.min.css');
+@import url('../lib/blueimp-gallery.min.css');
+@import url('../lib/bootstrap-image-gallery.min.css');
+@import url('../lib/bootstrap-theme.css');
+
 
 /* header start */
 html, body {
@@ -102,12 +107,12 @@ table {
     width: 30%;
 }
 
-.panel-success {
+.panel {
     border-color: slateblue;
 }
 
-.panel-success > .panel-heading {
-    background-color: #67b168;
+#panel-news.panel > .panel-heading {
+    background-color: #419641;
 }
 
 .shortNewsBody {
@@ -241,3 +246,17 @@ table {
     left: 0;
 }
 /*photo albums page stop*/
+
+/*games page start*/
+#panel-games.panel > .panel-heading {
+    background-color: mediumslateblue;
+}
+
+.btn-black {
+    background-color: #000000;
+}
+
+.games-control-bar {
+    width: 100%;
+}
+/*games page stop*/
