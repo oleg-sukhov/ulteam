@@ -3,6 +3,7 @@
 @import url('../lib/blueimp-gallery.min.css');
 @import url('../lib/bootstrap-image-gallery.min.css');
 @import url('../lib/bootstrap-theme.css');
+@import url('../lib/bootstrap-table.min.css');
 
 
 /* header start */
@@ -259,5 +260,9 @@ table {
 
 .games-control-bar {
     width: 100%;
+}
+
+.games-control-bar-item {
+    padding: 2%;
 }
 /*games page stop*/
