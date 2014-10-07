@@ -86,6 +86,7 @@ table {
 #content {
     width: 75%;
     padding-left: 2%;
+    vertical-align: -webkit-baseline-middle;
 }
 /* news short panel start */
 
