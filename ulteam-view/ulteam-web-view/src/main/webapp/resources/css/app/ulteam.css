@@ -264,5 +264,6 @@ table {
 
 .games-control-bar-item {
     padding: 2%;
+    width: 100% !important;
 }
 /*games page stop*/
