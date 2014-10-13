@@ -1,4 +1,4 @@
-package ua.vn.os.ulteam.model.dao.hibernate;
+package ua.vn.os.ulteam.model.dao;
 
 import ua.vn.os.ulteam.model.dao.Crud;
 import ua.vn.os.ulteam.model.entity.PhotoAlbum;

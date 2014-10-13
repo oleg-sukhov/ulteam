@@ -1,13 +1,9 @@
 package ua.vn.os.ulteam.model.dao.hibernate;
 
-import org.hibernate.*;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
-import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
+import ua.vn.os.ulteam.model.dao.GenericDao;
 import ua.vn.os.ulteam.model.dao.NewsDao;
 import ua.vn.os.ulteam.model.entity.News;
 

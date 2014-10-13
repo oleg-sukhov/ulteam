@@ -9,16 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import ua.vn.os.ulteam.model.dao.hibernate.PhotoAlbumDao;
+import ua.vn.os.ulteam.model.dao.PhotoAlbumDao;
 import ua.vn.os.ulteam.model.entity.Photo;
 import ua.vn.os.ulteam.model.entity.PhotoAlbum;
 import ua.vn.os.ulteam.service.config.ServiceConfig;
 import ua.vn.os.ulteam.service.dto.PhotoAlbumDto;
 import ua.vn.os.ulteam.service.dto.PhotoDto;
-import ua.vn.os.ulteam.service.logic.ImageService;
 import ua.vn.os.ulteam.service.logic.PhotoAlbumService;
 
-import java.io.File;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 

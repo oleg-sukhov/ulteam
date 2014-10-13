@@ -2,9 +2,9 @@ package ua.vn.os.ulteam.model.dao.hibernate;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateTemplate;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+import ua.vn.os.ulteam.model.dao.GenericDao;
+import ua.vn.os.ulteam.model.dao.PhotoAlbumDao;
 import ua.vn.os.ulteam.model.entity.PhotoAlbum;
 
 import java.util.List;

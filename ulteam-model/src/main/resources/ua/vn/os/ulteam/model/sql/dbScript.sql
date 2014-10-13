@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS news (
     news_content          TEXT NOT NULL,
     picture                        BYTEA NOT NULL,
     PRIMARY KEY(id)
-);
+);54=-09876НКУЦФЙ ІВауп ро
 
 /*create photo album table for storing information about all photo albums*/
 CREATE TABLE IF NOT EXISTS PhotoAlbum (
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS Game (
     id                                     BIGSERIAL NOT NULL,
     owner_team                BIGINT NOT NULL,
     guest_team                  BIGINT NOT NULL,
-    onwner_team_goals SMALLINT,
+    owner_team_goals SMALLINT,
     guest_team_goals      SMALLINT,
     game_date                   DATE NOT NULL,
     tournament                 BIGINT NOT NULL,

@@ -1,4 +1,4 @@
-package ua.vn.os.ulteam.model.dao.hibernate;
+package ua.vn.os.ulteam.model.dao;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;

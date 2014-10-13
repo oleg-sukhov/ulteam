@@ -10,17 +10,20 @@ import java.io.Serializable;
  */
 @javax.persistence.Entity
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @ToString
 public class Photo extends Entity {
 
     @Column(name = "photo_name", nullable = false)
-    @Getter @Setter private String name;
+    @Getter @Setter
+    private String name;
 
     @Column(name = "photo_description")
-    @Getter @Setter private String description;
+    @Getter @Setter
+    private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "album_id", nullable = false)
-    @Getter @Setter private PhotoAlbum photoAlbum;
+    @Getter @Setter
+    private PhotoAlbum photoAlbum;
 }
