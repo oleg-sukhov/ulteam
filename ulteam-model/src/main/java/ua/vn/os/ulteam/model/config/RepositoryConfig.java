@@ -17,12 +17,11 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import ua.vn.os.ulteam.model.dao.NewsDao;
-import ua.vn.os.ulteam.model.entity.News;
-import ua.vn.os.ulteam.model.entity.Photo;
-import ua.vn.os.ulteam.model.entity.PhotoAlbum;
+import ua.vn.os.ulteam.model.entity.*;
 
 import javax.sql.DataSource;
 import java.sql.DriverAction;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -88,7 +87,7 @@ public class RepositoryConfig {
     public SessionFactory sessionFactory() {
         LocalSessionFactoryBuilder sessionFactoryBuilder = new LocalSessionFactoryBuilder(dataSource());
         updateHibernateProperties(sessionFactoryBuilder.getProperties());
-        sessionFactoryBuilder.addAnnotatedClasses(News.class, Photo.class, PhotoAlbum.class );
+        sessionFactoryBuilder.addAnnotatedClasses(News.class, Photo.class, PhotoAlbum.class, Season.class, Tournament.class, Team.class, Game.class, GameDetails.class);
         new SchemaUpdate(sessionFactoryBuilder, sessionFactoryBuilder.getProperties()).execute(true, true);
         return sessionFactoryBuilder.buildSessionFactory();
     }
@@ -97,7 +96,6 @@ public class RepositoryConfig {
         properties.setProperty("hibernate.dialect", hibernateDialect);
         properties.setProperty("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
         properties.setProperty("hibernate.show_sql", hibernateShowSql);
-
         return properties;
     }
 }

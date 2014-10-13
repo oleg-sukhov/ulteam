@@ -29,11 +29,11 @@ public class Game extends Entity {
 
     @Column(name = "owner_team_goals")
     @Getter @Setter
-    private int ownerTeamGoals;
+    private short ownerTeamGoals;
 
     @Column(name = "guest_team_goals")
     @Getter @Setter
-    private int guestTeamGoals;
+    private short guestTeamGoals;
 
     @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "game_date")
