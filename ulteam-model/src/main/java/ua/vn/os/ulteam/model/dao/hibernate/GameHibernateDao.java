@@ -5,12 +5,14 @@ import ua.vn.os.ulteam.model.dao.GameDao;
 import ua.vn.os.ulteam.model.dao.GenericDao;
 import ua.vn.os.ulteam.model.entity.Game;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
- * @author os
+ * @author oleg.sukhov
  */
 public class GameHibernateDao extends GenericDao<Game> implements GameDao {
+
     public GameHibernateDao(HibernateTemplate hibernateTemplate, Class<Game> type) {
         super(hibernateTemplate, type);
     }

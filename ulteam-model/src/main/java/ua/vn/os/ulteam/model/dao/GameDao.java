@@ -5,7 +5,7 @@ import ua.vn.os.ulteam.model.entity.Game;
 import java.util.List;
 
 /**
- * @author os
+ * @author olog.sukhov
  */
 public interface GameDao extends Crud<Game> {
     public List<Game> getAllGames();

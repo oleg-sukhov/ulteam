@@ -11,8 +11,15 @@ import lombok.*;
 @ToString
 public class PhotoDto {
 
-    @Getter @Setter private String id;
-    @Getter @Setter private String name;
-    @Getter @Setter private String description;
-    @Getter @Setter private String url;
+    @Getter @Setter
+    private String id;
+
+    @Getter @Setter
+    private String name;
+
+    @Getter @Setter
+    private String description;
+
+    @Getter @Setter
+    private String url;
 }

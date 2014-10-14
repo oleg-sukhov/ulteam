@@ -8,11 +8,24 @@ import lombok.*;
 @ToString
 public class NewsDto {
 
-    @Getter @Setter private String id;
-    @Getter @Setter private String title;
-    @Getter @Setter private String shortDescription;
-    @Getter @Setter private String modificationDate;
-    @Getter @Setter private String views;
-    @Getter @Setter private String newsContent;
-    @Getter @Setter private String picture;
+    @Getter @Setter
+    private String id;
+
+    @Getter @Setter
+    private String title;
+
+    @Getter @Setter
+    private String shortDescription;
+
+    @Getter @Setter
+    private String modificationDate;
+
+    @Getter @Setter
+    private String views;
+
+    @Getter @Setter
+    private String newsContent;
+
+    @Getter @Setter
+    private String picture;
 }

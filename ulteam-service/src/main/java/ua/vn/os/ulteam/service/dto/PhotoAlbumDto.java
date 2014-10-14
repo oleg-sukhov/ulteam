@@ -8,11 +8,24 @@ import lombok.*;
 @ToString
 public class PhotoAlbumDto {
 
-    @Getter @Setter private long id;
-    @Getter @Setter private String title;
-    @Getter @Setter private String description;
-    @Getter @Setter private String creationDateTime;
-    @Getter @Setter private String author;
-    @Getter @Setter private int numberOfPhotos;
-    @Getter @Setter private PhotoDto avatar;
+    @Getter @Setter
+    private long id;
+
+    @Getter @Setter
+    private String title;
+
+    @Getter @Setter
+    private String description;
+
+    @Getter @Setter
+    private String creationDateTime;
+
+    @Getter @Setter
+    private String author;
+
+    @Getter @Setter
+    private int numberOfPhotos;
+
+    @Getter @Setter
+    private PhotoDto avatar;
 }

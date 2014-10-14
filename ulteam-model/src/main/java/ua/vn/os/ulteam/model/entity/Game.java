@@ -23,7 +23,7 @@ public class Game extends Entity {
     private Team ownerTeam;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "quest_team", nullable = false)
+    @JoinColumn(name = "guest_team", nullable = false)
     @Getter @Setter
     private Team guestTeam;
 
@@ -41,7 +41,8 @@ public class Game extends Entity {
     private LocalDate gameDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "tournament", nullable = false)
+    @Getter @Setter
     private Tournament tournament;
 
     @Column(length = 50)
@@ -49,7 +50,7 @@ public class Game extends Entity {
     private String tour;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "game_details", nullable = false)
     @Getter @Setter
     private GameDetails gameDetails;
 

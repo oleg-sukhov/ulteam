@@ -18,6 +18,6 @@ public class Tournament extends Entity {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "season", nullable = false)
     private Season season;
 }

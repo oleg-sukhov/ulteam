@@ -16,8 +16,8 @@ import ua.vn.os.ulteam.service.logic.ImageService;
 import ua.vn.os.ulteam.service.logic.NewsService;
 
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author os
@@ -50,13 +50,13 @@ public class NewsTransactionalServiceImpl implements NewsService {
     @Override
     public List<NewsDto> getAllNews() {
         List<News> news = newsDao.getAllNews();
-        return getNewsDtoList(news);
+        return convertToNewsDtoList(news);
     }
 
     @Override
     public List<NewsDto> getAllNews(int startPage, int numberOfNews) {
         List<News> news = newsDao.getAllNews(startPage, numberOfNews);
-        return getNewsDtoList(news);
+        return convertToNewsDtoList(news);
     }
 
     @Override
@@ -73,13 +73,8 @@ public class NewsTransactionalServiceImpl implements NewsService {
         return newsDao.getCount();
     }
 
-    private List<NewsDto> getNewsDtoList(List<News> newsList) {
-        List<NewsDto> newsDtoList = new ArrayList<>();
-        for(News news : newsList) {
-            newsDtoList.add(convertToNewsDto(news));
-        }
-
-        return newsDtoList;
+    private List<NewsDto> convertToNewsDtoList(List<News> newsList) {
+        return newsList.stream().map(this::convertToNewsDto).collect(Collectors.toList());
     }
 
     private NewsDto convertToNewsDto(News news) {

@@ -38,7 +38,7 @@ public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
     private MessageSource messageSource;
 
     @Override
-    public List<PhotoAlbumDto> getAllPhotoAlbumsDto(int startPage, int numberOfPhotoAlbumsInPage) {
+    public List<PhotoAlbumDto> getAllPhotoAlbumsDtos(int startPage, int numberOfPhotoAlbumsInPage) {
         List<PhotoAlbum> photoAlbums = photoAlbumDao.getAllPhotoAlbums(startPage, numberOfPhotoAlbumsInPage);
 
         if(CollectionUtils.isEmpty(photoAlbums)) {
