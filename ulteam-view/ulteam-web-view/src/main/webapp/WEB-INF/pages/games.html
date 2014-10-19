@@ -77,7 +77,7 @@
                                                 <img th:src="${gameDto.guestTeamLogoUrl}"/>
                                                 <span th:utext="${gameDto.guestTeam} + ' (' + ${gameDto.guestTeamTown} + ')'"></span>
                                             </td>
-                                            <td class="goals" th:utext="${gameDto.ownerTeamGoals} + ' : '  + ${gameDto.guestTeamGoals}"></td>
+                                            <td class="goals success" th:utext="${gameDto.ownerTeamGoals} + ' : '  + ${gameDto.guestTeamGoals}"></td>
                                             <td class="date" th:utext="${gameDto.date}"></td>
                                             <td class="tournament" th:utext="${gameDto.tournament}"></td>
                                             <td class="tour" th:utext="${gameDto.tour}"></td>

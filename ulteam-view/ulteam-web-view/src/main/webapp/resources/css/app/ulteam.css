@@ -279,29 +279,35 @@ table {
     width: 25%;
     font-style: oblique;
     font-weight: bold;
+    vertical-align: middle;
 }
 
 .game-row > .team-name img {
     width: 20px;
     margin-right: 2%;
+    vertical-align: middle;
 }
 
 .game-row > .goals {
     width: 10%;
     text-align: center;
+    vertical-align: middle;
 }
 
 .game-row > .date {
     width: 10%;
     text-align: center;
+    vertical-align: middle;
 }
 
 .game-row > .tournament {
     width: 20%;
+    vertical-align: middle;
 }
 
 .game-row > .tour {
     width: 10%;
     text-align: center;
+    vertical-align: middle;
 }
 /*games page stop*/
