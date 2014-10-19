@@ -1,6 +1,7 @@
 package ua.vn.os.ulteam.service.logic.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,10 +15,11 @@ import ua.vn.os.ulteam.service.logic.GameService;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
- * @Author oleg.sukhov
+ * @author oleg.sukhov
  */
 @Service
 @Import(ServiceConfig.class)
@@ -28,7 +30,7 @@ public class GameTransactionalServiceImpl implements GameService {
     private GameDao gameDao;
 
     @Override
-    public List<GameDto> getAllGamesDtos() {
+    public List<GameDto> getAllGameDtoList() {
         List<Game> allGames = gameDao.getAllGames();
 
         if(CollectionUtils.isEmpty(allGames)) {
@@ -46,8 +48,10 @@ public class GameTransactionalServiceImpl implements GameService {
         return GameDto.builder()
                       .ownerTeam(game.getOwnerTeam().getName())
                       .guestTeam(game.getGuestTeam().getName())
-                      .ownerTeamLogoUrl(null)
-                      .guestTeamLogoUrl(null)
+                      .ownerTeamTown(game.getOwnerTeam().getTown())
+                      .guestTeamTown(game.getGuestTeam().getTown())
+                      .ownerTeamLogoUrl(game.getOwnerTeam().getLogoName())
+                      .guestTeamLogoUrl(game.getGuestTeam().getLogoName())
                       .ownerTeamGoals(game.getOwnerTeamGoals())
                       .guestTeamGoals(game.getGuestTeamGoals())
                       .date(game.getGameDate().toString())

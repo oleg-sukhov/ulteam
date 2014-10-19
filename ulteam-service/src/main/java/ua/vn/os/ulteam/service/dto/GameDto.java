@@ -19,10 +19,16 @@ public class GameDto {
     private String ownerTeamLogoUrl;
 
     @Getter @Setter
+    private String ownerTeamTown;
+
+    @Getter @Setter
     private String guestTeam;
 
     @Getter @Setter
     private String guestTeamLogoUrl;
+
+    @Getter @Setter
+    private String guestTeamTown;
 
     @Getter @Setter
     private short ownerTeamGoals;
@@ -45,8 +51,10 @@ public class GameDto {
 
     public static class GameDtoBuilder {
         private String ownerTeam;
+        private String ownerTeamTown;
         private String ownerTeamLogoUrl;
         private String guestTeam;
+        private String guestTeamTown;
         private String guestTeamLogoUrl;
         private short ownerTeamGoals;
         private short guestTeamGoals;
@@ -87,6 +95,16 @@ public class GameDto {
             return this;
         }
 
+        public GameDtoBuilder ownerTeamTown(final String ownerTeamTown) {
+            this.ownerTeamTown = ownerTeamTown;
+            return this;
+        }
+
+        public GameDtoBuilder guestTeamTown(final String guestTeamTown) {
+            this.guestTeamTown = guestTeamTown;
+            return this;
+        }
+
         public GameDtoBuilder date(final String date) {
             this.date = date;
             return this;
@@ -103,8 +121,9 @@ public class GameDto {
         }
 
         public GameDto build() {
-            return new GameDto(ownerTeam, ownerTeamLogoUrl, guestTeam, guestTeamLogoUrl,
-                               ownerTeamGoals, guestTeamGoals, date, tournament, tour);
+            return new GameDto(ownerTeam, ownerTeamLogoUrl, ownerTeamTown, guestTeam,
+                               guestTeamLogoUrl, guestTeamTown, ownerTeamGoals, guestTeamGoals,
+                               date, tournament, tour);
         }
     }
 }

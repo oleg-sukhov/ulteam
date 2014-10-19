@@ -263,7 +263,45 @@ table {
 }
 
 .games-control-bar-item {
-    padding: 2%;
+    padding: 4%;
     width: 100% !important;
+}
+
+.game-table {
+    padding: 2% 1% 0% 1%;
+}
+
+.game-row {
+    font-size: 12px;
+}
+
+.game-row > .team-name {
+    width: 25%;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.game-row > .team-name img {
+    width: 20px;
+    margin-right: 2%;
+}
+
+.game-row > .goals {
+    width: 10%;
+    text-align: center;
+}
+
+.game-row > .date {
+    width: 10%;
+    text-align: center;
+}
+
+.game-row > .tournament {
+    width: 20%;
+}
+
+.game-row > .tour {
+    width: 10%;
+    text-align: center;
 }
 /*games page stop*/

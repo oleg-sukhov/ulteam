@@ -30,8 +30,8 @@
 
                 <div class="panel-body">
                     <!--Games control bar start-->
-                    <table>
-                        <tr class="games-control-bar">
+                    <table class="games-control-bar">
+                        <tr>
                             <td>
                                 <select class="selectpicker games-control-bar-item" data-style="btn-primary">
                                     <option data-hidden="true" th:utext="#{ua.vn.os.ulteam.web.page.games.control.season}"/>
@@ -62,36 +62,26 @@
                             </td>
                         </tr>
                     </table>
-                    <div class="bootstrap-table">
+                    <div class="bootstrap-table game-table">
                         <div class="fixed-table-toolbar"></div>
                         <div class="fixed-table-container">
                             <div class="fixed-table-body">
-                                <table data-toggle="table" data-url="data1.json" data-cache="false" data-height="299" class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th><div class="th-inner">Item ID</div>
-                                            </th>
-                                            <th><div class="th-inner">Item Name</div>
-                                            </th>
-                                            <th><div class="th-inner">Item Price</div>
-                                            </th>
-                                        </tr>
-                                    </thead>
+                                <table class="table table-hover">
                                     <tbody>
-                                    <tr data-index="0">
-                                        <td>0</td>
-                                        <td>test0</td>
-                                        <td>$0</td>
-                                    </tr>
-                                    <tr data-index="1">
-                                        <td>1</td>
-                                        <td>test1</td>
-                                        <td>$1</td>
-                                    </tr>
-                                    <tr data-index="20">
-                                        <td style="">20</td>
-                                        <td style="">test20</td>
-                                        <td style="">$20</td></tr>
+                                        <tr class="game-row" th:each="gameDto : ${gameDtoList}">
+                                            <td class="team-name">
+                                                <img th:src="${gameDto.ownerTeamLogoUrl}"/>
+                                                <span th:utext="${gameDto.ownerTeam} + ' (' + ${gameDto.ownerTeamTown} + ')'"></span>
+                                            </td>
+                                            <td class="team-name">
+                                                <img th:src="${gameDto.guestTeamLogoUrl}"/>
+                                                <span th:utext="${gameDto.guestTeam} + ' (' + ${gameDto.guestTeamTown} + ')'"></span>
+                                            </td>
+                                            <td class="goals" th:utext="${gameDto.ownerTeamGoals} + ' : '  + ${gameDto.guestTeamGoals}"></td>
+                                            <td class="date" th:utext="${gameDto.date}"></td>
+                                            <td class="tournament" th:utext="${gameDto.tournament}"></td>
+                                            <td class="tour" th:utext="${gameDto.tour}"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

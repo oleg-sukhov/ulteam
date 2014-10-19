@@ -5,8 +5,8 @@ import ua.vn.os.ulteam.service.dto.GameDto;
 import java.util.List;
 
 /**
- * @Author oleg.sukhov
+ * @author oleg.sukhov
  */
 public interface GameService {
-    public List<GameDto> getAllGamesDtos();
+    public List<GameDto> getAllGameDtoList();
 }

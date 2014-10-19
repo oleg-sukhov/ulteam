@@ -1,5 +1,6 @@
 package ua.vn.os.ulteam.web.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -27,6 +28,9 @@ import ua.vn.os.ulteam.service.config.ServiceConfig;
 @Import({ServiceConfig.class})
 public class ControllerConfig extends WebMvcConfigurerAdapter {
 
+    @Autowired
+    ServiceConfig serviceConfig;
+
     @Bean
     public ITemplateResolver templateResolver() {
         ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
@@ -41,7 +45,7 @@ public class ControllerConfig extends WebMvcConfigurerAdapter {
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
-        templateEngine.setMessageSource(messageSource());
+        templateEngine.setMessageSource(serviceConfig.messageSource());
         return templateEngine;
     }
 
@@ -56,16 +60,6 @@ public class ControllerConfig extends WebMvcConfigurerAdapter {
     @Bean
     public LogAspect logAspect() {
         return new LogAspect();
-    }
-
-    @Bean
-    public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("/WEB-INF/bundles/messages");
-        messageSource.setUseCodeAsDefaultMessage(true);
-        messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setCacheSeconds(0);
-        return messageSource;
     }
 
     @Override

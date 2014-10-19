@@ -3,6 +3,7 @@ package ua.vn.os.ulteam.model.entity;
 import lombok.*;
 
 import javax.persistence.Column;
+import javax.persistence.Transient;
 
 /**
  * @author os
@@ -21,7 +22,8 @@ public class Team extends Entity {
     @Getter @Setter
     private String town;
 
-    @Column(nullable = false)
+    @Column(name = "logo", nullable = false, length = 20)
     @Getter @Setter
-    private byte[] logo;
+    private String logoName;
+
 }
