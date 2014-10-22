@@ -1,7 +1,5 @@
 package ua.vn.os.ulteam.service.logic.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -13,9 +11,9 @@ import ua.vn.os.ulteam.service.config.ServiceConfig;
 import ua.vn.os.ulteam.service.dto.GameDto;
 import ua.vn.os.ulteam.service.logic.GameService;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
@@ -26,7 +24,7 @@ import java.util.stream.Collectors;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class GameTransactionalServiceImpl implements GameService {
 
-    @Autowired
+    @Resource
     private GameDao gameDao;
 
     @Override
