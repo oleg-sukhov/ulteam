@@ -35,8 +35,9 @@
                             <td>
                                 <select class="selectpicker games-control-bar-item" data-style="btn-primary">
                                     <option data-hidden="true" th:utext="#{ua.vn.os.ulteam.web.page.games.control.season}"/>
-                                    <option>season1</option>
-                                    <option>season2</option>
+                                    <span th:each="seasonDto : ${seasonDtoList}">
+                                        <option th:text="${seasonDto.name}"></option>
+                                    </span>
                                 </select>
                             </td>
                             <td>

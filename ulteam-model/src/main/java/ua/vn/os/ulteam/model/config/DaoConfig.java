@@ -43,6 +43,7 @@ public class DaoConfig {
         return new GameHibernateDao(repositoryConfig.hibernateTemplate(), Game.class);
     }
 
+    @Bean
     public SeasonDao seasonDao() {
         return new SeasonHibernateDao(repositoryConfig.hibernateTemplate(), Season.class);
     }

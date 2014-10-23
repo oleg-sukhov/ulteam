@@ -17,7 +17,7 @@ public class SeasonHibernateDao extends GenericDao<Season> implements SeasonDao 
     }
 
     @Override
-    public List<Season> getAllSeason() {
+    public List<Season> getAllSeasons() {
         return (List<Season>) getHibernateTemplate().findByCriteria(DetachedCriteria.forClass(Season.class));
     }
 }
