@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS Photo (
 /*create table for storing information about season*/
 CREATE TABLE IF NOT EXISTS Season (
     id BIGSERIAL NOT NULL,
-    name VARCHAR(10) NOT NULL,
+    name VARCHAR(10) NOT NULL UNIQUE,
     PRIMARY KEY(id)
 );
 

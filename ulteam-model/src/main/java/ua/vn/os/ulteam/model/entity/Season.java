@@ -1,11 +1,12 @@
 package ua.vn.os.ulteam.model.entity;
 
 import lombok.*;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Column;
 
 /**
- * @author os
+ * @author oleg.sukhov
  */
 @javax.persistence.Entity
 @NoArgsConstructor
@@ -13,7 +14,8 @@ import javax.persistence.Column;
 @ToString
 public class Season extends Entity {
 
-    @Column(nullable = false)
+    @NaturalId
+    @Column(nullable = false, unique = true)
     @Getter @Setter
     private String name;
 }
