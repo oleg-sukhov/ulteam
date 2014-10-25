@@ -1,6 +1,7 @@
 package ua.vn.os.ulteam.model.dao.hibernate;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import ua.vn.os.ulteam.model.dao.GenericDao;
 import ua.vn.os.ulteam.model.dao.SeasonDao;
@@ -18,6 +19,8 @@ public class SeasonHibernateDao extends GenericDao<Season> implements SeasonDao 
 
     @Override
     public List<Season> getAllSeasons() {
-        return (List<Season>) getHibernateTemplate().findByCriteria(DetachedCriteria.forClass(Season.class));
+        DetachedCriteria criteria = DetachedCriteria.forClass(Season.class);
+        criteria.addOrder(Order.desc("name"));
+        return (List<Season>) getHibernateTemplate().findByCriteria(criteria);
     }
 }

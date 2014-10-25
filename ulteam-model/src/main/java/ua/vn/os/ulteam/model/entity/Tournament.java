@@ -2,10 +2,13 @@ package ua.vn.os.ulteam.model.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
- * @author os
+ * @author oleg.sukhov
  */
 @javax.persistence.Entity
 @NoArgsConstructor

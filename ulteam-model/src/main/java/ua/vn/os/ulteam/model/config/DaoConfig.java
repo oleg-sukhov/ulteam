@@ -4,18 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import ua.vn.os.ulteam.model.dao.GameDao;
-import ua.vn.os.ulteam.model.dao.NewsDao;
-import ua.vn.os.ulteam.model.dao.PhotoAlbumDao;
-import ua.vn.os.ulteam.model.dao.SeasonDao;
-import ua.vn.os.ulteam.model.dao.hibernate.GameHibernateDao;
-import ua.vn.os.ulteam.model.dao.hibernate.NewsHibernateDao;
-import ua.vn.os.ulteam.model.dao.hibernate.PhotoAlbumHibernateDao;
-import ua.vn.os.ulteam.model.dao.hibernate.SeasonHibernateDao;
-import ua.vn.os.ulteam.model.entity.Game;
-import ua.vn.os.ulteam.model.entity.News;
-import ua.vn.os.ulteam.model.entity.PhotoAlbum;
-import ua.vn.os.ulteam.model.entity.Season;
+import ua.vn.os.ulteam.model.dao.*;
+import ua.vn.os.ulteam.model.dao.hibernate.*;
+import ua.vn.os.ulteam.model.entity.*;
 
 /**
  * @Author os
@@ -46,6 +37,11 @@ public class DaoConfig {
     @Bean
     public SeasonDao seasonDao() {
         return new SeasonHibernateDao(repositoryConfig.hibernateTemplate(), Season.class);
+    }
+
+    @Bean
+    public TournamentDao tournamentDao() {
+        return new TournamentHibernateDao(repositoryConfig.hibernateTemplate(), Tournament.class);
     }
 
 }

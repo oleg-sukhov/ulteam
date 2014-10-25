@@ -43,8 +43,9 @@
                             <td>
                                 <select class="selectpicker games-control-bar-item" data-style="btn-info">
                                     <option data-hidden="true" th:utext="#{ua.vn.os.ulteam.web.page.games.control.tournament}"/>
-                                    <option>tournament1</option>
-                                    <option>tournament2</option>
+                                    <span th:each="tournamentDto : ${tournamentDtoList}">
+                                        option th:text="${seasonDto.name}"></option>
+                                    </span>
                                 </select>
                             </td>
                             <td>
