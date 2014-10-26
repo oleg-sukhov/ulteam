@@ -3,6 +3,7 @@ package ua.vn.os.ulteam.model.dao.hibernate;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import ua.vn.os.ulteam.model.dao.GenericDao;
 import ua.vn.os.ulteam.model.dao.TournamentDao;
@@ -29,9 +30,11 @@ public class TournamentHibernateDao extends GenericDao<Tournament> implements To
 
     @Override
     public List<Tournament> getTournamentsInSeason(Season season) {
-        DetachedCriteria criteria = DetachedCriteria.forClass(Tournament.class);
-        criteria.addOrder(Order.desc("name"))
-                .setFetchMode("Season", FetchMode.JOIN);
+        DetachedCriteria criteria =
+                DetachedCriteria.forClass(Tournament.class, "t")
+                                .setFetchMode("season", FetchMode.JOIN)
+                                .createAlias("t.season", "s")
+                                .add(Restrictions.eq("s.name", season.getName()));
 
         return (List<Tournament>) getHibernateTemplate().findByCriteria(criteria);
     }

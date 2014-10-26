@@ -31,6 +31,11 @@ public class SeasonTransactionalServiceImpl implements SeasonService {
         return convertToDtoList(allSeasons);
     }
 
+    @Override
+    public Season getSeasonByName(String seasonName) {
+        return seasonDao.getSeasonByName(seasonName);
+    }
+
     private List<SeasonDto> convertToDtoList(List<Season> seasons) {
         return seasons.stream().map(this::convertToDto).collect(Collectors.toList());
     }

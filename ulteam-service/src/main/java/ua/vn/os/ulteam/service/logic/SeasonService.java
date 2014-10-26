@@ -1,5 +1,6 @@
 package ua.vn.os.ulteam.service.logic;
 
+import ua.vn.os.ulteam.model.entity.Season;
 import ua.vn.os.ulteam.service.dto.SeasonDto;
 
 import java.util.List;
@@ -9,4 +10,5 @@ import java.util.List;
  */
 public interface SeasonService {
     List<SeasonDto> getAllSeasonDtoList();
+    Season getSeasonByName(String seasonName);
 }

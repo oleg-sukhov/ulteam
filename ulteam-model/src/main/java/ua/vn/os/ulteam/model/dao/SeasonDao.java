@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface SeasonDao extends Crud<Season> {
     List<Season> getAllSeasons();
+    Season getSeasonByName(String seasonName);
 }
