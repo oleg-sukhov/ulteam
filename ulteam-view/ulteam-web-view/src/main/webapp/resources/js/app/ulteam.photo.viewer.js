@@ -1,5 +1,5 @@
 /**
- * Created by os
+ * Created by oleg.sukhov
  */
 
 var photos = {};
