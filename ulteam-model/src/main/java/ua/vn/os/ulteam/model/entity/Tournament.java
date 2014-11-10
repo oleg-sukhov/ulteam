@@ -1,9 +1,11 @@
 package ua.vn.os.ulteam.model.entity;
 
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author oleg.sukhov
@@ -11,7 +13,7 @@ import java.util.Set;
 @javax.persistence.Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ToString
+@ToString(exclude = "tours")
 public class Tournament extends Entity {
 
     @Column(nullable = false)
@@ -22,7 +24,8 @@ public class Tournament extends Entity {
     @JoinColumn(name = "season", nullable = false)
     private Season season;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tournament")
+    @LazyCollection(LazyCollectionOption.EXTRA)
     @Getter @Setter
-    private Set<Tour> tours;
+    private List<Tour> tours;
 }

@@ -2,8 +2,10 @@ package ua.vn.os.ulteam.model.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * @Author os
@@ -11,7 +13,7 @@ import java.io.Serializable;
 @javax.persistence.Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ToString
+@ToString(exclude = "photoAlbum")
 public class Photo extends Entity {
 
     @Column(name = "photo_name", nullable = false)

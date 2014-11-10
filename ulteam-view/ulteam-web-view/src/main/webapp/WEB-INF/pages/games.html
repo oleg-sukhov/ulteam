@@ -48,9 +48,9 @@
                             </td>
                             <td>
                                 <select class="selectpicker games-control-bar-item" data-style="btn-warning">
-                                    <option data-hidden="true" th:utext="#{ua.vn.os.ulteam.web.page.games.control.tour}"/>
-                                    <option>tour1</option>
-                                    <option>tour2</option>
+                                    <span th:each="tourDto : ${tourDtoList}">
+                                        <option th:text="${tourDto.name}"></option>
+                                    </span>
                                 </select>
                             </td>
                             <td>

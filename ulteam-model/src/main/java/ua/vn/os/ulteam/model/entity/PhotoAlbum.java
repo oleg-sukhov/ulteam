@@ -4,7 +4,10 @@ import lombok.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,7 +17,7 @@ import java.util.List;
 @javax.persistence.Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ToString
+@ToString(exclude = "photos")
 public class PhotoAlbum extends Entity {
 
     @Column(nullable = false)
