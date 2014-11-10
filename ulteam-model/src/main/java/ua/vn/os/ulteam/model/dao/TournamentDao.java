@@ -11,4 +11,5 @@ import java.util.List;
 public interface TournamentDao {
     List<Tournament> getAllTournaments();
     List<Tournament> getTournamentsInSeason(Season season);
+    List<String> getToursInTournament(Tournament tournament);
 }

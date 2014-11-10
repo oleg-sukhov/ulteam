@@ -1,29 +1,20 @@
 package ua.vn.os.ulteam.model.config;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.service.ServiceRegistry;
 import org.hibernate.tool.hbm2ddl.SchemaUpdate;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import ua.vn.os.ulteam.model.dao.NewsDao;
 import ua.vn.os.ulteam.model.entity.*;
 
 import javax.sql.DataSource;
-import java.sql.DriverAction;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -87,7 +78,8 @@ public class RepositoryConfig {
     public SessionFactory sessionFactory() {
         LocalSessionFactoryBuilder sessionFactoryBuilder = new LocalSessionFactoryBuilder(dataSource());
         updateHibernateProperties(sessionFactoryBuilder.getProperties());
-        sessionFactoryBuilder.addAnnotatedClasses(News.class, Photo.class, PhotoAlbum.class, Season.class, Tournament.class, Team.class, Game.class, GameDetails.class);
+        sessionFactoryBuilder.addAnnotatedClasses(News.class, Photo.class, PhotoAlbum.class, Season.class, Tournament.class,
+                                                  Team.class, Game.class, GameDetails.class, Tour.class);
         new SchemaUpdate(sessionFactoryBuilder, sessionFactoryBuilder.getProperties()).execute(true, true);
         return sessionFactoryBuilder.buildSessionFactory();
     }

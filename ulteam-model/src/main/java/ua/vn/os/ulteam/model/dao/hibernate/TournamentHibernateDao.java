@@ -38,4 +38,11 @@ public class TournamentHibernateDao extends GenericDao<Tournament> implements To
 
         return (List<Tournament>) getHibernateTemplate().findByCriteria(criteria);
     }
+
+    @Override
+    public List<String> getToursInTournament(Tournament tournament) {
+//        DetachedCriteria criteria =
+//                DetachedCriteria.forClass()
+        return null;
+    }
 }

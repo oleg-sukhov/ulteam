@@ -34,7 +34,6 @@
                         <tr>
                             <td>
                                 <select class="selectpicker games-control-bar-item" data-style="btn-primary">
-                                    <option data-hidden="true" th:utext="#{ua.vn.os.ulteam.web.page.games.control.season}"/>
                                     <span th:each="seasonDto : ${seasonDtoList}">
                                         <option th:text="${seasonDto.name}"></option>
                                     </span>
@@ -42,7 +41,6 @@
                             </td>
                             <td>
                                 <select class="selectpicker games-control-bar-item" data-style="btn-info">
-                                    <option data-hidden="true" th:utext="#{ua.vn.os.ulteam.web.page.games.control.tournament}"/>
                                     <span th:each="tournamentDto : ${tournamentDtoList}">
                                         <option th:text="${tournamentDto.name}"></option>
                                     </span>

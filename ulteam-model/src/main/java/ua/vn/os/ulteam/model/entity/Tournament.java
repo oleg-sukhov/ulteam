@@ -2,10 +2,8 @@ package ua.vn.os.ulteam.model.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @author oleg.sukhov
@@ -23,4 +21,8 @@ public class Tournament extends Entity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "season", nullable = false)
     private Season season;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @Getter @Setter
+    private Set<Tour> tours;
 }

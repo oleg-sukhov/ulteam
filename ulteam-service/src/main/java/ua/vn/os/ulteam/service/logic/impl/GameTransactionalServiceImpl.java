@@ -53,8 +53,8 @@ public class GameTransactionalServiceImpl implements GameService {
                       .ownerTeamGoals(game.getOwnerTeamGoals())
                       .guestTeamGoals(game.getGuestTeamGoals())
                       .date(game.getGameDate().toString())
-                      .tournament(game.getTournament().getName())
-                      .tour(game.getTour())
+                      .tournament(game.getTour().getTournament().getName())
+                      .tour(game.getTour().getName())
                       .build();
     }
 }

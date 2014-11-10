@@ -41,13 +41,9 @@ public class Game extends Entity {
     private LocalDate gameDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tournament", nullable = false)
+    @JoinColumn(name="tour", nullable = false)
     @Getter @Setter
-    private Tournament tournament;
-
-    @Column(length = 50)
-    @Getter @Setter
-    private String tour;
+    private Tour tour;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_details", nullable = false)
