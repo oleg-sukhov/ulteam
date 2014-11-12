@@ -47,7 +47,8 @@ public class GameController {
         List<TournamentDto> tournamentDtoList = tournamentService.getTournamentsInSeason(currentSeasonName);
 
         // load all tours in first tournament
-        List<TourDto> tournamentTours = tournamentService.getTournamentTours(currentSeasonName, tournamentDtoList.get(0).getName());
+        String currentTournamentName = tournamentDtoList.get(0).getName();
+        List<TourDto> tournamentTours = tournamentService.getTournamentTours(currentSeasonName, currentTournamentName);
 
 
         modelAndView.addObject(SEASON_DTO_KEY, seasonDtoList);

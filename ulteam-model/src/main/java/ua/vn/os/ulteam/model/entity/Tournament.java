@@ -6,6 +6,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author oleg.sukhov
@@ -28,4 +29,10 @@ public class Tournament extends Entity {
     @LazyCollection(LazyCollectionOption.EXTRA)
     @Getter @Setter
     private List<Tour> tours;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="TournamentTeam",
+            joinColumns={@JoinColumn(name="tournament_id")},
+            inverseJoinColumns={@JoinColumn(name="team_id")})
+    private Set<Team> teams;
 }

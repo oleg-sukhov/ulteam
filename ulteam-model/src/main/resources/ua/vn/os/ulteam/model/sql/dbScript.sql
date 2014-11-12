@@ -59,6 +59,15 @@ CREATE TABLE IF NOT EXISTS Team (
     PRIMARY KEY(id)
 );
 
+/*create table fro storing relation between team and tournament tables*/
+CREATE TABLE IF NOT EXISTS TournamentTeam (
+    team_id BIGINT NOT NULL,
+    tournament_id BIGINT NOT NULL,
+    PRIMARY KEY(team_id, tournament_id),
+    FOREIGN KEY(team_id) REFERENCES team(id),
+    FOREIGN KEY(tournament_id) REFERENCES tournament(id),
+);
+
 /*create table for storing information about tournaments like cup or liga*/
 CREATE TABLE IF NOT EXISTS Tournament (
     id BIGSERIAL NOT NULL,
@@ -71,7 +80,7 @@ CREATE TABLE IF NOT EXISTS Tournament (
 /*create table for storing information about tournaments tour*/
 CREATE TABLE IF NOT EXISTS tour (
   id BIGSERIAL NOT NULL ,
-  tournament_id BIGSERIAL NOT NULL,
+  tournament_id BIGINT NOT NULL,
   name VARCHAR(100) NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY (tournament_id) REFERENCES tournament(id)

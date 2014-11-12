@@ -3,6 +3,8 @@ package ua.vn.os.ulteam.model.entity;
 import lombok.*;
 
 import javax.persistence.Column;
+import javax.persistence.ManyToMany;
+import java.util.Set;
 
 /**
  * @author oleg.sukhov
@@ -24,5 +26,8 @@ public class Team extends Entity {
     @Column(name = "logo", nullable = false, length = 20, unique = true)
     @Getter @Setter
     private String logoName;
+
+    @ManyToMany(mappedBy = "teams")
+    private Set<Tournament> tournaments;
 
 }

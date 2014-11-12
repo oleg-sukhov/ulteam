@@ -33,21 +33,21 @@
                     <table class="games-control-bar">
                         <tr>
                             <td>
-                                <select class="selectpicker games-control-bar-item" data-style="btn-primary">
+                                <select class="selectpicker games-control-bar-item season" data-style="btn-primary">
                                     <span th:each="seasonDto : ${seasonDtoList}">
                                         <option th:text="${seasonDto.name}"></option>
                                     </span>
                                 </select>
                             </td>
                             <td>
-                                <select class="selectpicker games-control-bar-item" data-style="btn-info">
+                                <select class="selectpicker games-control-bar-item tournament" data-style="btn-info">
                                     <span th:each="tournamentDto : ${tournamentDtoList}">
                                         <option th:text="${tournamentDto.name}"></option>
                                     </span>
                                 </select>
                             </td>
                             <td>
-                                <select class="selectpicker games-control-bar-item" data-style="btn-warning">
+                                <select class="selectpicker games-control-bar-item tour" data-style="btn-warning">
                                     <span th:each="tourDto : ${tourDtoList}">
                                         <option th:text="${tourDto.name}"></option>
                                     </span>
