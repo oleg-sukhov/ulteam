@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import ua.vn.os.ulteam.model.dao.TournamentDao;
 import ua.vn.os.ulteam.model.entity.Season;
 import ua.vn.os.ulteam.model.entity.Tour;
@@ -39,7 +40,7 @@ public class TournamentTransactionalServiceImpl implements TournamentService {
 
     @Override
     public List<TournamentDto> getTournamentsInSeason(String seasonName) {
-        if(seasonName == null || seasonName.isEmpty()) {
+        if(StringUtils.isEmpty(seasonName)) {
             String errorMessage = "Incorrect method parameter - seasonName cannot be null or empty";
             logger.error(errorMessage);
             throw new IllegalArgumentException(errorMessage);

@@ -25,7 +25,7 @@ public class Team extends Entity {
 
     @Column(name = "logo", nullable = false, length = 20, unique = true)
     @Getter @Setter
-    private String logoName;
+    private String logoPath;
 
     @ManyToMany(mappedBy = "teams")
     private Set<Tournament> tournaments;

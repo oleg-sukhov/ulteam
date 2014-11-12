@@ -55,9 +55,9 @@
                             </td>
                             <td>
                                 <select class="selectpicker games-control-bar-item" data-style="btn-success">
-                                    <option data-hidden="true" th:utext="#{ua.vn.os.ulteam.web.page.games.control.team}"/>
-                                    <option>team1</option>
-                                    <option>team2</option>
+                                    <span th:each="teamDto : ${teamDtoList}">
+                                        <option th:text="${teamDto.name}"></option>
+                                    </span>
                                 </select>
                             </td>
                         </tr>

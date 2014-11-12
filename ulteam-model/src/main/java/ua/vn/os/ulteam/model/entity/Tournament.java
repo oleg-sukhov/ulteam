@@ -6,7 +6,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author oleg.sukhov
@@ -34,5 +33,6 @@ public class Tournament extends Entity {
     @JoinTable(name="TournamentTeam",
             joinColumns={@JoinColumn(name="tournament_id")},
             inverseJoinColumns={@JoinColumn(name="team_id")})
-    private Set<Team> teams;
+    @Getter @Setter
+    private List<Team> teams;
 }
