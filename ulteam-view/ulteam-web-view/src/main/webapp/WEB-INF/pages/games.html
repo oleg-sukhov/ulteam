@@ -33,28 +33,28 @@
                     <table class="games-control-bar">
                         <tr>
                             <td>
-                                <select class="selectpicker games-control-bar-item season" data-style="btn-primary">
+                                <select id="season" class="selectpicker games-control-bar-item" data-style="btn-primary">
                                     <span th:each="seasonDto : ${seasonDtoList}">
                                         <option th:text="${seasonDto.name}"></option>
                                     </span>
                                 </select>
                             </td>
                             <td>
-                                <select class="selectpicker games-control-bar-item tournament" data-style="btn-info">
+                                <select id="tournament" class="selectpicker games-control-bar-item" data-style="btn-info">
                                     <span th:each="tournamentDto : ${tournamentDtoList}">
                                         <option th:text="${tournamentDto.name}"></option>
                                     </span>
                                 </select>
                             </td>
                             <td>
-                                <select class="selectpicker games-control-bar-item tour" data-style="btn-warning">
+                                <select id="tour" class="selectpicker games-control-bar-item" data-style="btn-warning">
                                     <span th:each="tourDto : ${tourDtoList}">
                                         <option th:text="${tourDto.name}"></option>
                                     </span>
                                 </select>
                             </td>
                             <td>
-                                <select class="selectpicker games-control-bar-item" data-style="btn-success">
+                                <select id="team" class="selectpicker games-control-bar-item" data-style="btn-success">
                                     <span th:each="teamDto : ${teamDtoList}">
                                         <option th:text="${teamDto.name}"></option>
                                     </span>
@@ -101,5 +101,6 @@
 <script th:src="@{/resources/js/lib/bootstrap-select.js}"/>
 <script th:src="@{/resources/js/lib/bootstrap.js}"/>
 <script th:src="@{/resources/js/lib/bootstrap-table.min.js}"/>
+<script th:src="@{/resources/js/app/ulteam.games.js}"/>
 </body>
 </html>

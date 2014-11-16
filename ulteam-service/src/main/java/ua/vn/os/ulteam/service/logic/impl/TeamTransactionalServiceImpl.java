@@ -30,7 +30,6 @@ public class TeamTransactionalServiceImpl implements TeamService {
     @Resource
     private TournamentService tournamentService;
 
-
     @Override
     public List<TeamDto> getTournamentTeams(String seasonName, String tournamentName) {
         if(StringUtils.isEmpty(tournamentName) || StringUtils.isEmpty(seasonName) ) {
