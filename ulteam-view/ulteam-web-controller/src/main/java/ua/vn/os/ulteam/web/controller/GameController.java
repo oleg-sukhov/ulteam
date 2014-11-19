@@ -44,7 +44,6 @@ public class GameController {
     public ModelAndView getAllGames() {
         ModelAndView modelAndView = new ModelAndView("games");
 
-        modelAndView.addObject(GAME_DTO_KEY, gameService.getAllGameDtoList());
         // load all season
         List<SeasonDto> seasonDtoList = seasonService.getAllSeasonDtoList();
 
@@ -52,7 +51,7 @@ public class GameController {
         String currentSeasonName = seasonDtoList.get(0).getName();
         List<TournamentDto> tournamentDtoList = tournamentService.getTournamentsInSeason(currentSeasonName);
 
-        // load all tours in first tournament
+        // load all tours in current tournament
         String currentTournamentName = tournamentDtoList.get(0).getName();
         List<TourDto> tournamentTours = tournamentService.getTournamentTours(currentSeasonName, currentTournamentName);
         List<TeamDto> tournamentTeams = teamService.getTournamentTeams(currentSeasonName, currentTournamentName);
@@ -61,6 +60,15 @@ public class GameController {
         modelAndView.addObject(TOURNAMENT_DTO_KEY, tournamentDtoList);
         modelAndView.addObject(TOUR_DTO_KEY, tournamentTours);
         modelAndView.addObject(TEAM_DTO_KEY, tournamentTeams);
+        modelAndView.addObject(GAME_DTO_KEY, gameService.getAllGameDtoList());
         return modelAndView;
     }
+
+//    @GET @Path("/rest/games/{season}")
+//    @Consumes("application/json")
+//    public Response getGamesBySeason(String season) {
+//        System.out.println(season);
+//        return null;
+//
+//    }
 }

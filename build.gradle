@@ -18,7 +18,7 @@ subprojects {
     apply plugin: 'java'
     group = 'ua.vn.os.ulteam'
     version = '1.0'
-    sourceCompatibility = 1.7
+    sourceCompatibility = 1.8
 
     repositories {
         mavenCentral()
