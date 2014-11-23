@@ -31,15 +31,14 @@ public class TeamTransactionalServiceImpl implements TeamService {
     private TournamentService tournamentService;
 
     @Override
-    public List<TeamDto> getTournamentTeams(String seasonName, String tournamentName) {
-        if(StringUtils.isEmpty(tournamentName) || StringUtils.isEmpty(seasonName) ) {
-            String errorMessage = "Incorrect method parameter - tournamentName<" + tournamentName + ">, " +
-                                                               "seasonName<" + seasonName + ">.";
+    public List<TeamDto> getTournamentTeams(long tournamentId) {
+        if(tournamentId == 0) {
+            String errorMessage = "Incorrect method parameter - tournamentId cannot be 0";
             logger.error(errorMessage);
             throw new IllegalArgumentException(errorMessage);
         }
 
-        Tournament tournament = tournamentService.getTournament(seasonName, tournamentName);
+        Tournament tournament = tournamentService.getTournament(tournamentId);
         List<Team> tournamentTeams = tournament.getTeams();
 
         return convertToTeamDtoList(tournamentTeams);
@@ -51,6 +50,7 @@ public class TeamTransactionalServiceImpl implements TeamService {
 
     private TeamDto convertToTeamDto(Team team) {
         return TeamDto.builder()
+                .id(team.getId())
                 .name(team.getName())
                 .town(team.getTown())
                 .logoUrl(team.getLogoPath())

@@ -1,25 +1,25 @@
 package ua.vn.os.ulteam.web.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.json.JSONObject;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import ua.vn.os.ulteam.service.dto.SeasonDto;
-import ua.vn.os.ulteam.service.dto.TeamDto;
-import ua.vn.os.ulteam.service.dto.TourDto;
-import ua.vn.os.ulteam.service.dto.TournamentDto;
+import ua.vn.os.ulteam.service.dto.*;
 import ua.vn.os.ulteam.service.logic.GameService;
 import ua.vn.os.ulteam.service.logic.SeasonService;
 import ua.vn.os.ulteam.service.logic.TeamService;
 import ua.vn.os.ulteam.service.logic.TournamentService;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.*;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * @author os
  */
-@Controller
+@RestController
 public class GameController {
 
     public static final String GAME_DTO_KEY = "gameDtoList";
@@ -40,7 +40,7 @@ public class GameController {
     @Resource
     private TeamService teamService;
 
-    @RequestMapping(value = "/games", method = RequestMethod.GET)
+    @RequestMapping(value = "/games", method = GET)
     public ModelAndView getAllGames() {
         ModelAndView modelAndView = new ModelAndView("games");
 
@@ -49,26 +49,32 @@ public class GameController {
 
         // load all tournaments in current season
         String currentSeasonName = seasonDtoList.get(0).getName();
-        List<TournamentDto> tournamentDtoList = tournamentService.getTournamentsInSeason(currentSeasonName);
+        List<TournamentDto> tournamentDtoList = tournamentService.getTournamentsInSeasonDto(currentSeasonName);
 
         // load all tours in current tournament
-        String currentTournamentName = tournamentDtoList.get(0).getName();
-        List<TourDto> tournamentTours = tournamentService.getTournamentTours(currentSeasonName, currentTournamentName);
-        List<TeamDto> tournamentTeams = teamService.getTournamentTeams(currentSeasonName, currentTournamentName);
+        long currentTournamentId = tournamentDtoList.get(0).getId();
 
         modelAndView.addObject(SEASON_DTO_KEY, seasonDtoList);
         modelAndView.addObject(TOURNAMENT_DTO_KEY, tournamentDtoList);
-        modelAndView.addObject(TOUR_DTO_KEY, tournamentTours);
-        modelAndView.addObject(TEAM_DTO_KEY, tournamentTeams);
+        modelAndView.addObject(TOUR_DTO_KEY, tournamentService.getTournamentTours(currentTournamentId));
+        modelAndView.addObject(TEAM_DTO_KEY, teamService.getTournamentTeams(currentTournamentId));
         modelAndView.addObject(GAME_DTO_KEY, gameService.getAllGameDtoList());
         return modelAndView;
     }
 
-//    @GET @Path("/rest/games/{season}")
-//    @Consumes("application/json")
-//    public Response getGamesBySeason(String season) {
-//        System.out.println(season);
-//        return null;
-//
-//    }
+    @RequestMapping(value = "/rest/ulteam/games/{season}", produces = APPLICATION_JSON_VALUE, method = GET)
+    @ResponseBody
+    public Map<String, Object> getGamesBySeason(@PathVariable("season") String season) {
+        Map<String, Object> response = new HashMap<>();
+        List<TournamentDto> tournamentDtoList = tournamentService.getTournamentsInSeasonDto(season);
+        long currentTournamentId = tournamentDtoList.get(0).getId();
+        List<TourDto> tournamentTours = tournamentService.getTournamentTours(currentTournamentId);
+        List<TeamDto> tournamentTeams = teamService.getTournamentTeams(currentTournamentId);
+
+        response.put(TOURNAMENT_DTO_KEY, tournamentDtoList);
+        response.put(TOUR_DTO_KEY, tournamentTours);
+        response.put(TEAM_DTO_KEY, tournamentTeams);
+
+        return response;
+    }
 }

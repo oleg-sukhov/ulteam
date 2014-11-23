@@ -6,10 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class NewsDto {
-
-    @Getter @Setter
-    private String id;
+public class NewsDto extends BaseDto {
 
     @Getter @Setter
     private String title;

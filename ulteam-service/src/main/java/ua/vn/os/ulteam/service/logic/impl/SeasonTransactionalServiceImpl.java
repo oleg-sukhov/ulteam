@@ -41,6 +41,9 @@ public class SeasonTransactionalServiceImpl implements SeasonService {
     }
 
     private SeasonDto convertToDto(Season season) {
-        return SeasonDto.builder().name(season.getName()).build();
+        return SeasonDto.builder()
+                .id(season.getId())
+                .name(season.getName())
+                .build();
     }
 }

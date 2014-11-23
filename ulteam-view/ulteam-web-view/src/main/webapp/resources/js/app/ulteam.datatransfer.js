@@ -1,4 +1,4 @@
-DataTransfer.prototype.DATA_BY_SEASON_URL = '/rest/ulteam/games/season/';
+DataTransfer.prototype.DATA_BY_SEASON_URL = '/rest/ulteam/games/';
 
 /**
  * Created by oleg.sukhov
@@ -12,6 +12,7 @@ DataTransfer.prototype.getDataBySeason = function(seasonName, responseHandler) {
     $.ajax({
         url: this.prepareSeasonUrl(seasonName),
         type: "GET",
+        contentType: "application/json",
         dataType: "json",
         success: responseHandler
     });

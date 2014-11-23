@@ -11,8 +11,9 @@ import java.util.List;
  * @author oleg.sukhov
  */
 public interface TournamentService {
-    List<TournamentDto> getTournamentsInSeason(String seasonName);
+    List<TournamentDto> getTournamentsInSeasonDto(String seasonName);
     List<Tournament> getTournamentsInSeason(Season season);
-    Tournament getTournament(String seasonName, String tournamentName);
-    List<TourDto> getTournamentTours(String seasonName, String tournamentName);
+    List<Tournament> getTournamentsInSeason(String seasonName);
+    Tournament getTournament(long tournamentId);
+    List<TourDto> getTournamentTours(long tournamentId);
 }

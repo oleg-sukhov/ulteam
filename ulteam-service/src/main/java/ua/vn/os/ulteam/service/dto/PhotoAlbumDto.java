@@ -6,10 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class PhotoAlbumDto {
-
-    @Getter @Setter
-    private long id;
+public class PhotoAlbumDto extends BaseDto {
 
     @Getter @Setter
     private String title;

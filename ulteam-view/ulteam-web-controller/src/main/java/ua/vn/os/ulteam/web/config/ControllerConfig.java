@@ -4,10 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.ObjectToStringHttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.thymeleaf.messageresolver.IMessageResolver;
 import org.thymeleaf.resourceresolver.IResourceResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -18,6 +26,10 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import ua.vn.os.ulteam.model.aspect.LogAspect;
 import ua.vn.os.ulteam.service.config.ServiceConfig;
 
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author os
  */
@@ -27,6 +39,7 @@ import ua.vn.os.ulteam.service.config.ServiceConfig;
 @ComponentScan(basePackages = "ua.vn.os.ulteam.web.controller")
 @Import({ServiceConfig.class})
 public class ControllerConfig extends WebMvcConfigurerAdapter {
+    private static final Charset UTF8 = Charset.forName("UTF-8");
 
     @Autowired
     ServiceConfig serviceConfig;

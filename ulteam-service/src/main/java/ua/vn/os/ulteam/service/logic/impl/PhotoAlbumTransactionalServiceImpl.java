@@ -93,7 +93,7 @@ public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
 
     private PhotoDto convertToPhotoDto(String albumPath, Photo photo) {
         PhotoDto photoDto = new PhotoDto();
-        photoDto.setId(photo.getId().toString());
+        photoDto.setId(photo.getId());
         photoDto.setName(photo.getName());
         photoDto.setDescription(photo.getDescription());
         photoDto.setUrl(albumPath + photo.getName());

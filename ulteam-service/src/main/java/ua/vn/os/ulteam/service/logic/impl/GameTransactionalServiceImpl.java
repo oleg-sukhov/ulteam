@@ -44,6 +44,7 @@ public class GameTransactionalServiceImpl implements GameService {
 
     private GameDto convertToGameDto(Game game) {
         return GameDto.builder()
+                      .id(game.getId())
                       .ownerTeam(game.getOwnerTeam().getName())
                       .guestTeam(game.getGuestTeam().getName())
                       .ownerTeamTown(game.getOwnerTeam().getTown())

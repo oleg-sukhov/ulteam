@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class TournamentDto {
+public class TournamentDto extends BaseDto {
 
     @Getter @Setter
     private String name;
@@ -19,6 +19,7 @@ public class TournamentDto {
     }
 
     public static class TournamentDtoBuilder {
+        private long id;
         private String name;
 
         public TournamentDtoBuilder name(String name) {
@@ -26,8 +27,15 @@ public class TournamentDto {
             return this;
         }
 
+        public TournamentDtoBuilder id(long id) {
+            this.id = id;
+            return this;
+        }
+
         public TournamentDto build() {
-            return new TournamentDto(name);
+            TournamentDto tournamentDto = new TournamentDto(name);
+            tournamentDto.setId(id);
+            return tournamentDto;
         }
     }
 

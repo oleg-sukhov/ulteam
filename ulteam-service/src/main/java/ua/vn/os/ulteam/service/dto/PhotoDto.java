@@ -9,10 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class PhotoDto {
-
-    @Getter @Setter
-    private String id;
+public class PhotoDto extends BaseDto {
 
     @Getter @Setter
     private String name;

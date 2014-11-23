@@ -79,7 +79,7 @@ public class NewsTransactionalServiceImpl implements NewsService {
 
     private NewsDto convertToNewsDto(News news) {
         NewsDto newsDto = new NewsDto();
-        newsDto.setId(String.valueOf(news.getId()));
+        newsDto.setId(news.getId());
         newsDto.setTitle(news.getTitle());
         newsDto.setShortDescription(news.getShortDescription());
         newsDto.setModificationDate(news.getModificationDate().format(dateTimeFormatter));

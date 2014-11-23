@@ -7,10 +7,10 @@ import lombok.libs.com.zwitserloot.cmdreader.FullName;
  * @author oleg.sukhov
  */
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor()
 @EqualsAndHashCode
 @ToString
-public class GameDto {
+public class GameDto extends BaseDto {
 
     @Getter @Setter
     private String ownerTeam;
@@ -50,6 +50,7 @@ public class GameDto {
     }
 
     public static class GameDtoBuilder {
+        private long id;
         private String ownerTeam;
         private String ownerTeamTown;
         private String ownerTeamLogoUrl;
@@ -120,10 +121,17 @@ public class GameDto {
             return this;
         }
 
+        public GameDtoBuilder id(final long id) {
+            this.id = id;
+            return this;
+        }
+
         public GameDto build() {
-            return new GameDto(ownerTeam, ownerTeamLogoUrl, ownerTeamTown, guestTeam,
-                               guestTeamLogoUrl, guestTeamTown, ownerTeamGoals, guestTeamGoals,
-                               date, tournament, tour);
+             GameDto gameDto = new GameDto(ownerTeam, ownerTeamLogoUrl, ownerTeamTown, guestTeam, guestTeamLogoUrl,
+                                           guestTeamTown, ownerTeamGoals, guestTeamGoals, date, tournament, tour);
+
+            gameDto.setId(id);
+            return gameDto;
         }
     }
 }

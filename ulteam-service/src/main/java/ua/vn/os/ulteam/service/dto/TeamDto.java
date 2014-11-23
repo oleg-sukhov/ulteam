@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class TeamDto {
+public class TeamDto extends BaseDto {
 
     @Getter @Setter
     private String name;
@@ -25,6 +25,7 @@ public class TeamDto {
     }
 
     public static class TeamDtoBuilder {
+        private long id;
         private String name;
         private String town;
         private String logoUrl;
@@ -44,8 +45,15 @@ public class TeamDto {
             return this;
         }
 
+        public TeamDtoBuilder id(long id) {
+            this.id = id;
+            return this;
+        }
+
         public TeamDto build() {
-            return new TeamDto(name, town, logoUrl);
+            TeamDto teamDto = new TeamDto(name, town, logoUrl);
+            teamDto.setId(id);
+            return teamDto;
         }
     }
 

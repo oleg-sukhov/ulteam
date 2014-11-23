@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class TourDto {
+public class TourDto extends BaseDto {
 
     @Getter @Setter
     private String name;
@@ -20,14 +20,22 @@ public class TourDto {
 
     public static class TourDtoBuilder {
         private String name;
+        private long id;
 
         public TourDtoBuilder name(String name) {
             this.name = name;
             return this;
         }
 
+        public TourDtoBuilder id(long id) {
+            this.id = id;
+            return this;
+        }
+
         public TourDto build() {
-            return new TourDto(name);
+            TourDto tourDto = new TourDto(name);
+            tourDto.setId(id);
+            return tourDto;
         }
     }
 

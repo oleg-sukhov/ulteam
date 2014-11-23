@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author oleg.sukhov
  */
-public interface TournamentDao {
+public interface TournamentDao extends Crud<Tournament> {
     List<Tournament> getAllTournaments();
     List<Tournament> getTournamentsInSeason(Season season);
 }

@@ -39,7 +39,7 @@ public class TournamentTransactionalServiceImpl implements TournamentService {
     private SeasonService seasonService;
 
     @Override
-    public List<TournamentDto> getTournamentsInSeason(String seasonName) {
+    public List<TournamentDto> getTournamentsInSeasonDto(String seasonName) {
         if(StringUtils.isEmpty(seasonName)) {
             String errorMessage = "Incorrect method parameter - seasonName cannot be null or empty";
             logger.error(errorMessage);
@@ -62,37 +62,25 @@ public class TournamentTransactionalServiceImpl implements TournamentService {
     }
 
     @Override
-    public Tournament getTournament(String seasonName, String tournamentName) {
-        if(seasonName == null || tournamentName.isEmpty()) {
-            String errorMessage = "Incorrect method parameter - (seasonName or tournamentName) cannot be null or empty";
+    public List<Tournament> getTournamentsInSeason(String seasonName) {
+        Season season = seasonService.getSeasonByName(seasonName);
+        return tournamentDao.getTournamentsInSeason(season);
+    }
+
+    @Override
+    public Tournament getTournament(long tournamentId) {
+        if(tournamentId == 0) {
+            String errorMessage = "Incorrect method parameter - tournamentId cannot 0";
             logger.error(errorMessage);
             throw new IllegalArgumentException(errorMessage);
         }
 
-        Season season = seasonService.getSeasonByName(seasonName);
-        List<Tournament> tournamentsInSeason = getTournamentsInSeason(season);
-        Tournament resultTournament = null;
-        int tournamentCount = 0;
-
-        for (Tournament tournament : tournamentsInSeason) {
-            if(tournamentName.equals(tournament.getName())) {
-                resultTournament = tournament;
-                tournamentCount++;
-            }
-        }
-
-        if(tournamentCount > 1) {
-            String errorMessage = "Number of tournaments in season cannot be more than one";
-            logger.error(errorMessage);
-            throw new RuntimeException(errorMessage);
-        }
-
-        return resultTournament;
+        return tournamentDao.get(tournamentId);
     }
 
     @Override
-    public List<TourDto> getTournamentTours(String seasonName, String tournamentName) {
-        Tournament tournament = getTournament(seasonName, tournamentName);
+    public List<TourDto> getTournamentTours(long tournamentId) {
+        Tournament tournament = tournamentDao.get(tournamentId);
         return convertToTourDtoList(tournament.getTours());
     }
 
@@ -101,7 +89,10 @@ public class TournamentTransactionalServiceImpl implements TournamentService {
     }
 
     private TournamentDto convertToTournamentDto(Tournament tournament) {
-        return TournamentDto.builder().name(tournament.getName()).build();
+        return TournamentDto.builder()
+                .name(tournament.getName())
+                .id(tournament.getId())
+                .build();
     }
 
     private List<TourDto> convertToTourDtoList(List<Tour> tours) {
@@ -109,6 +100,9 @@ public class TournamentTransactionalServiceImpl implements TournamentService {
     }
 
     private TourDto convertToTourDto(Tour tour) {
-        return TourDto.builder().name(tour.getName()).build();
+        return TourDto.builder()
+                .name(tour.getName())
+                .id(tour.getId())
+                .build();
     }
 }
