@@ -15,5 +15,7 @@ public interface TournamentService {
     List<Tournament> getTournamentsInSeason(Season season);
     List<Tournament> getTournamentsInSeason(String seasonName);
     Tournament getTournament(long tournamentId);
+    Tournament getTournament(String seasonName, String tournamentName);
     List<TourDto> getTournamentTours(long tournamentId);
+    List<TourDto> getTournamentTours(String seasonName, String tournamentName);
 }

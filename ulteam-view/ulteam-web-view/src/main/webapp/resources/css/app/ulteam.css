@@ -262,6 +262,10 @@ table {
     width: 100%;
 }
 
+.games-control-bar-item .dropdown-menu li a:hover {
+    background: #449d44;
+}
+
 .games-control-bar-item {
     padding: 4%;
     width: 100% !important;

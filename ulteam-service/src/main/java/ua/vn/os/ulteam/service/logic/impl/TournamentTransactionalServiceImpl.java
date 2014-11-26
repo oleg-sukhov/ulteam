@@ -84,6 +84,17 @@ public class TournamentTransactionalServiceImpl implements TournamentService {
         return convertToTourDtoList(tournament.getTours());
     }
 
+    @Override
+    public List<TourDto> getTournamentTours(String seasonName, String tournamentName) {
+        Tournament tournament = tournamentDao.getTournament(seasonName, tournamentName);
+        return convertToTourDtoList(tournament.getTours());
+    }
+
+    @Override
+    public Tournament getTournament(String seasonName, String tournamentName) {
+        return tournamentDao.getTournament(seasonName, tournamentName);
+    }
+
     private List<TournamentDto> convertToTournamentDtoList(List<Tournament> tournaments) {
         return tournaments.stream().map(this::convertToTournamentDto).collect(Collectors.toList());
     }

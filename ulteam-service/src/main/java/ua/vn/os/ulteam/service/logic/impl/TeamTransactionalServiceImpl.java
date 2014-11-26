@@ -39,9 +39,19 @@ public class TeamTransactionalServiceImpl implements TeamService {
         }
 
         Tournament tournament = tournamentService.getTournament(tournamentId);
-        List<Team> tournamentTeams = tournament.getTeams();
+        return convertToTeamDtoList(tournament.getTeams());
+    }
 
-        return convertToTeamDtoList(tournamentTeams);
+    @Override
+    public List<TeamDto> getTournamentTeams(String seasonName, String tournamentName) {
+        if(seasonName == null || tournamentName == null) {
+            String errorMessage = "Incorrect method parameter - seasonName or tournamentName cannot be null";
+            logger.error(errorMessage);
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        Tournament tournament = tournamentService.getTournament(seasonName, tournamentName);
+        return convertToTeamDtoList(tournament.getTeams());
     }
 
     private List<TeamDto> convertToTeamDtoList(List<Team> teams) {

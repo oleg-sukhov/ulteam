@@ -1,6 +1,5 @@
 package ua.vn.os.ulteam.web.controller;
 
-import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ua.vn.os.ulteam.service.dto.*;
@@ -12,7 +11,6 @@ import ua.vn.os.ulteam.service.logic.TournamentService;
 import javax.annotation.Resource;
 import java.util.*;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -44,7 +42,7 @@ public class GameController {
     public ModelAndView getAllGames() {
         ModelAndView modelAndView = new ModelAndView("games");
 
-        // load all season
+        // load all seasonGamesCOntrol
         List<SeasonDto> seasonDtoList = seasonService.getAllSeasonDtoList();
 
         // load all tournaments in current season
@@ -72,6 +70,22 @@ public class GameController {
         List<TeamDto> tournamentTeams = teamService.getTournamentTeams(currentTournamentId);
 
         response.put(TOURNAMENT_DTO_KEY, tournamentDtoList);
+        response.put(TOUR_DTO_KEY, tournamentTours);
+        response.put(TEAM_DTO_KEY, tournamentTeams);
+
+        return response;
+    }
+
+    @RequestMapping(value = "/rest/ulteam/games/{season}/{tournament}",
+            produces = APPLICATION_JSON_VALUE,
+            method = GET)
+    @ResponseBody
+    public Map<String, Object> getGamesByTournament(@PathVariable("season") String season,
+                                                    @PathVariable("tournament") String tournament) {
+        Map<String, Object> response = new HashMap<>();
+        List<TourDto> tournamentTours = tournamentService.getTournamentTours(season, tournament);
+        List<TeamDto> tournamentTeams = teamService.getTournamentTeams(season, tournament);
+
         response.put(TOUR_DTO_KEY, tournamentTours);
         response.put(TEAM_DTO_KEY, tournamentTeams);
 

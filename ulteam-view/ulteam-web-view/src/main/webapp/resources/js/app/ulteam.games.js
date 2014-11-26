@@ -18,51 +18,48 @@ function GamesHelper() {
     this.dataTransfer = new DataTransfer();
 }
 
-GamesHelper.prototype.DTO_METHOD_KEYS = {
-    seasonDtoList: 'updateSeasonControl',
-    tournamentDtoList: 'updateTournamentControl',
-    tourDtoList: 'updateTourControl',
-    teamDtoList: 'updateTeamControl'
+GamesHelper.prototype.COTROLS_ID = {
+    seasonDtoList: 'season',
+    tournamentDtoList: 'tournament',
+    tourDtoList: 'tour',
+    teamDtoList: 'team'
+};
+
+GamesHelper.prototype.getHandler = function(controlName) {
+    switch(controlName) {
+        case 'season': return this.updateGamesBySeason;
+        case 'tournament': return this.updateGamesByTournament;
+    }
+    return null;
 };
 
 GamesHelper.prototype.updateGamesBySeason = function(seasonName) {
     this.dataTransfer.getDataBySeason(seasonName, this, this.processData);
 };
 
-GamesHelper.prototype.getHandler = function(controlName) {
-    switch(controlName) {
-        case 'season': return this.updateGamesBySeason;
-    }
-    return null;
+GamesHelper.prototype.updateGamesByTournament = function(tournamentName) {
+    var seasonName = $('#season').val();
+    this.dataTransfer.getDataByTournament(seasonName, tournamentName, this, this.processData);
 };
+
+
 GamesHelper.prototype.processData = function(data) {
+    var processMethod = GamesHelper.prototype['updateControl'];
     $.each(data, $.proxy(function(prop, value) {
-        var processMethodName = GamesHelper.prototype.DTO_METHOD_KEYS[prop];
-        var processMethod = GamesHelper.prototype[processMethodName];
-        processMethod.call(this, value);
+        processMethod.call(this, value, GamesHelper.prototype.COTROLS_ID[prop]);
     }, this));
 };
 
-GamesHelper.prototype.updateSeasonControl = function(data) {
-    console.log(data);
-};
-
-GamesHelper.prototype.updateTournamentControl = function(data) {
-    $('#tournament').empty();
+GamesHelper.prototype.updateControl = function(data, controlId) {
+    var control = $('#' + controlId);
+    control.empty();
     jQuery.each(data, function() {
-        $('#tournament').append($('<option>', {text : this.name}));
+        control.append(
+            $('<option />')
+                .text(this.name)
+                .val(this.name));
     });
-};
 
-GamesHelper.prototype.updateTourControl = function(data) {
-    var controlValues = jQuery.map(data, function(item) {
-        return item.name;
-    });
-    $('#tour').next().find('ul').empty();
-    $('#tour').next('.selectpicker').selectpicker('val', ['123','234']);
-    $('#tour').next('.selectpicker').selectpicker('refresh');
-};
-
-GamesHelper.prototype.updateTeamControl = function(data) {
-    console.log(data);
+    control.prop('disabled', control.find('option').length == 0);
+    control.selectpicker('refresh');
 };

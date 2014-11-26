@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface TeamService {
     List<TeamDto> getTournamentTeams(long tournamentId);
+    List<TeamDto> getTournamentTeams(String seasonName, String tournamentName);
 }

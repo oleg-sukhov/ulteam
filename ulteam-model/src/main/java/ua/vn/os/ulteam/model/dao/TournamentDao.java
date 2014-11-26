@@ -11,4 +11,5 @@ import java.util.List;
 public interface TournamentDao extends Crud<Tournament> {
     List<Tournament> getAllTournaments();
     List<Tournament> getTournamentsInSeason(Season season);
+    Tournament getTournament(String seasonName, String tournamentName);
 }

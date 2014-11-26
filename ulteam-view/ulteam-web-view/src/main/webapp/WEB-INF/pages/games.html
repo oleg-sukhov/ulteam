@@ -33,28 +33,28 @@
                     <table class="games-control-bar">
                         <tr>
                             <td>
-                                <select id="season" class="selectpicker games-control-bar-item" data-style="btn-primary">
+                                <select id="season" class="selectpicker games-control-bar-item" data-style="btn-success" title="...">
                                     <span th:each="seasonDto : ${seasonDtoList}">
                                         <option th:text="${seasonDto.name}"></option>
                                     </span>
                                 </select>
                             </td>
                             <td>
-                                <select id="tournament" class="selectpicker games-control-bar-item" data-style="btn-info">
+                                <select id="tournament" class="selectpicker games-control-bar-item" data-style="btn-success" title="...">
                                     <span th:each="tournamentDto : ${tournamentDtoList}">
                                         <option th:text="${tournamentDto.name}"></option>
                                     </span>
                                 </select>
                             </td>
                             <td>
-                                <select id="tour" class="selectpicker games-control-bar-item" data-style="btn-warning">
+                                <select id="tour" class="selectpicker games-control-bar-item" data-style="btn-success" title="...">
                                     <span th:each="tourDto : ${tourDtoList}">
                                         <option th:text="${tourDto.name}"></option>
                                     </span>
                                 </select>
                             </td>
                             <td>
-                                <select id="team" class="selectpicker games-control-bar-item" data-style="btn-success">
+                                <select id="team" class="selectpicker games-control-bar-item" data-style="btn-success" title="...">
                                     <span th:each="teamDto : ${teamDtoList}">
                                         <option th:text="${teamDto.name}"></option>
                                     </span>

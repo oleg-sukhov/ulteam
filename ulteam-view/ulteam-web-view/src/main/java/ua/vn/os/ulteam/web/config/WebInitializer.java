@@ -6,6 +6,7 @@ import org.springframework.orm.hibernate4.support.OpenSessionInViewFilter;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 import ua.vn.os.ulteam.model.config.RepositoryConfig;
 
@@ -31,6 +32,12 @@ public class WebInitializer implements WebApplicationInitializer {
         ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);
+
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        FilterRegistration.Dynamic characterEncoding = servletContext.addFilter("characterEncoding", characterEncodingFilter);
+        characterEncoding.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");
+        characterEncoding.addMappingForUrlPatterns(EnumSet.of(DispatcherType.FORWARD), true, "/*");
 
         FilterRegistration.Dynamic hibernateFilter = servletContext.addFilter("hibernateFilter",new OpenSessionInViewFilter());
         hibernateFilter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");
