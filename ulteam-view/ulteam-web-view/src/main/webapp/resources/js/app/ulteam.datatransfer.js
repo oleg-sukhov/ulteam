@@ -8,8 +8,9 @@ function DataTransfer() {
 
 }
 
-DataTransfer.prototype.getDataBySeason = function(seasonName, responseHandler) {
+DataTransfer.prototype.getDataBySeason = function(seasonName, context, responseHandler) {
     $.ajax({
+        context: context,
         url: this.prepareSeasonUrl(seasonName),
         type: "GET",
         contentType: "application/json",
