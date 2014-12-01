@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 @Service
 @Import(ServiceConfig.class)
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-public class NewsTransactionalServiceImpl implements NewsService {
+public class NewsServiceImpl implements NewsService {
 
-    private static Logger logger = LoggerFactory.getLogger(NewsTransactionalServiceImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(NewsServiceImpl.class);
     private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     @Autowired

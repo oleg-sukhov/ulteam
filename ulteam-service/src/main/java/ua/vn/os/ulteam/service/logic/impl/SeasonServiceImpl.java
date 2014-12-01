@@ -20,13 +20,13 @@ import java.util.stream.Collectors;
 @Service
 @Import(ServiceConfig.class)
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-public class SeasonTransactionalServiceImpl implements SeasonService {
+public class SeasonServiceImpl implements SeasonService {
 
     @Resource
     private SeasonDao seasonDao;
 
     @Override
-    public List<SeasonDto> getAllSeasonDtoList() {
+    public List<SeasonDto> getAllSeasons() {
         List<Season> allSeasons =  seasonDao.getAllSeasons();
         return convertToDtoList(allSeasons);
     }

@@ -26,9 +26,9 @@ import java.util.*;
 @Service
 @Import(ServiceConfig.class)
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-public class PhotoAlbumTransactionalServiceImpl implements PhotoAlbumService {
+public class PhotoAlbumServiceImpl implements PhotoAlbumService {
 
-    private static Logger logger = LoggerFactory.getLogger(PhotoAlbumTransactionalServiceImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(PhotoAlbumServiceImpl.class);
     private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     @Autowired

@@ -28,9 +28,9 @@ import java.util.stream.Collectors;
 @Service
 @Import(ServiceConfig.class)
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-public class TournamentTransactionalServiceImpl implements TournamentService {
+public class TournamentServiceImpl implements TournamentService {
 
-    private static Logger logger = LoggerFactory.getLogger(TournamentTransactionalServiceImpl.class);
+    private static Logger logger = LoggerFactory.getLogger(TournamentServiceImpl.class);
 
     @Resource
     private TournamentDao tournamentDao;

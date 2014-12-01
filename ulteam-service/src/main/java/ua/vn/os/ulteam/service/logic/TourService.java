@@ -7,7 +7,6 @@ import java.util.List;
 /**
  * @author oleg.sukhov
  */
-public interface GameService {
-    public List<GameDto> getAllGames();
-    public List<GameDto> getGamesInSeason(String seasonName);
+public interface TourService {
+    List<GameDto> getTourGames(long tourId);
 }

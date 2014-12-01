@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS Tournament (
 );
 
 /*create table for storing information about tournaments tour*/
-CREATE TABLE IF NOT EXISTS tour (
+CREATE TABLE IF NOT EXISTS Tour (
   id BIGSERIAL NOT NULL ,
   tournament_id BIGINT NOT NULL,
   name VARCHAR(100) NOT NULL,
@@ -101,15 +101,13 @@ CREATE TABLE IF NOT EXISTS Game (
     owner_team_goals SMALLINT,
     guest_team_goals      SMALLINT,
     game_date                   DATE NOT NULL,
-    tournament                 BIGINT NOT NULL,
 		tour                       BIGINT NOT NULL,
     game_details               BIGINT,
     PRIMARY KEY(id),
     FOREIGN KEY(owner_team)     REFERENCES Team(id),
     FOREIGN KEY(guest_team)       REFERENCES Team(id),
-    FOREIGN KEY(tournament)     REFERENCES Tournament(id),
     FOREIGN KEY(game_details)    REFERENCES Game_details(id),
-    FOREIGN KEY(tournament_tour) REFERENCES Tournament_tour(id)
+    FOREIGN KEY(tour) REFERENCES Tour(id)
 );
 END
 $do$

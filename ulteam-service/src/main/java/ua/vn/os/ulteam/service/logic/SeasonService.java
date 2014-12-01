@@ -9,6 +9,6 @@ import java.util.List;
  * @author oleg.sukhov
  */
 public interface SeasonService {
-    List<SeasonDto> getAllSeasonDtoList();
+    List<SeasonDto> getAllSeasons();
     Season getSeasonByName(String seasonName);
 }

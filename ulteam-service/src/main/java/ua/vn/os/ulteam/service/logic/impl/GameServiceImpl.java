@@ -22,13 +22,13 @@ import java.util.stream.Collectors;
 @Service
 @Import(ServiceConfig.class)
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-public class GameTransactionalServiceImpl implements GameService {
+public class GameServiceImpl implements GameService {
 
     @Resource
     private GameDao gameDao;
 
     @Override
-    public List<GameDto> getAllGameDtoList() {
+    public List<GameDto> getAllGames() {
         List<Game> allGames = gameDao.getAllGames();
 
         if(CollectionUtils.isEmpty(allGames)) {
@@ -36,6 +36,11 @@ public class GameTransactionalServiceImpl implements GameService {
         }
 
         return convertToGameDtoList(allGames);
+    }
+
+    @Override
+    public List<GameDto> getGamesInSeason(String seasonName) {
+        return null;
     }
 
     private List<GameDto> convertToGameDtoList(List<Game> games) {

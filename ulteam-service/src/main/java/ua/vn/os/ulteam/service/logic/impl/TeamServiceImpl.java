@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 import ua.vn.os.ulteam.model.entity.Team;
 import ua.vn.os.ulteam.model.entity.Tournament;
 import ua.vn.os.ulteam.service.config.ServiceConfig;
@@ -24,8 +23,8 @@ import java.util.stream.Collectors;
 @Service
 @Import(ServiceConfig.class)
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-public class TeamTransactionalServiceImpl implements TeamService {
-    private static Logger logger = LoggerFactory.getLogger(TeamTransactionalServiceImpl.class);
+public class TeamServiceImpl implements TeamService {
+    private static Logger logger = LoggerFactory.getLogger(TeamServiceImpl.class);
 
     @Resource
     private TournamentService tournamentService;

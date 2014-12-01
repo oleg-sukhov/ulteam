@@ -44,4 +44,8 @@ public class DaoConfig {
         return new TournamentHibernateDao(repositoryConfig.hibernateTemplate(), Tournament.class);
     }
 
+    @Bean
+    public TourDao tourDao() {
+        return new TourHibernateDao(repositoryConfig.hibernateTemplate(), Tour.class);
+    }
 }
