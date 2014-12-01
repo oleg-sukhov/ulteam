@@ -1,5 +1,6 @@
 package ua.vn.os.ulteam.web.controller;
 
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ua.vn.os.ulteam.service.dto.*;
@@ -84,18 +85,34 @@ public class GameController {
     }
 
     private List<TournamentDto> loadTournamentsInSelectedSeason(List<SeasonDto> seasons) {
+        if(CollectionUtils.isEmpty(seasons)) {
+            return Arrays.asList();
+        }
+
         return tournamentService.getTournamentsInSeasonDto(seasons.get(0).getName());
     }
 
     private List<TourDto> loadToursInSelectedTournament(List<TournamentDto> tournaments) {
+        if(CollectionUtils.isEmpty(tournaments)) {
+            return Arrays.asList();
+        }
+
         return tournamentService.getTournamentTours(tournaments.get(0).getId());
     }
 
     private List<TeamDto> loadTeamInSelectedTournament(List<TournamentDto> tournaments) {
+        if(CollectionUtils.isEmpty(tournaments)) {
+            return Arrays.asList();
+        }
+
         return teamService.getTournamentTeams(tournaments.get(0).getId());
     }
 
     private List<GameDto> loadGamesInSelectedTour(List<TourDto> tours) {
+        if(CollectionUtils.isEmpty(tours)) {
+            return Arrays.asList();
+        }
+
         return tourService.getTourGames(tours.get(0).getId());
     }
 }
