@@ -50,7 +50,7 @@ public class GameController {
 
     @RequestMapping(value = "/rest/ulteam/games/{season}", produces = APPLICATION_JSON_VALUE, method = GET)
     @ResponseBody
-    public Map<String, Object> getGamesInSeason(@PathVariable("season") String season) {
+    public Map<String, Object> getGamesDataBySeason(@PathVariable("season") String season) {
         Map<String, Object> response = new HashMap<>();
 
         List<TournamentDto> tournaments = tournamentService.getTournamentsInSeasonDto(season);
@@ -70,14 +70,32 @@ public class GameController {
             produces = APPLICATION_JSON_VALUE,
             method = GET)
     @ResponseBody
-    public Map<String, Object> getGamesByTournament(@PathVariable("season") String season,
-                                                    @PathVariable("tournament") String tournament) {
+    public Map<String, Object> getGamesDataTournament(@PathVariable("season") String season,
+                                                      @PathVariable("tournament") String tournament) {
         Map<String, Object> response = new HashMap<>();
         List<TourDto> tours = tournamentService.getTournamentTours(season, tournament);
         List<TeamDto> teams = teamService.getTournamentTeams(season, tournament);
         List<GameDto> games = loadGamesInSelectedTour(tours);
 
         response.put(TOUR_DTO_KEY, tours);
+        response.put(TEAM_DTO_KEY, teams);
+        response.put(GAME_DTO_KEY, games);
+
+        return response;
+    }
+
+    @RequestMapping(value = "/rest/ulteam/games/{season}/{tournament}/{tour}",
+            produces = APPLICATION_JSON_VALUE,
+            method = GET)
+    @ResponseBody
+    public Map<String, Object> getGamesByTour(@PathVariable("season") String season,
+                                              @PathVariable("tournament") String tournament,
+                                              @PathVariable("tour") String tour) {
+        Map<String, Object> response = new HashMap<>();
+        List<TourDto> tours = tournamentService.getTournamentTours(season, tournament);
+        List<TeamDto> teams = teamService.getTournamentTeams(season, tournament);
+        List<GameDto> games = loadGamesInSelectedTour(tours);
+
         response.put(TEAM_DTO_KEY, teams);
         response.put(GAME_DTO_KEY, games);
 

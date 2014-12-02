@@ -29,19 +29,25 @@ GamesHelper.prototype.getHandler = function(controlName) {
     switch(controlName) {
         case 'season': return this.updateGamesBySeason;
         case 'tournament': return this.updateGamesByTournament;
+        case 'tour': return this.updateGamesByTour;
     }
     return null;
 };
 
 GamesHelper.prototype.updateGamesBySeason = function(seasonName) {
-    this.dataTransfer.getDataBySeason(seasonName, this, this.processData);
+    this.dataTransfer.getGamesDataBySeason(seasonName, this, this.processData);
 };
 
 GamesHelper.prototype.updateGamesByTournament = function(tournamentName) {
     var seasonName = $('#season').val();
-    this.dataTransfer.getDataByTournament(seasonName, tournamentName, this, this.processData);
+    this.dataTransfer.getGamesDataByTournament(seasonName, tournamentName, this, this.processData);
 };
 
+GamesHelper.prototype.updateGamesByTour = function(tourName) {
+    var seasonName = $('#season').val();
+    var tournamentName = $('#tournament').val();
+    this.dataTransfer.getGamesDataByTour(seasonName, tournamentName, tourName, this, this.processData);
+};
 
 GamesHelper.prototype.processData = function(data) {
     var updateControlMethod = GamesHelper.prototype['updateControl'];

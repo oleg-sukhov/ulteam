@@ -19,12 +19,17 @@ DataTransfer.prototype.getData = function(url, context, responseHandler) {
     });
 };
 
-DataTransfer.prototype.getDataBySeason = function(seasonName, context, responseHandler) {
+DataTransfer.prototype.getGamesDataBySeason = function(seasonName, context, responseHandler) {
     var url = this.GAMES_DATA_URL + seasonName;
     this.getData(url, context, responseHandler);
 };
 
-DataTransfer.prototype.getDataByTournament = function(seasonName, tournament, context, responseHandler) {
+DataTransfer.prototype.getGamesDataByTournament = function(seasonName, tournament, context, responseHandler) {
     var url = this.GAMES_DATA_URL + seasonName + '/' + tournament;
+    this.getData(url, context, responseHandler);
+};
+
+DataTransfer.prototype.getGamesDataByTour = function(seasonName, tournament, tour, context, responseHandler) {
+    var url = this.GAMES_DATA_URL + seasonName + '/' + tournament + '/' + tour;
     this.getData(url, context, responseHandler);
 };
