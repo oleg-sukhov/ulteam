@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ua.vn.os.ulteam.model.dao.TourDao;
+import ua.vn.os.ulteam.model.dao.TournamentDao;
 import ua.vn.os.ulteam.model.entity.Game;
 import ua.vn.os.ulteam.model.entity.Tour;
+import ua.vn.os.ulteam.model.entity.Tournament;
 import ua.vn.os.ulteam.service.config.ServiceConfig;
 import ua.vn.os.ulteam.service.dto.GameDto;
 import ua.vn.os.ulteam.service.dto.TourDto;
@@ -25,31 +27,28 @@ import java.util.stream.Collectors;
 public class TourServiceImpl implements TourService {
 
     @Resource private TourDao tourDao;
+    @Resource private TournamentDao tournamentDao;
 
     @Override
-    public List<GameDto> getTourGames(long tourId) {
-        Tour tour = tourDao.get(tourId);
-        return convertToGameDtoList(tour.getGames());
+    public List<TourDto> getTournamentTours(long tournamentId) {
+        Tournament tournament = tournamentDao.get(tournamentId);
+        return convertToTourDtoList(tournament.getTours());
     }
 
-    private List<GameDto> convertToGameDtoList(List<Game> games) {
-        return  games.stream().map(this::convertToGameDto).collect(Collectors.toList());
+    @Override
+    public List<TourDto> getTournamentTours(String seasonName, String tournamentName) {
+        Tournament tournament = tournamentDao.getTournament(seasonName, tournamentName);
+        return convertToTourDtoList(tournament.getTours());
     }
 
-    private GameDto convertToGameDto(Game game) {
-        return GameDto.builder()
-                .id(game.getId())
-                .ownerTeam(game.getOwnerTeam().getName())
-                .guestTeam(game.getGuestTeam().getName())
-                .ownerTeamTown(game.getOwnerTeam().getTown())
-                .guestTeamTown(game.getGuestTeam().getTown())
-                .ownerTeamLogoUrl(game.getOwnerTeam().getLogoPath())
-                .guestTeamLogoUrl(game.getGuestTeam().getLogoPath())
-                .ownerTeamGoals(game.getOwnerTeamGoals())
-                .guestTeamGoals(game.getGuestTeamGoals())
-                .date(game.getGameDate().toString())
-                .tournament(game.getTour().getTournament().getName())
-                .tour(game.getTour().getName())
+    private List<TourDto> convertToTourDtoList(List<Tour> tours) {
+        return tours.stream().map(this::convertToTourDto).collect(Collectors.toList());
+    }
+
+    private TourDto convertToTourDto(Tour tour) {
+        return TourDto.builder()
+                .name(tour.getName())
+                .id(tour.getId())
                 .build();
     }
 }

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @javax.persistence.Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ToString
+@ToString(exclude = "tour")
 public class Game extends Entity {
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -49,5 +49,4 @@ public class Game extends Entity {
     @JoinColumn(name = "game_details", nullable = false)
     @Getter @Setter
     private GameDetails gameDetails;
-
 }

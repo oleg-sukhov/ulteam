@@ -22,12 +22,12 @@ public class GameController {
     public static final String SEASON_DTO_KEY = "seasonDtoList";
     public static final String TOURNAMENT_DTO_KEY = "tournamentDtoList";
     public static final String TOUR_DTO_KEY = "tourDtoList";
-    public static final String TEAM_DTO_KEY = "teamDtoList";
 
     @Resource private TourService tourService;
     @Resource private SeasonService seasonService;
     @Resource private TournamentService tournamentService;
     @Resource private TeamService teamService;
+    @Resource private GameService gameService;
 
     @RequestMapping(value = "/games", method = GET)
     public ModelAndView getAllGames() {
@@ -36,13 +36,11 @@ public class GameController {
         List<SeasonDto> seasons = seasonService.getAllSeasons();
         List<TournamentDto> tournaments = loadTournamentsInSelectedSeason(seasons);
         List<TourDto> tours = loadToursInSelectedTournament(tournaments);
-        List<TeamDto> teams = loadTeamInSelectedTournament(tournaments);
         List<GameDto> games = loadGamesInSelectedTour(tours);
 
         modelAndView.addObject(SEASON_DTO_KEY, seasons);
         modelAndView.addObject(TOURNAMENT_DTO_KEY, tournaments);
         modelAndView.addObject(TOUR_DTO_KEY, tours);
-        modelAndView.addObject(TEAM_DTO_KEY, teams);
         modelAndView.addObject(GAME_DTO_KEY, games);
 
         return modelAndView;
@@ -55,12 +53,10 @@ public class GameController {
 
         List<TournamentDto> tournaments = tournamentService.getTournamentsInSeasonDto(season);
         List<TourDto> tours = loadToursInSelectedTournament(tournaments);
-        List<TeamDto> teams = loadTeamInSelectedTournament(tournaments);
         List<GameDto> games = loadGamesInSelectedTour(tours);
 
         response.put(TOURNAMENT_DTO_KEY, tournaments);
         response.put(TOUR_DTO_KEY, tours);
-        response.put(TEAM_DTO_KEY, teams);
         response.put(GAME_DTO_KEY, games);
 
         return response;
@@ -73,12 +69,10 @@ public class GameController {
     public Map<String, Object> getGamesDataTournament(@PathVariable("season") String season,
                                                       @PathVariable("tournament") String tournament) {
         Map<String, Object> response = new HashMap<>();
-        List<TourDto> tours = tournamentService.getTournamentTours(season, tournament);
-        List<TeamDto> teams = teamService.getTournamentTeams(season, tournament);
+        List<TourDto> tours = tourService.getTournamentTours(season, tournament);
         List<GameDto> games = loadGamesInSelectedTour(tours);
 
         response.put(TOUR_DTO_KEY, tours);
-        response.put(TEAM_DTO_KEY, teams);
         response.put(GAME_DTO_KEY, games);
 
         return response;
@@ -92,11 +86,9 @@ public class GameController {
                                               @PathVariable("tournament") String tournament,
                                               @PathVariable("tour") String tour) {
         Map<String, Object> response = new HashMap<>();
-        List<TourDto> tours = tournamentService.getTournamentTours(season, tournament);
-        List<TeamDto> teams = teamService.getTournamentTeams(season, tournament);
-        List<GameDto> games = loadGamesInSelectedTour(tours);
 
-        response.put(TEAM_DTO_KEY, teams);
+        List<GameDto> games = gameService.getTourGames(season, tournament, tour);
+
         response.put(GAME_DTO_KEY, games);
 
         return response;
@@ -115,15 +107,7 @@ public class GameController {
             return Arrays.asList();
         }
 
-        return tournamentService.getTournamentTours(tournaments.get(0).getId());
-    }
-
-    private List<TeamDto> loadTeamInSelectedTournament(List<TournamentDto> tournaments) {
-        if(CollectionUtils.isEmpty(tournaments)) {
-            return Arrays.asList();
-        }
-
-        return teamService.getTournamentTeams(tournaments.get(0).getId());
+        return tourService.getTournamentTours(tournaments.get(0).getId());
     }
 
     private List<GameDto> loadGamesInSelectedTour(List<TourDto> tours) {
@@ -131,6 +115,6 @@ public class GameController {
             return Arrays.asList();
         }
 
-        return tourService.getTourGames(tours.get(0).getId());
+        return gameService.getTourGames(tours.get(0).getId());
     }
 }

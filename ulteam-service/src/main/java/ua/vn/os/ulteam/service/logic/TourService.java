@@ -1,12 +1,12 @@
 package ua.vn.os.ulteam.service.logic;
 
-import ua.vn.os.ulteam.service.dto.GameDto;
-
+import ua.vn.os.ulteam.service.dto.TourDto;
 import java.util.List;
 
 /**
  * @author oleg.sukhov
  */
 public interface TourService {
-    List<GameDto> getTourGames(long tourId);
+    List<TourDto> getTournamentTours(String seasonName, String tournamentName);
+    List<TourDto> getTournamentTours(long tournamentId);
 }

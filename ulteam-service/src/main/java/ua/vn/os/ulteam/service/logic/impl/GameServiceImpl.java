@@ -6,7 +6,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import ua.vn.os.ulteam.model.dao.GameDao;
+import ua.vn.os.ulteam.model.dao.TourDao;
 import ua.vn.os.ulteam.model.entity.Game;
+import ua.vn.os.ulteam.model.entity.Tour;
 import ua.vn.os.ulteam.service.config.ServiceConfig;
 import ua.vn.os.ulteam.service.dto.GameDto;
 import ua.vn.os.ulteam.service.logic.GameService;
@@ -24,23 +26,19 @@ import java.util.stream.Collectors;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class GameServiceImpl implements GameService {
 
-    @Resource
-    private GameDao gameDao;
+    @Resource private GameDao gameDao;
+    @Resource private TourDao tourDao;
 
     @Override
-    public List<GameDto> getAllGames() {
-        List<Game> allGames = gameDao.getAllGames();
-
-        if(CollectionUtils.isEmpty(allGames)) {
-            throw new EntityNotFoundException();
-        }
-
-        return convertToGameDtoList(allGames);
+    public List<GameDto> getTourGames(long tourId) {
+        Tour tour = tourDao.get(tourId);
+        return convertToGameDtoList(tour.getGames());
     }
 
     @Override
-    public List<GameDto> getGamesInSeason(String seasonName) {
-        return null;
+    public List<GameDto> getTourGames(String seasonName, String tournamentName, String tourName) {
+        Tour tour = tourDao.getTour(seasonName, tournamentName, tourName);
+        return convertToGameDtoList(tour.getGames());
     }
 
     private List<GameDto> convertToGameDtoList(List<Game> games) {

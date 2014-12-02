@@ -80,12 +80,12 @@ table {
 }
 
 #navigation {
-    width: 25%;
+    width: 22%;
     vertical-align: text-top;
 }
 
 #content {
-    width: 75%;
+    width: 78%;
     padding-left: 2%;
     vertical-align: -webkit-baseline-middle;
 }
@@ -305,7 +305,7 @@ table {
 }
 
 .game-row > .tournament {
-    width: 20%;
+    width: 15%;
     vertical-align: middle;
 }
 

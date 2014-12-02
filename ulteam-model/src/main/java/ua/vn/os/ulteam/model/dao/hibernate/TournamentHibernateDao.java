@@ -23,13 +23,6 @@ public class TournamentHibernateDao extends GenericDao<Tournament> implements To
     }
 
     @Override
-    public List<Tournament> getAllTournaments() {
-        DetachedCriteria criteria = DetachedCriteria.forClass(Tournament.class);
-        criteria.addOrder(Order.desc("name"));
-        return (List<Tournament>) getHibernateTemplate().findByCriteria(criteria);
-    }
-
-    @Override
     public List<Tournament> getTournamentsInSeason(Season season) {
         DetachedCriteria criteria =
                 DetachedCriteria.forClass(Tournament.class, "t")

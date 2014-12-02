@@ -8,6 +8,6 @@ import java.util.List;
  * @author oleg.sukhov
  */
 public interface GameService {
-    public List<GameDto> getAllGames();
-    public List<GameDto> getGamesInSeason(String seasonName);
+    List<GameDto> getTourGames(long tourId);
+    List<GameDto> getTourGames(String seasonName, String tournamentName, String tourName);
 }

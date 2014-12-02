@@ -16,7 +16,7 @@ import java.util.List;
 @javax.persistence.Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ToString
+@ToString(exclude = "games")
 public class Tour extends Entity {
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -21,8 +21,7 @@ function GamesHelper() {
 GamesHelper.prototype.COTROLS_ID = {
     seasonDtoList: 'season',
     tournamentDtoList: 'tournament',
-    tourDtoList: 'tour',
-    teamDtoList: 'team'
+    tourDtoList: 'tour'
 };
 
 GamesHelper.prototype.getHandler = function(controlName) {
