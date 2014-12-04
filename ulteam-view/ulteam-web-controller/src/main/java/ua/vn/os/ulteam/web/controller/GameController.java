@@ -22,6 +22,7 @@ public class GameController {
     public static final String SEASON_DTO_KEY = "seasonDtoList";
     public static final String TOURNAMENT_DTO_KEY = "tournamentDtoList";
     public static final String TOUR_DTO_KEY = "tourDtoList";
+    public static final String ALL_TOURS_KEY = "ALL-TOURS";
 
     @Resource private TourService tourService;
     @Resource private SeasonService seasonService;
@@ -34,9 +35,9 @@ public class GameController {
         ModelAndView modelAndView = new ModelAndView("games");
 
         List<SeasonDto> seasons = seasonService.getAllSeasons();
-        List<TournamentDto> tournaments = loadTournamentsInSelectedSeason(seasons);
-        List<TourDto> tours = loadToursInSelectedTournament(tournaments);
-        List<GameDto> games = loadGamesInSelectedTour(tours);
+        List<TournamentDto> tournaments = loadTournaments(seasons.get(0));
+        List<TourDto> tours = loadTours(tournaments.get(0));
+        List<GameDto> games = loadGames(seasons.get(0).getName(), tournaments.get(0).getName(), ALL_TOURS_KEY);
 
         modelAndView.addObject(SEASON_DTO_KEY, seasons);
         modelAndView.addObject(TOURNAMENT_DTO_KEY, tournaments);
@@ -52,8 +53,8 @@ public class GameController {
         Map<String, Object> response = new HashMap<>();
 
         List<TournamentDto> tournaments = tournamentService.getTournamentsInSeasonDto(season);
-        List<TourDto> tours = loadToursInSelectedTournament(tournaments);
-        List<GameDto> games = loadGamesInSelectedTour(tours);
+        List<TourDto> tours = loadTours(tournaments.get(0));
+        List<GameDto> games = loadGames(season, tournaments.get(0).getName(), ALL_TOURS_KEY);
 
         response.put(TOURNAMENT_DTO_KEY, tournaments);
         response.put(TOUR_DTO_KEY, tours);
@@ -66,11 +67,11 @@ public class GameController {
             produces = APPLICATION_JSON_VALUE,
             method = GET)
     @ResponseBody
-    public Map<String, Object> getGamesDataTournament(@PathVariable("season") String season,
-                                                      @PathVariable("tournament") String tournament) {
+    public Map<String, Object> getGamesDataByTournament(@PathVariable("season") String season,
+                                                        @PathVariable("tournament") String tournament) {
         Map<String, Object> response = new HashMap<>();
         List<TourDto> tours = tourService.getTournamentTours(season, tournament);
-        List<GameDto> games = loadGamesInSelectedTour(tours);
+        List<GameDto> games = loadGames(season, tournament, ALL_TOURS_KEY);
 
         response.put(TOUR_DTO_KEY, tours);
         response.put(GAME_DTO_KEY, games);
@@ -82,39 +83,48 @@ public class GameController {
             produces = APPLICATION_JSON_VALUE,
             method = GET)
     @ResponseBody
-    public Map<String, Object> getGamesByTour(@PathVariable("season") String season,
-                                              @PathVariable("tournament") String tournament,
-                                              @PathVariable("tour") String tour) {
+    public Map<String, Object> getGamesDataByTour(@PathVariable("season") String season,
+                                                  @PathVariable("tournament") String tournament,
+                                                  @PathVariable("tour") String tour) {
         Map<String, Object> response = new HashMap<>();
 
-        List<GameDto> games = gameService.getTourGames(season, tournament, tour);
+        List<GameDto> games = loadGames(season, tournament, tour);
 
         response.put(GAME_DTO_KEY, games);
 
         return response;
     }
 
-    private List<TournamentDto> loadTournamentsInSelectedSeason(List<SeasonDto> seasons) {
-        if(CollectionUtils.isEmpty(seasons)) {
+    private List<TournamentDto> loadTournaments(SeasonDto seasonDto) {
+        if(seasonDto == null) {
             return Arrays.asList();
         }
 
-        return tournamentService.getTournamentsInSeasonDto(seasons.get(0).getName());
+        return tournamentService.getTournamentsInSeasonDto(seasonDto.getName());
     }
 
-    private List<TourDto> loadToursInSelectedTournament(List<TournamentDto> tournaments) {
-        if(CollectionUtils.isEmpty(tournaments)) {
+    private List<TourDto> loadTours(TournamentDto tournamentDto) {
+        if(tournamentDto == null) {
             return Arrays.asList();
         }
 
-        return tourService.getTournamentTours(tournaments.get(0).getId());
+        return tourService.getTournamentTours(tournamentDto.getId());
     }
 
-    private List<GameDto> loadGamesInSelectedTour(List<TourDto> tours) {
-        if(CollectionUtils.isEmpty(tours)) {
+    private List<GameDto> loadGames(TourDto tourDto) {
+        if(tourDto == null) {
             return Arrays.asList();
         }
 
-        return gameService.getTourGames(tours.get(0).getId());
+        return gameService.getTourGames(tourDto.getId());
     }
+
+    private List<GameDto> loadGames(String season, String tournament, String tour) {
+        if(ALL_TOURS_KEY.equals(tour)) {
+            return gameService.getTournamentGames(season, tournament);
+        }
+
+        return gameService.getTourGames(season, tournament, tour);
+    }
+
 }

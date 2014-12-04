@@ -10,4 +10,5 @@ import java.util.List;
 public interface GameService {
     List<GameDto> getTourGames(long tourId);
     List<GameDto> getTourGames(String seasonName, String tournamentName, String tourName);
+    List<GameDto> getTournamentGames(String seasonName, String tournamentName);
 }
