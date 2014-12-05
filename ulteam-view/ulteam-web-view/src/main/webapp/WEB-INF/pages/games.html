@@ -38,17 +38,15 @@
                                         <option th:text="${seasonDto.name}"></option>
                                     </span>
                                 </select>
-                            </td>
-                            <td>
+
                                 <select id="tournament" class="selectpicker show-tick games-control-bar-item" data-style="btn-success" title="...">
                                     <span th:each="tournamentDto : ${tournamentDtoList}">
                                         <option th:text="${tournamentDto.name}"></option>
                                     </span>
                                 </select>
-                            </td>
-                            <td>
+
                                 <select id="tour" class="selectpicker show-tick games-control-bar-item" data-style="btn-success" title="...">
-                                    <option value="..."></option>
+                                    <option value="ALL-TOURS"></option>
                                     <span th:each="tourDto : ${tourDtoList}">
                                         <option th:text="${tourDto.name}"></option>
                                     </span>

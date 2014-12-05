@@ -64,7 +64,7 @@ GamesHelper.prototype.updateControl = function(data, controlId) {
     control.empty();
 
     if(controlId == 'tour') {
-        control.append($('<option />').text('...').val('ALL-TOURS'));
+        control.append($('<option />').val('ALL-TOURS'));
     }
 
     jQuery.each(data, function() {
