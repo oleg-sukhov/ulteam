@@ -79,18 +79,6 @@ public class TournamentServiceImpl implements TournamentService {
     }
 
     @Override
-    public List<TourDto> getTournamentTours(long tournamentId) {
-        Tournament tournament = tournamentDao.get(tournamentId);
-        return convertToTourDtoList(tournament.getTours());
-    }
-
-    @Override
-    public List<TourDto> getTournamentTours(String seasonName, String tournamentName) {
-        Tournament tournament = tournamentDao.getTournament(seasonName, tournamentName);
-        return convertToTourDtoList(tournament.getTours());
-    }
-
-    @Override
     public Tournament getTournament(String seasonName, String tournamentName) {
         return tournamentDao.getTournament(seasonName, tournamentName);
     }
@@ -103,17 +91,6 @@ public class TournamentServiceImpl implements TournamentService {
         return TournamentDto.builder()
                 .name(tournament.getName())
                 .id(tournament.getId())
-                .build();
-    }
-
-    private List<TourDto> convertToTourDtoList(List<Tour> tours) {
-        return tours.stream().map(this::convertToTourDto).collect(Collectors.toList());
-    }
-
-    private TourDto convertToTourDto(Tour tour) {
-        return TourDto.builder()
-                .name(tour.getName())
-                .id(tour.getId())
                 .build();
     }
 }

@@ -6,13 +6,18 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import ua.vn.os.ulteam.model.dao.GameDao;
+import ua.vn.os.ulteam.model.dao.TourDao;
+import ua.vn.os.ulteam.model.dao.TournamentDao;
 import ua.vn.os.ulteam.model.entity.Game;
+import ua.vn.os.ulteam.model.entity.Tour;
+import ua.vn.os.ulteam.model.entity.Tournament;
 import ua.vn.os.ulteam.service.config.ServiceConfig;
 import ua.vn.os.ulteam.service.dto.GameDto;
 import ua.vn.os.ulteam.service.logic.GameService;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,23 +29,32 @@ import java.util.stream.Collectors;
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class GameServiceImpl implements GameService {
 
-    @Resource
-    private GameDao gameDao;
+    @Resource private GameDao gameDao;
+    @Resource private TourDao tourDao;
+    @Resource private TournamentDao tournamentDao;
 
     @Override
-    public List<GameDto> getAllGames() {
-        List<Game> allGames = gameDao.getAllGames();
-
-        if(CollectionUtils.isEmpty(allGames)) {
-            throw new EntityNotFoundException();
-        }
-
-        return convertToGameDtoList(allGames);
+    public List<GameDto> getTourGames(long tourId) {
+        Tour tour = tourDao.get(tourId);
+        return convertToGameDtoList(tour.getGames());
     }
 
     @Override
-    public List<GameDto> getGamesInSeason(String seasonName) {
-        return null;
+    public List<GameDto> getTourGames(String seasonName, String tournamentName, String tourName) {
+        Tour tour = tourDao.getTour(seasonName, tournamentName, tourName);
+        return convertToGameDtoList(tour.getGames());
+    }
+
+    @Override
+    public List<GameDto> getTournamentGames(String seasonName, String tournamentName) {
+        List<GameDto> result = new ArrayList<>();
+        Tournament tournament = tournamentDao.getTournament(seasonName, tournamentName);
+
+        for(Tour tour: tournament.getTours()) {
+            result.addAll(convertToGameDtoList(tour.getGames()));
+        }
+
+        return result;
     }
 
     private List<GameDto> convertToGameDtoList(List<Game> games) {

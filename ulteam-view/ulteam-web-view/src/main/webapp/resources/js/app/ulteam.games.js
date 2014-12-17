@@ -7,7 +7,7 @@ $(document).ready(function() {
 
     jQuery.each($('.games-control-bar-item'), function() {
        jQuery(this).change(function() {
-           var selectedText = $(this).find('option:selected').text();
+           var selectedText = $(this).find('option:selected').val();
            var processMethod = gamesHelper.getHandler($(this).attr('id'));
            processMethod.call(gamesHelper, selectedText);
        });
@@ -21,8 +21,7 @@ function GamesHelper() {
 GamesHelper.prototype.COTROLS_ID = {
     seasonDtoList: 'season',
     tournamentDtoList: 'tournament',
-    tourDtoList: 'tour',
-    teamDtoList: 'team'
+    tourDtoList: 'tour'
 };
 
 GamesHelper.prototype.getHandler = function(controlName) {
@@ -63,6 +62,11 @@ GamesHelper.prototype.processData = function(data) {
 GamesHelper.prototype.updateControl = function(data, controlId) {
     var control = $('#' + controlId);
     control.empty();
+
+    if(controlId == 'tour') {
+        control.append($('<option />').val('ALL-TOURS'));
+    }
+
     jQuery.each(data, function() {
         control.append(
             $('<option />')
