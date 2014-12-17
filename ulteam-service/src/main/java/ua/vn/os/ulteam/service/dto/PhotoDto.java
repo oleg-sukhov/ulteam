@@ -3,7 +3,7 @@ package ua.vn.os.ulteam.service.dto;
 import lombok.*;
 
 /**
- * @Author os
+ * @Author oleg.sukhov
  */
 @NoArgsConstructor
 @AllArgsConstructor
